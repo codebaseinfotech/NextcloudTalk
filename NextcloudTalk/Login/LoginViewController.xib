@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="NextcloudTalk" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Tassos_Talk" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicatorView" destination="Dkt-lG-hBg" id="znH-WE-AOl"/>
                 <outlet property="appLogoImageView" destination="iwf-In-Fgx" id="w5h-n7-Sb9"/>
@@ -124,7 +125,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="f6v-tp-8eE"/>
-            <color key="backgroundColor" red="0.0" green="0.50980392159999999" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" name="primary"/>
             <constraints>
                 <constraint firstItem="Drk-al-ltc" firstAttribute="top" secondItem="oSe-zQ-ucj" secondAttribute="bottom" constant="32" id="5Qu-nJ-A09"/>
                 <constraint firstItem="Drk-al-ltc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="f6v-tp-8eE" secondAttribute="leading" constant="16" id="AqG-88-lCc"/>
@@ -150,8 +151,11 @@
         <image name="loginLogo" width="250" height="125"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="qrcode.viewfinder" catalog="system" width="128" height="115"/>
+        <namedColor name="primary">
+            <color red="0.0" green="0.53333333333333333" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

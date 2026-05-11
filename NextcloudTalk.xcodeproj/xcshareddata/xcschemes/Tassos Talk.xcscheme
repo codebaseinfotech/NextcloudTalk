@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C05747C1EDD9E8E00D9E7F2"
-               BuildableName = "NextcloudTalk.app"
-               BlueprintName = "NextcloudTalk"
+               BuildableName = "Tassos Talk.app"
+               BlueprintName = "Tassos Talk"
                ReferencedContainer = "container:NextcloudTalk.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -76,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C05747C1EDD9E8E00D9E7F2"
-            BuildableName = "NextcloudTalk.app"
-            BlueprintName = "NextcloudTalk"
+            BuildableName = "Tassos Talk.app"
+            BlueprintName = "Tassos Talk"
             ReferencedContainer = "container:NextcloudTalk.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -93,8 +93,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C05747C1EDD9E8E00D9E7F2"
-            BuildableName = "NextcloudTalk.app"
-            BlueprintName = "NextcloudTalk"
+            BuildableName = "Tassos Talk.app"
+            BlueprintName = "Tassos Talk"
             ReferencedContainer = "container:NextcloudTalk.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

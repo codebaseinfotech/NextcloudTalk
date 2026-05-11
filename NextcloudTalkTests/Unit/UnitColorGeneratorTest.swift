@@ -10,7 +10,7 @@ final class UnitColorGeneratorTest: XCTestCase {
 
     func testUsernameToColor() throws {
         // See: https://github.com/nextcloud-libraries/nextcloud-vue/blob/76cc5dec7305f8e83b6380893e391d53770fb272/tests/unit/functions/usernameToColor/usernameToColor.spec.js#L10
-        usernameToColorHexHelper(username: "", expectedHexColor: "#0082c9")
+        usernameToColorHexHelper(username: "", expectedHexColor: "#0088CE")
         usernameToColorHexHelper(username: ",", expectedHexColor: "#1e78c1")
         usernameToColorHexHelper(username: ".", expectedHexColor: "#c98879")
         usernameToColorHexHelper(username: "admin", expectedHexColor: "#d09e6d")
@@ -22,7 +22,7 @@ final class UnitColorGeneratorTest: XCTestCase {
         usernameToColorHexHelper(username: "Gianluca Hills", expectedHexColor: "#d6b461")
         usernameToColorHexHelper(username: "Haseeb Stephens", expectedHexColor: "#d6b461")
         usernameToColorHexHelper(username: "Idris Mac", expectedHexColor: "#9750a4")
-        usernameToColorHexHelper(username: "Kristi Fisher", expectedHexColor: "#0082c9")
+        usernameToColorHexHelper(username: "Kristi Fisher", expectedHexColor: "#0088CE")
         usernameToColorHexHelper(username: "Lillian Wall", expectedHexColor: "#bc5c91")
         usernameToColorHexHelper(username: "Lorelai Taylor", expectedHexColor: "#ddcb55")
         usernameToColorHexHelper(username: "Madina Knight", expectedHexColor: "#9750a4")
@@ -39,7 +39,7 @@ final class UnitColorGeneratorTest: XCTestCase {
         usernameToColorHexHelper(username: "admin@cloud.example.com", expectedHexColor: "#9750a4")
         usernameToColorHexHelper(username: "another user", expectedHexColor: "#ddcb55")
         usernameToColorHexHelper(username: "asd", expectedHexColor: "#248eb5")
-        usernameToColorHexHelper(username: "bar", expectedHexColor: "#0082c9")
+        usernameToColorHexHelper(username: "bar", expectedHexColor: "#0088CE")
         usernameToColorHexHelper(username: "foo", expectedHexColor: "#d09e6d")
         usernameToColorHexHelper(username: "wasd", expectedHexColor: "#b6469d")
         usernameToColorHexHelper(username: "مرحبا بالعالم", expectedHexColor: "#c98879")

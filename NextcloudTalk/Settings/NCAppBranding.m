@@ -45,7 +45,7 @@ NSString * const appAlternateVersion = @"";
 
 #pragma mark - Theming
 
-NSString * const brandColorHex = @"#0082C9";
+NSString * const brandColorHex = @"#0088CE";
 NSString * const brandTextColorHex = @"#FFFFFF";
 BOOL const customNavigationLogo = NO;
 BOOL const useServerThemimg = YES;

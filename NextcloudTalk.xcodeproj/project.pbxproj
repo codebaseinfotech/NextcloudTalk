@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0ACF8E1A2FB2E45700A83D5C /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACF8E192FB2E45700A83D5C /* splash_logo.png */; };
+		0ACF92E32FB2E63600A83D5C /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACF92E22FB2E63600A83D5C /* splash_logo.png */; };
 		1F0ECBF52A68274400921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF42A68274400921E90 /* CDMarkdownKit */; };
 		1F0ECBF72A68277000921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF62A68277000921E90 /* CDMarkdownKit */; };
 		1F0ECBF92A68277C00921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF82A68277C00921E90 /* CDMarkdownKit */; };
@@ -282,7 +282,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0ACF8E192FB2E45700A83D5C /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_logo.png; sourceTree = "<group>"; };
+		0ACF92E22FB2E63600A83D5C /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_logo.png; sourceTree = "<group>"; };
 		1F21A0622C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-NO"; path = "nb-NO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1F21A0632C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-NO"; path = "nb-NO.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1F21A0642C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "nb-NO"; path = "nb-NO.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -1388,7 +1388,7 @@
 				2C0574941EDD9E8E00D9E7F2 /* Info.plist */,
 				1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */,
 				2CA1CCAB1F067F35002FE6A2 /* Images.xcassets */,
-				0ACF8E192FB2E45700A83D5C /* splash_logo.png */,
+				0ACF92E22FB2E63600A83D5C /* splash_logo.png */,
 				1FADECD42B7EACCB007AD94B /* PrivacyInfo.xcprivacy */,
 				2C330374255E6EBC00BDB4E4 /* InfoPlist.strings */,
 				2C1D13A1253760EE00EC0533 /* LaunchScreen.xib */,
@@ -1982,7 +1982,7 @@
 				2C05748E1EDD9E8E00D9E7F2 /* Main.storyboard in Resources */,
 				1FE7DE362BBC8FA10040EE12 /* PrivacyInfo.xcprivacy in Resources */,
 				2C477C1628B79D980044DEB4 /* Localizable.stringsdict in Resources */,
-				0ACF8E1A2FB2E45700A83D5C /* splash_logo.png in Resources */,
+				0ACF92E32FB2E63600A83D5C /* splash_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

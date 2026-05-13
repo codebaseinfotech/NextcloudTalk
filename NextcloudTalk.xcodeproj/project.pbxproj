@@ -1938,9 +1938,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-					/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		1F6D8C2E2B2E3756004376B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -2012,25 +2009,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7E307959FCCC4FD79D42DAD8 /* Build Target Libraries */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Target Libraries";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			showEnvVarsInLog = 0;	
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A8DAD24}\"";
-		};
 		25F3EB565BD21EF2FF15F197 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2125,6 +2103,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E307959FCCC4FD79D42DAD8 /* Build Target Libraries */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Target Libraries";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A8DAD24}\"";
 			showEnvVarsInLog = 0;
 		};
 		902A7A3EC0BDCC947AEF3EBF /* [CP] Check Pods Manifest.lock */ = {
@@ -2732,7 +2730,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BroadcastUploadExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Nextcloud Talk";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tassos Talk";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2777,7 +2775,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BroadcastUploadExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Nextcloud Talk";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tassos Talk";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (

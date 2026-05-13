@@ -18,7 +18,7 @@ typedef enum NCTextColorStyle {
 
 #pragma mark - App configuration
 
-NSString * const talkAppName = @"Nextcloud Talk";
+NSString * const talkAppName = @"Tassos Talk";
 NSString * const filesAppName = @"Nextcloud";
 NSString * const copyright = @"© 2026 Nextcloud GmbH";
 NSString * const bundleIdentifier = @"com.nextcloud.Talk";

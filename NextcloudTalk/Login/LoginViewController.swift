@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         view.backgroundColor = NCAppBranding.brandColor()
 
         // App logo
-        self.appLogoImageView.image = UIImage(named: "loginLogo")
+        self.appLogoImageView.image = UIImage(named: "splash_logo.png")
 
         // Server TextField
         serverTextField.delegate = self

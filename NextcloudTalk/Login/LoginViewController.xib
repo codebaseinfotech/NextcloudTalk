@@ -37,10 +37,10 @@
                         <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="364-Pt-0ZF"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-In-Fgx">
-                    <rect key="frame" x="62.5" y="82" width="250" height="125"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-In-Fgx">
+                    <rect key="frame" x="125" y="82" width="125" height="125"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="250" id="HDX-9P-1H4"/>
+                        <constraint firstAttribute="width" constant="125" id="HDX-9P-1H4"/>
                         <constraint firstAttribute="height" constant="125" id="wj6-8X-JR0"/>
                     </constraints>
                 </imageView>
@@ -148,9 +148,9 @@
     </objects>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
-        <image name="loginLogo" width="250" height="125"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="qrcode.viewfinder" catalog="system" width="128" height="115"/>
+        <image name="splash_logo.png" width="240" height="240"/>
         <namedColor name="primary">
             <color red="0.0" green="0.53333333333333333" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

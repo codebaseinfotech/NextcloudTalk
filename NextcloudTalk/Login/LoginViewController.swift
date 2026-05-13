@@ -42,6 +42,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         dismiss(animated: true)
     }
 
+    // Static server URL
+    let staticServerURL = "https://tacs1.tassosconsultancy.com"
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,66 +54,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         // App logo
         self.appLogoImageView.image = UIImage(named: "splash_logo.png")
 
-        // Server TextField
-        serverTextField.delegate = self
-        serverTextField.textColor = NCAppBranding.brandTextColor()
-        serverTextField.tintColor = NCAppBranding.brandTextColor()
-        serverTextField.layer.borderColor = NCAppBranding.brandTextColor().cgColor
-        serverTextField.layer.borderWidth = 1
-        serverTextField.layer.cornerRadius = 8
-        serverTextField.layer.masksToBounds = true
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
-        serverTextField.leftView = paddingView
-        serverTextField.leftViewMode = .always
-        serverTextField.rightView = paddingView
-        serverTextField.rightViewMode = .always
-        serverTextField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Server address https://…", comment: ""),
-            attributes: [.foregroundColor: NCAppBranding.brandTextColor().withAlphaComponent(0.5)])
-        serverLabel.textColor = NCAppBranding.brandTextColor()
-        serverLabel.text = NSLocalizedString("This is the web address you use to access your server in your web browser.", comment: "")
+        // Hide all UI elements for auto-login
+        serverTextField.isHidden = true
+        serverLabel.isHidden = true
+        loginButton.isHidden = true
+        qrCodeButton.isHidden = true
+        importAccountButton.isHidden = true
+        cancelButton.isHidden = true
 
-        // Login button
-        loginButton.setTitle(NSLocalizedString("Log in", comment: ""), for: .normal)
-
-        // QR code button
-        qrCodeButton.setTitle(NSLocalizedString("Scan QR code", comment: ""), for: .normal)
-        qrCodeButton.isHidden = !QRScannerViewController.isDataScannerSupported()
-
-        // Import account button
-        importAccountButton.setTitle(NSLocalizedString("Import account", comment: ""), for: .normal)
-
-        // Buttons style
-        [loginButton, qrCodeButton, importAccountButton].forEach { button in
-            button.backgroundColor = NCAppBranding.brandColor()
-            button.layer.borderColor = NCAppBranding.brandTextColor().cgColor
-            button.layer.cornerRadius = 12
-            button.layer.borderWidth = 1
-            button.clipsToBounds = true
-
-            // Highlighted style
-            button.setTitleColor(NCAppBranding.brandTextColor().withAlphaComponent(0.5), for: .highlighted)
-            if let buttonImage = button.image(for: .normal) {
-                button.setImage(buttonImage.withTintColor(NCAppBranding.brandTextColor().withAlphaComponent(0.5), renderingMode: .alwaysOriginal), for: .highlighted)
-            }
-        }
-
-        // Activity indicator
+        // Activity indicator - center on screen
         activityIndicatorView.color = NCAppBranding.brandTextColor()
-        activityIndicatorView.isHidden = true
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
 
-        // Cancel button
-        cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
-        cancelButton.setTitleColor(NCAppBranding.brandTextColor(), for: .normal)
-        cancelButton.isHidden = !(multiAccountEnabled.boolValue && NCDatabaseManager.sharedInstance().numberOfAccounts() > 0)
-
-        // Check for Nextcloud Files app accounts
-        checkFilesAppAccounts()
-
-        // Add tap gesture recognizer to dismiss keyboard
-        view.addGestureRecognizer(
-            UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        )
+        // Auto-start login with static URL
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.startLoginProcess(serverURL: self.staticServerURL, user: nil)
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -236,6 +201,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         }
 
         let authenticationNC = UINavigationController(rootViewController: authenticationViewController)
+        authenticationNC.modalPresentationStyle = .fullScreen
         present(authenticationNC, animated: true)
     }
 
@@ -328,13 +294,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         } else {
             if let error {
                 self.showAlert(
-                    title: NSLocalizedString("Nextcloud server not found", comment: ""),
-                    message: String(format: "%@\n%@", error, NSLocalizedString("Please check that you entered the correct Nextcloud server address.", comment: "")))
+                    title: NSLocalizedString("Tassos Talk server not found", comment: ""),
+                    message: String(format: "%@\n%@", error, NSLocalizedString("Please check that you entered the correct Tassos Talk server address.", comment: "")))
 
             } else {
                 self.showAlert(
-                    title: NSLocalizedString("Nextcloud server not found", comment: ""),
-                    message: NSLocalizedString("Please check that you entered the correct Nextcloud server address.", comment: ""))
+                    title: NSLocalizedString("Tassos Talk server not found", comment: ""),
+                    message: NSLocalizedString("Please check that you entered the correct Tassos Talk server address.", comment: ""))
             }
         }
     }

@@ -1572,7 +1572,7 @@
 "Next week" = "Next week";
 
 /* No comment provided by engineer. */
-"Nextcloud server not found" = "Nextcloud server not found";
+"Tassos Talk server not found" = "Tassos Talk server not found";
 
 /* No comment provided by engineer. */
 "No" = "No";
@@ -1803,7 +1803,7 @@
 "Please check that you entered a valid server address." = "Please check that you entered a valid server address.";
 
 /* No comment provided by engineer. */
-"Please check that you entered the correct Nextcloud server address." = "Please check that you entered the correct Nextcloud server address.";
+"Please check that you entered the correct Tassos Talk server address." = "Please check that you entered the correct Tassos Talk server address.";
 
 /* No comment provided by engineer. */
 "Please check that you entered the correct server address." = "Please check that you entered the correct server address.";
@@ -2097,7 +2097,7 @@
 "Share" = "Share";
 
 /* No comment provided by engineer. */
-"Share a file from your Nextcloud" = "Share a file from your Nextcloud";
+"Share a file from your Tassos Talk" = "Share a file from your Tassos Talk";
 
 /* No comment provided by engineer. */
 "Share current location" = "Share current location";

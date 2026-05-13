@@ -39,6 +39,10 @@ NSString * const kNCAuthTokenFlowEndpoint               = @"/index.php/login/flo
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Set brand color as background to avoid white flash
+    self.view.backgroundColor = [NCAppBranding brandColor];
+
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.websiteDataStore = [WKWebsiteDataStore nonPersistentDataStore];
 
@@ -67,13 +71,16 @@ NSString * const kNCAuthTokenFlowEndpoint               = @"/index.php/login/flo
         self->_webView.customUserAgent = [NCAppBranding userAgentForLogin];
         self->_webView.navigationDelegate = self;
         self->_webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        self->_webView.backgroundColor = [NCAppBranding brandColor];
+        self->_webView.opaque = NO;
+        self->_webView.hidden = YES;
 
         [self->_webView loadRequest:request];
         [self.view addSubview:self->_webView];
 
         self->_activityIndicatorView = [[UIActivityIndicatorView alloc] init];
         self->_activityIndicatorView.center = self.view.center;
-        self->_activityIndicatorView.color = [NCAppBranding brandColor];
+        self->_activityIndicatorView.color = [NCAppBranding brandTextColor];
         [self->_activityIndicatorView startAnimating];
         [self.view addSubview:self->_activityIndicatorView];
     }];
@@ -88,10 +95,9 @@ NSString * const kNCAuthTokenFlowEndpoint               = @"/index.php/login/flo
 
     [NCAppBranding styleViewController:self];
 
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                  target:self action:@selector(cancelButtonPressed)];
-    cancelButton.accessibilityHint = NSLocalizedString(@"Double tap to dismiss authentication dialog", nil);
-    self.navigationController.navigationBar.topItem.leftBarButtonItem = cancelButton;
+    // Cancel button hidden for auto-login
+    self.navigationController.navigationBar.topItem.leftBarButtonItem = nil;
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)cancelButtonPressed
@@ -180,6 +186,7 @@ NSString * const kNCAuthTokenFlowEndpoint               = @"/index.php/login/flo
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [self.webView setHidden:NO];
     [self.webView setUserInteractionEnabled:YES];
     [self.webView setAccessibilityIdentifier:@"interactiveWebLoginView"];
 }

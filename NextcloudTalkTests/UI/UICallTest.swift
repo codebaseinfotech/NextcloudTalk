@@ -25,7 +25,7 @@ final class UICallTest: XCTestCase {
         self.createConversation(for: app, with: newConversationName)
 
         // Start a call
-        let chatNavBar = app.navigationBars["NextcloudTalk.ChatView"]
+        let chatNavBar = app.navigationBars["TassosTalk.ChatView"]
         let callOptionsButton = chatNavBar.buttons["Call options"]
         waitForReady(object: callOptionsButton).tap()
 

@@ -18,7 +18,7 @@ final class UIRoomTest: XCTestCase {
 
         self.createConversation(for: app, with: newConversationName)
 
-        let chatNavBar = app.navigationBars["NextcloudTalk.ChatView"]
+        let chatNavBar = app.navigationBars["TassosTalk.ChatView"]
 
         // Wait for navigationBar
         XCTAssert(chatNavBar.waitForExistence(timeout: TestConstants.timeoutLong))
@@ -84,7 +84,7 @@ final class UIRoomTest: XCTestCase {
         waitForReady(object: app.tables.cells.staticTexts["Join open conversations"]).tap()
         waitForReady(object: app.tables.cells.staticTexts[openConversationName]).tap()
 
-        let chatNavBar = app.navigationBars["NextcloudTalk.ChatView"]
+        let chatNavBar = app.navigationBars["TassosTalk.ChatView"]
 
         // Wait for navigationBar
         XCTAssert(chatNavBar.waitForExistence(timeout: TestConstants.timeoutLong))
@@ -157,7 +157,7 @@ final class UIRoomTest: XCTestCase {
         waitForReady(object: foundElement).tap()
 
         // Start a call and hangup afterwards
-        let chatNavBar = app.navigationBars["NextcloudTalk.ChatView"]
+        let chatNavBar = app.navigationBars["TassosTalk.ChatView"]
         let callOptionsButton = chatNavBar.buttons["Call options"]
         waitForReady(object: callOptionsButton).tap()
 
@@ -342,7 +342,7 @@ final class UIRoomTest: XCTestCase {
         // Check that there's no activity indicator
         XCTAssertEqual(app.activityIndicators.count, 0)
 
-        let shareButton = app.buttons["Share a file from your Nextcloud"]
+        let shareButton = app.buttons["Share a file from your Tassos Talk"]
         XCTAssert(!shareButton.exists)
 
         // Check that there's no inputbar
@@ -363,7 +363,7 @@ final class UIRoomTest: XCTestCase {
 
         reactOnlyCell.tap()
 
-        let chatNavBar = app.navigationBars["NextcloudTalk.ChatView"]
+        let chatNavBar = app.navigationBars["TassosTalk.ChatView"]
         XCTAssert(chatNavBar.waitForExistence(timeout: TestConstants.timeoutLong))
 
         // Find the message from alice that we should react to

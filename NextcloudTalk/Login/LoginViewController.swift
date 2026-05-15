@@ -328,13 +328,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         } else {
             if let error {
                 self.showAlert(
-                    title: NSLocalizedString("Nextcloud server not found", comment: ""),
-                    message: String(format: "%@\n%@", error, NSLocalizedString("Please check that you entered the correct Nextcloud server address.", comment: "")))
+                    title: NSLocalizedString("Tassos server not found", comment: ""),
+                    message: String(format: "%@\n%@", error, NSLocalizedString("Please check that you entered the correct Tassos server address.", comment: "")))
 
             } else {
                 self.showAlert(
-                    title: NSLocalizedString("Nextcloud server not found", comment: ""),
-                    message: NSLocalizedString("Please check that you entered the correct Nextcloud server address.", comment: ""))
+                    title: NSLocalizedString("Tassos server not found", comment: ""),
+                    message: NSLocalizedString("Please check that you entered the correct Tassos server address.", comment: ""))
             }
         }
     }

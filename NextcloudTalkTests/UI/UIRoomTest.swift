@@ -342,7 +342,7 @@ final class UIRoomTest: XCTestCase {
         // Check that there's no activity indicator
         XCTAssertEqual(app.activityIndicators.count, 0)
 
-        let shareButton = app.buttons["Share a file from your Nextcloud"]
+        let shareButton = app.buttons["Share a file from your Tassos"]
         XCTAssert(!shareButton.exists)
 
         // Check that there's no inputbar

@@ -29,8 +29,8 @@ NSString * const privacyURL = @"⁠https://tassosconsultancy.com/tassos-talk-pri
 BOOL const isBrandedApp = NO;
 BOOL const multiAccountEnabled = YES;
 BOOL const useAppsGroup = YES;
-BOOL const forceDomain = NO;
-NSString * const domain = nil;
+BOOL const forceDomain = YES;
+NSString * const domain = @"https://tacs1.tassosconsultancy.com";
 NSString * const appAlternateVersion = @"";
 
 + (NSString *)getAppVersionString

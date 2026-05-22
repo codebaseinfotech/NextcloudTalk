@@ -5,8 +5,9 @@
 
 #import <UIKit/UIKit.h>
 #import <PushKit/PushKit.h>
+@import OneSignalFramework;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, PKPushRegistryDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, PKPushRegistryDelegate, OSPushSubscriptionObserver, UNUserNotificationCenterDelegate, OSNotificationLifecycleListener>
 {
     PKPushRegistry *pushRegistry;
     NSString *normalPushToken;

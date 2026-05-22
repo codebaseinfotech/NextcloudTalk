@@ -28,6 +28,7 @@
 #import "NextcloudTalk-Swift.h"
 
 @import UICKeyChainStore;
+@import OneSignalFramework;
 
 @interface AppDelegate ()
 
@@ -48,7 +49,38 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 #endif
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+
+    // Set notification delegate for foreground notifications
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+
+    // OneSignal Push Notification Setup
+    [OneSignal initialize:@"0f4eb378-54a6-47f4-ad11-0b9288aba8fc" withLaunchOptions:launchOptions];
+    [OneSignal.User.pushSubscription addObserver:self];
+    [OneSignal.Notifications addForegroundLifecycleListener:self];
+    NSLog(@"OneSignal initialized with App ID");
+
+    // Log subscription info after a delay to ensure it's ready
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSString *subscriptionId = OneSignal.User.pushSubscription.id;
+        NSString *pushToken = OneSignal.User.pushSubscription.token;
+        NSLog(@"OneSignal Subscription ID: %@", subscriptionId);
+        NSLog(@"OneSignal Push Token: %@", pushToken);
+        NSLog(@"OneSignal OptedIn: %d", OneSignal.User.pushSubscription.optedIn);
+    });
+
     
+    // Add OneSignal Tags
+    [OneSignal.User addTagWithKey:@"device_type" value:@"ios"];
+
+    TalkAccount *activeAccount = [[NCDatabaseManager sharedInstance] activeAccount];
+    if (activeAccount && activeAccount.userId) {
+        [OneSignal.User addTagWithKey:@"user_id" value:activeAccount.userId];
+    }
+
+    [OneSignal.Notifications requestPermission:^(BOOL accepted) {
+        NSLog(@"OneSignal: User accepted notifications: %d", accepted);
+    } fallbackToSettings:YES];
+
     [[NCNotificationController sharedInstance] requestAuthorization];
     
     [application registerForRemoteNotifications];
@@ -410,12 +442,43 @@
 {
     const char *data = [deviceToken bytes];
     NSMutableString *token = [NSMutableString string];
-    
+
     for (NSUInteger i = 0; i < [deviceToken length]; i++) {
         [token appendFormat:@"%02.2hhX", data[i]];
     }
-    
+
     return [token copy];
+}
+
+#pragma mark - OneSignal Push Subscription Observer
+
+- (void)onPushSubscriptionDidChangeWithState:(OSPushSubscriptionChangedState *)state {
+    NSString *subscriptionId = state.current.id;
+    NSString *pushToken = state.current.token;
+
+    NSLog(@"OneSignal Subscription ID: %@", subscriptionId);
+    NSLog(@"OneSignal Push Token: %@", pushToken);
+
+    // You can send the subscriptionId to your server here if needed
+}
+
+#pragma mark - OSNotificationLifecycleListener (OneSignal Foreground)
+
+- (void)onWillDisplayNotification:(OSNotificationWillDisplayEvent *)event {
+    NSLog(@"📩 OneSignal: Will display notification: %@", event.notification.body);
+    // Display the notification
+    [event.notification display];
+}
+
+#pragma mark - UNUserNotificationCenterDelegate (Foreground Notifications)
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    // Show notification even when app is in foreground
+    NSLog(@"📩 Foreground notification received: %@", notification.request.content.body);
+    NSLog(@"📩 Notification userInfo: %@", notification.request.content.userInfo);
+    completionHandler(UNNotificationPresentationOptionBanner | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionBadge);
 }
 
 #pragma mark - BackgroundProcessing

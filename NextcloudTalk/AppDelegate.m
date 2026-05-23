@@ -75,6 +75,9 @@
     TalkAccount *activeAccount = [[NCDatabaseManager sharedInstance] activeAccount];
     if (activeAccount && activeAccount.userId) {
         [OneSignal.User addTagWithKey:@"user_id" value:activeAccount.userId];
+        // Set OneSignal External ID for targeting users
+        [OneSignal login:activeAccount.userId];
+        NSLog(@"OneSignal: Logged in with external ID: %@", activeAccount.userId);
     }
 
     [OneSignal.Notifications requestPermission:^(BOOL accepted) {

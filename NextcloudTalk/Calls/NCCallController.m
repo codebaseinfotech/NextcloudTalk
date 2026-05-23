@@ -198,6 +198,17 @@ static NSString * const kNCScreenTrackKind  = @"screen";
 
                 self->_joinedCallOnce = YES;
                 self->_joinCallAttempts = 0;
+
+                // Send start call notification only if we're the initiator
+                if (self->_initiator) {
+                    BOOL withVideo = !self->_isAudioOnly;
+                    BOOL withAudio = YES;
+                    [NCChatNotificationHelper sendStartCallNotificationForRoom:self->_room
+                                                                       account:self->_account
+                                                                     withVideo:withVideo
+                                                                     withAudio:withAudio
+                                                                        silent:self->_silentCall];
+                }
             } else {
                 if ([error underlyingError].code == NSURLErrorCancelled) {
                     self->_joinCallAttempts = 0;

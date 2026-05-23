@@ -1414,6 +1414,12 @@ import Toast
                     NotificationPresenter.shared().present(text: NSLocalizedString("Message deleted successfully", comment: ""), dismissAfterDelay: 5.0, includedStyle: .success)
                 }
 
+                // Send delete message notification
+                NCChatNotificationHelper.sendDeleteMessageNotification(
+                    forRoom: self.room,
+                    account: self.account
+                )
+
                 if let deleteMessage = NCChatMessage(dictionary: parent, andAccountId: self.account.accountId) {
                     self.updateMessage(withMessageId: deleteMessage.messageId, updatedMessage: deleteMessage)
                 }
@@ -1792,9 +1798,20 @@ import Toast
     public func shareLocationViewController(_ viewController: ShareLocationViewController, didSelectLocationWithLatitude latitude: Double, longitude: Double, andName name: String) {
         let richObject = GeoLocationRichObject(latitude: latitude, longitude: longitude, name: name)
 
-        NCAPIController.sharedInstance().shareRichObject(richObject.richObjectDictionary(), inRoom: self.room.token, forAccount: self.account) { error in
+        NCAPIController.sharedInstance().shareRichObject(richObject.richObjectDictionary(), inRoom: self.room.token, forAccount: self.account) { [weak self] error in
             if let error {
                 print("Error sharing rich object: \(error)")
+            } else {
+                // Send share location notification
+                if let self = self {
+                    NCChatNotificationHelper.sendShareLocationNotification(
+                        forRoom: self.room,
+                        account: self.account,
+                        latitude: latitude,
+                        longitude: longitude,
+                        locationName: name
+                    )
+                }
             }
         }
 
@@ -2931,6 +2948,13 @@ import Toast
                 self.removeTemporaryReaction(reaction: reaction, forMessageId: message.messageId)
             } else {
                 self.setTemporaryReaction(reaction: reaction, withState: .added, toMessage: message)
+
+                // Send reaction notification
+                NCChatNotificationHelper.sendReactionNotification(
+                    forRoom: self.room,
+                    account: self.account,
+                    emoji: reaction
+                )
             }
         }
     }

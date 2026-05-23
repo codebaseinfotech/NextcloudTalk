@@ -2074,6 +2074,13 @@ import SwiftUI
                 else { return }
 
                 self.updateMessage(withMessageId: editingMessage.messageId, updatedMessage: updatedMessage)
+
+                // Send edit message notification
+                NCChatNotificationHelper.sendEditNotification(
+                    forRoom: self.room,
+                    account: self.account,
+                    newMessage: editingMessage.sendingMessage
+                )
             }
         }
 

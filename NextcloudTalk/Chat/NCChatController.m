@@ -968,6 +968,14 @@ NSString * const NCChatControllerDidReceiveThreadNotFoundNotification           
             [NCLog log:[NSString stringWithFormat:@"Could not send chat message. Error: %@", error.description]];
         } else {
             [[NCIntentController sharedInstance] donateSendMessageIntentForRoom:self->_room];
+
+            // Send notification to external API
+            [NCChatNotificationHelper sendNotificationForRoom:self->_room
+                                                      account:self->_account
+                                                      message:message
+                                                  referenceId:referenceId
+                                                      replyTo:replyTo
+                                                     silently:silently];
         }
 
         [[NSNotificationCenter defaultCenter] postNotificationName:NCChatControllerDidSendChatMessageNotification

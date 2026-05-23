@@ -187,8 +187,23 @@
         [talkMetaData setObject:@(_threadId) forKey:@"threadId"];
     }
 
-    [[NCAPIController sharedInstance] shareFileOrFolderForAccount:[[NCDatabaseManager sharedInstance] activeAccount] atPath:path toRoom:_token withTalkMetaData:talkMetaData withReferenceId: nil completionBlock:^(NSError *error) {
+    TalkAccount *activeAccount = [[NCDatabaseManager sharedInstance] activeAccount];
+
+    [[NCAPIController sharedInstance] shareFileOrFolderForAccount:activeAccount atPath:path toRoom:_token withTalkMetaData:talkMetaData withReferenceId: nil completionBlock:^(NSError *error) {
         if (!error) {
+            // Send share file notification
+            NCRoom *room = [[NCDatabaseManager sharedInstance] roomWithToken:self->_token forAccountId:activeAccount.accountId];
+            NSLog(@"DirectoryTableViewController: Attempting to send share file notification, room: %@", room);
+            if (room) {
+                NSString *fileName = [path lastPathComponent];
+                NSLog(@"DirectoryTableViewController: Calling sendShareFileNotificationForRoom with fileName: %@", fileName);
+                [NCChatNotificationHelper sendShareFileNotificationForRoom:room
+                                                                   account:activeAccount
+                                                                   fileUri:path
+                                                                  fileName:fileName];
+            } else {
+                NSLog(@"DirectoryTableViewController: Room is nil, cannot send notification");
+            }
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
             [self removeSharingFileUI];

@@ -740,6 +740,15 @@ import MBProgressHUD
                             self.uploadErrors.append(error.localizedDescription)
                         } else {
                             self.uploadSuccess.append(item)
+                            // Send share file notification (only in main app, not share extension)
+                            #if !APP_EXTENSION
+                            NCChatNotificationHelper.sendShareFileNotification(
+                                forRoom: self.room,
+                                account: self.account,
+                                fileUri: draftFolderPath,
+                                fileName: item.fileName
+                            )
+                            #endif
                         }
 
                         self.uploadGroup.leave()
@@ -755,6 +764,15 @@ import MBProgressHUD
                             self.uploadErrors.append(error.localizedDescription)
                         } else {
                             self.uploadSuccess.append(item)
+                            // Send share file notification (only in main app, not share extension)
+                            #if !APP_EXTENSION
+                            NCChatNotificationHelper.sendShareFileNotification(
+                                forRoom: self.room,
+                                account: self.account,
+                                fileUri: filePath,
+                                fileName: item.fileName
+                            )
+                            #endif
                         }
 
                         self.uploadGroup.leave()

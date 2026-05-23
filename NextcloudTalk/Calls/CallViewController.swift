@@ -173,6 +173,7 @@ class CallViewController: UIViewController,
         callController.disableVideoAtStart = self.videoDisabledAtStart
         callController.silentCall = self.silentCall
         callController.recordingConsent = self.recordingConsent
+        callController.initiator = self.initiator
 
         // Check if there are previous participants and we are joning an extended room
         if self.room.objectType == NCRoomObjectTypeExtendedConversation {

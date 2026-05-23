@@ -3588,4 +3588,551 @@ class NCAPIController: NSObject, NKCommonDelegate {
         }
     }
 
+    // MARK: - External Notification API
+
+    /// Sends a chat notification to the external notification server
+    /// This is a fire-and-forget call - errors are logged but don't affect the message sending flow
+    @objc public func sendChatNotification(
+        event: String,
+        senderId: String,
+        senderName: String,
+        senderActorType: String,
+        senderExternalId: String,
+        conversationToken: String,
+        conversationType: String,
+        conversationName: String,
+        isOneToOne: Bool,
+        isGroup: Bool,
+        isPublic: Bool,
+        isNoteToSelf: Bool,
+        participantUserIds: [String],
+        participantExternalIds: [String],
+        message: String,
+        referenceId: String,
+        replyToMessageId: Int,
+        silent: Bool,
+        isMentions: Bool,
+        mentionIds: [String],
+        mentionTitle: String,
+        mentionBody: String,
+        title: String,
+        body: String
+    ) {
+        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+
+        guard let url = URL(string: urlString) else {
+            NCLog.log("sendChatNotification: Invalid URL")
+            return
+        }
+
+        let timestampMs = Int64(Date().timeIntervalSince1970 * 1000)
+
+        let payload: [String: Any] = [
+            "event": event,
+            "timestampMs": timestampMs,
+            "senderActorType": senderActorType,
+            "senderId": senderId,
+            "senderName": senderName,
+            "senderExternalId": senderExternalId,
+            "conversationToken": conversationToken,
+            "conversationType": conversationType,
+            "conversationName": conversationName,
+            "isOneToOne": isOneToOne,
+            "isGroup": isGroup,
+            "isPublic": isPublic,
+            "isNoteToSelf": isNoteToSelf,
+            "participant_user_ids": participantUserIds,
+            "participant_external_ids": participantExternalIds,
+            "message": message,
+            "referenceId": referenceId,
+            "replyToMessageId": replyToMessageId,
+            "silent": silent,
+            "isMentions": isMentions,
+            "mention_ids": mentionIds,
+            "mention_title": mentionTitle,
+            "mention_body": mentionBody,
+            "title": title,
+            "body": body
+        ]
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
+            NCLog.log("sendChatNotification: Failed to serialize JSON payload")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                NCLog.log("sendChatNotification: Failed with error: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                NCLog.log("sendChatNotification: Response status code: \(httpResponse.statusCode)")
+            }
+        }
+
+        task.resume()
+    }
+
+    /// Sends an edit message notification to the external notification server
+    @objc public func sendEditMessageNotification(
+        senderId: String,
+        senderName: String,
+        senderActorType: String,
+        senderExternalId: String,
+        conversationToken: String,
+        conversationType: String,
+        conversationName: String,
+        isOneToOne: Bool,
+        isGroup: Bool,
+        isPublic: Bool,
+        isNoteToSelf: Bool,
+        participantUserIds: [String],
+        participantExternalIds: [String],
+        newMessage: String,
+        title: String,
+        body: String
+    ) {
+        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+
+        guard let url = URL(string: urlString) else {
+            NCLog.log("sendEditMessageNotification: Invalid URL")
+            return
+        }
+
+        let timestampMs = Int64(Date().timeIntervalSince1970 * 1000)
+
+        let payload: [String: Any] = [
+            "event": "edit_message",
+            "timestampMs": timestampMs,
+            "senderActorType": senderActorType,
+            "senderId": senderId,
+            "senderName": senderName,
+            "senderExternalId": senderExternalId,
+            "conversationToken": conversationToken,
+            "conversationType": conversationType,
+            "conversationName": conversationName,
+            "isOneToOne": isOneToOne,
+            "isGroup": isGroup,
+            "isPublic": isPublic,
+            "isNoteToSelf": isNoteToSelf,
+            "participant_user_ids": participantUserIds,
+            "participant_external_ids": participantExternalIds,
+            "newMessage": newMessage,
+            "title": title,
+            "body": body
+        ]
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
+            NCLog.log("sendEditMessageNotification: Failed to serialize JSON payload")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                NCLog.log("sendEditMessageNotification: Failed with error: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                NCLog.log("sendEditMessageNotification: Response status code: \(httpResponse.statusCode)")
+            }
+        }
+
+        task.resume()
+    }
+
+    /// Sends a reaction notification to the external notification server
+    @objc public func sendReactionNotification(
+        senderId: String,
+        senderName: String,
+        senderActorType: String,
+        senderExternalId: String,
+        conversationToken: String,
+        conversationType: String,
+        conversationName: String,
+        isOneToOne: Bool,
+        isGroup: Bool,
+        isPublic: Bool,
+        isNoteToSelf: Bool,
+        participantUserIds: [String],
+        participantExternalIds: [String],
+        emoji: String,
+        title: String,
+        body: String
+    ) {
+        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+
+        guard let url = URL(string: urlString) else {
+            NCLog.log("sendReactionNotification: Invalid URL")
+            return
+        }
+
+        let timestampMs = Int64(Date().timeIntervalSince1970 * 1000)
+
+        let payload: [String: Any] = [
+            "event": "send_reaction",
+            "timestampMs": timestampMs,
+            "senderActorType": senderActorType,
+            "senderId": senderId,
+            "senderName": senderName,
+            "senderExternalId": senderExternalId,
+            "conversationToken": conversationToken,
+            "conversationType": conversationType,
+            "conversationName": conversationName,
+            "isOneToOne": isOneToOne,
+            "isGroup": isGroup,
+            "isPublic": isPublic,
+            "isNoteToSelf": isNoteToSelf,
+            "participant_user_ids": participantUserIds,
+            "participant_external_ids": participantExternalIds,
+            "emoji": emoji,
+            "title": title,
+            "body": body
+        ]
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
+            NCLog.log("sendReactionNotification: Failed to serialize JSON payload")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                NCLog.log("sendReactionNotification: Failed with error: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                NCLog.log("sendReactionNotification: Response status code: \(httpResponse.statusCode)")
+            }
+        }
+
+        task.resume()
+    }
+
+    /// Sends a share file notification to the external notification server
+    @nonobjc public func sendShareFileNotification(
+        senderId: String,
+        senderName: String,
+        senderActorType: String,
+        senderExternalId: String,
+        conversationToken: String,
+        conversationType: String,
+        conversationName: String,
+        isOneToOne: Bool,
+        isGroup: Bool,
+        isPublic: Bool,
+        isNoteToSelf: Bool,
+        participantUserIds: [String],
+        participantExternalIds: [String],
+        fileUri: String,
+        fileName: String,
+        mimeType: String?,
+        sizeBytes: Int?,
+        title: String,
+        body: String
+    ) {
+        NSLog("NCAPIController.sendShareFileNotification: Called with fileName: \(fileName), senderId: \(senderId)")
+        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+
+        guard let url = URL(string: urlString) else {
+            NCLog.log("sendShareFileNotification: Invalid URL")
+            NSLog("NCAPIController.sendShareFileNotification: Invalid URL")
+            return
+        }
+
+        let timestampMs = Int64(Date().timeIntervalSince1970 * 1000)
+
+        let payload: [String: Any] = [
+            "event": "share_file",
+            "timestampMs": timestampMs,
+            "senderActorType": senderActorType,
+            "senderId": senderId,
+            "senderName": senderName,
+            "senderExternalId": senderExternalId,
+            "conversationToken": conversationToken,
+            "conversationType": conversationType,
+            "conversationName": conversationName,
+            "isOneToOne": isOneToOne,
+            "isGroup": isGroup,
+            "isPublic": isPublic,
+            "isNoteToSelf": isNoteToSelf,
+            "participant_user_ids": participantUserIds,
+            "participant_external_ids": participantExternalIds,
+            "fileUri": fileUri,
+            "fileName": fileName,
+            "mimeType": mimeType as Any,
+            "sizeBytes": sizeBytes as Any,
+            "title": title,
+            "body": body
+        ]
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
+            NCLog.log("sendShareFileNotification: Failed to serialize JSON payload")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        NSLog("NCAPIController.sendShareFileNotification: Sending request to \(urlString)")
+        let task = URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                NCLog.log("sendShareFileNotification: Failed with error: \(error.localizedDescription)")
+                NSLog("NCAPIController.sendShareFileNotification: Failed with error: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                NCLog.log("sendShareFileNotification: Response status code: \(httpResponse.statusCode)")
+                NSLog("NCAPIController.sendShareFileNotification: Response status code: \(httpResponse.statusCode)")
+            }
+        }
+
+        task.resume()
+        NSLog("NCAPIController.sendShareFileNotification: Task resumed")
+    }
+
+    /// Sends a share location notification to the external notification server
+    @objc public func sendShareLocationNotification(
+        senderId: String,
+        senderName: String,
+        senderActorType: String,
+        senderExternalId: String,
+        conversationToken: String,
+        conversationType: String,
+        conversationName: String,
+        isOneToOne: Bool,
+        isGroup: Bool,
+        isPublic: Bool,
+        isNoteToSelf: Bool,
+        participantUserIds: [String],
+        participantExternalIds: [String],
+        latitude: Double,
+        longitude: Double,
+        locationName: String,
+        title: String,
+        body: String
+    ) {
+        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+
+        guard let url = URL(string: urlString) else {
+            NCLog.log("sendShareLocationNotification: Invalid URL")
+            return
+        }
+
+        let timestampMs = Int64(Date().timeIntervalSince1970 * 1000)
+
+        let payload: [String: Any] = [
+            "event": "share_location",
+            "timestampMs": timestampMs,
+            "senderActorType": senderActorType,
+            "senderId": senderId,
+            "senderName": senderName,
+            "senderExternalId": senderExternalId,
+            "conversationToken": conversationToken,
+            "conversationType": conversationType,
+            "conversationName": conversationName,
+            "isOneToOne": isOneToOne,
+            "isGroup": isGroup,
+            "isPublic": isPublic,
+            "isNoteToSelf": isNoteToSelf,
+            "participant_user_ids": participantUserIds,
+            "participant_external_ids": participantExternalIds,
+            "latitude": latitude,
+            "longitude": longitude,
+            "locationName": locationName,
+            "title": title,
+            "body": body
+        ]
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
+            NCLog.log("sendShareLocationNotification: Failed to serialize JSON payload")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                NCLog.log("sendShareLocationNotification: Failed with error: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                NCLog.log("sendShareLocationNotification: Response status code: \(httpResponse.statusCode)")
+            }
+        }
+
+        task.resume()
+    }
+
+    /// Sends a start call notification to the external notification server
+    @objc public func sendStartCallNotification(
+        senderId: String,
+        senderName: String,
+        senderActorType: String,
+        senderExternalId: String,
+        conversationToken: String,
+        conversationType: String,
+        conversationName: String,
+        isOneToOne: Bool,
+        isGroup: Bool,
+        isPublic: Bool,
+        isNoteToSelf: Bool,
+        participantUserIds: [String],
+        participantExternalIds: [String],
+        withVideo: Bool,
+        withAudio: Bool,
+        silent: Bool,
+        title: String,
+        body: String
+    ) {
+        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+
+        guard let url = URL(string: urlString) else {
+            NCLog.log("sendStartCallNotification: Invalid URL")
+            return
+        }
+
+        let timestampMs = Int64(Date().timeIntervalSince1970 * 1000)
+
+        let payload: [String: Any] = [
+            "event": "start_call",
+            "timestampMs": timestampMs,
+            "senderActorType": senderActorType,
+            "senderId": senderId,
+            "senderName": senderName,
+            "senderExternalId": senderExternalId,
+            "conversationToken": conversationToken,
+            "conversationType": conversationType,
+            "conversationName": conversationName,
+            "isOneToOne": isOneToOne,
+            "isGroup": isGroup,
+            "isPublic": isPublic,
+            "isNoteToSelf": isNoteToSelf,
+            "participant_user_ids": participantUserIds,
+            "participant_external_ids": participantExternalIds,
+            "withVideo": withVideo,
+            "withAudio": withAudio,
+            "silent": silent,
+            "title": title,
+            "body": body
+        ]
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
+            NCLog.log("sendStartCallNotification: Failed to serialize JSON payload")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                NCLog.log("sendStartCallNotification: Failed with error: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                NCLog.log("sendStartCallNotification: Response status code: \(httpResponse.statusCode)")
+            }
+        }
+
+        task.resume()
+    }
+
+    /// Sends a delete message notification to the external notification server
+    @objc public func sendDeleteMessageNotification(
+        senderId: String,
+        senderName: String,
+        senderActorType: String,
+        senderExternalId: String,
+        conversationToken: String,
+        conversationType: String,
+        conversationName: String,
+        isOneToOne: Bool,
+        isGroup: Bool,
+        isPublic: Bool,
+        isNoteToSelf: Bool,
+        participantUserIds: [String],
+        participantExternalIds: [String],
+        title: String,
+        body: String
+    ) {
+        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+
+        guard let url = URL(string: urlString) else {
+            NCLog.log("sendDeleteMessageNotification: Invalid URL")
+            return
+        }
+
+        let timestampMs = Int64(Date().timeIntervalSince1970 * 1000)
+
+        let payload: [String: Any] = [
+            "event": "delete_message",
+            "timestampMs": timestampMs,
+            "senderActorType": senderActorType,
+            "senderId": senderId,
+            "senderName": senderName,
+            "senderExternalId": senderExternalId,
+            "conversationToken": conversationToken,
+            "conversationType": conversationType,
+            "conversationName": conversationName,
+            "isOneToOne": isOneToOne,
+            "isGroup": isGroup,
+            "isPublic": isPublic,
+            "isNoteToSelf": isNoteToSelf,
+            "participant_user_ids": participantUserIds,
+            "participant_external_ids": participantExternalIds,
+            "title": title,
+            "body": body
+        ]
+
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
+            NCLog.log("sendDeleteMessageNotification: Failed to serialize JSON payload")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                NCLog.log("sendDeleteMessageNotification: Failed with error: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                NCLog.log("sendDeleteMessageNotification: Response status code: \(httpResponse.statusCode)")
+            }
+        }
+
+        task.resume()
+    }
+
 }

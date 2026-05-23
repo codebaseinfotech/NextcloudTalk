@@ -46,6 +46,14 @@ import NextcloudKit
                             NSLog("Failed to share voice message: \(error.localizedDescription)")
                             completion(403, "Failed to share voice message")
                         } else {
+                            // Send share file notification
+                            NSLog("ChatFileUploader: Calling sendShareFileNotification for draftPath")
+                            NCChatNotificationHelper.sendShareFileNotification(
+                                forRoom: room,
+                                account: activeAccount,
+                                fileUri: draftPath,
+                                fileName: fileName
+                            )
                             completion(200, nil)
                         }
                     }
@@ -59,6 +67,15 @@ import NextcloudKit
                             NSLog("Failed to share voice message: \(shareError.localizedDescription)")
                             completion(403, "Failed to share voice message")
                         } else {
+                            // Send share file notification
+                            let fileName = URL(fileURLWithPath: fileServerPath).lastPathComponent
+                            NSLog("ChatFileUploader: Calling sendShareFileNotification for fileServerPath")
+                            NCChatNotificationHelper.sendShareFileNotification(
+                                forRoom: room,
+                                account: activeAccount,
+                                fileUri: fileServerPath,
+                                fileName: fileName
+                            )
                             completion(200, nil)
                         }
                     }

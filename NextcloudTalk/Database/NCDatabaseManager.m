@@ -14,6 +14,8 @@
 
 #import "NextcloudTalk-Swift.h"
 
+@import OneSignalFramework;
+
 NSString *const kTalkDatabaseFolder                 = @"Library/Application Support/Talk";
 NSString *const kTalkDatabaseFileName               = @"talk.realm";
 uint64_t const kTalkDatabaseSchemaVersion           = 90;
@@ -234,6 +236,13 @@ NSString * const NCDatabaseManagerRoomCapabilitiesChangedNotification = @"NCData
     activeAccount.active = YES;
     [realm commitWriteTransaction];
     [NCLog log:[NSString stringWithFormat:@"Set active account to %@", accountId]];
+
+    // Set OneSignal external ID when user becomes active
+    if (activeAccount && activeAccount.userId) {
+        [OneSignal login:activeAccount.userId];
+        [OneSignal.User addTagWithKey:@"user_id" value:activeAccount.userId];
+        NSLog(@"OneSignal: Logged in with external ID: %@", activeAccount.userId);
+    }
 }
 
 - (NSString *)accountIdForUser:(NSString *)user inServer:(NSString *)server

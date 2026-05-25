@@ -33,8 +33,6 @@ typedef void (^CreateConversationNotificationCompletionBlock)(void);
     self.bestAttemptContent = [request.content mutableCopy];
     self.sendMessageIntent = nil;
 
-    self.bestAttemptContent.title = @"";
-    self.bestAttemptContent.body = NSLocalizedString(@"You received a new notification", nil);
 
     // Configure database
     NSString *path = [[[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:groupIdentifier] URLByAppendingPathComponent:kTalkDatabaseFolder] path];
@@ -87,7 +85,23 @@ typedef void (^CreateConversationNotificationCompletionBlock)(void);
     NSString *signature = [self.bestAttemptContent.userInfo objectForKey:@"signature"];
 
     if (!message || !signature) {
-        // Without a message or signature there's nothing left to do here
+        // This might be a OneSignal notification - extract content from aps.alert
+        NSDictionary *aps = [self.bestAttemptContent.userInfo objectForKey:@"aps"];
+        if (aps) {
+            id alert = [aps objectForKey:@"alert"];
+            if ([alert isKindOfClass:[NSDictionary class]]) {
+                // Alert is a dictionary with title/body
+                NSString *title = [alert objectForKey:@"title"];
+                NSString *body = [alert objectForKey:@"body"];
+                if (title) self.bestAttemptContent.title = title;
+                if (body) self.bestAttemptContent.body = body;
+            } else if ([alert isKindOfClass:[NSString class]]) {
+                // Alert is just a string
+                self.bestAttemptContent.body = (NSString *)alert;
+            }
+        }
+
+        self.bestAttemptContent.sound = [UNNotificationSound defaultSound];
         self.contentHandler(self.bestAttemptContent);
         return;
     }
@@ -254,10 +268,82 @@ typedef void (^CreateConversationNotificationCompletionBlock)(void);
     }
 
     if (!foundDecryptableMessage) {
-        // At this point we tried everything to decrypt the received message
-        // No need to wait for the extension timeout, nothing is happening anymore
-        self.contentHandler(self.bestAttemptContent);
+        // Try fallback: fetch latest notification from server
+        [self fetchLatestNotificationAsFallback];
     }
+}
+
+- (void)fetchLatestNotificationAsFallback {
+    // Get the first active account to try fetching notifications
+    TalkAccount *activeAccount = nil;
+    for (TalkAccount *talkAccount in [TalkAccount allObjects]) {
+        if (talkAccount.active) {
+            activeAccount = [[TalkAccount alloc] initWithValue:talkAccount];
+            break;
+        }
+    }
+
+    if (!activeAccount) {
+        // No active account, try the first one
+        TalkAccount *firstAccount = [TalkAccount allObjects].firstObject;
+        if (firstAccount) {
+            activeAccount = [[TalkAccount alloc] initWithValue:firstAccount];
+        }
+    }
+
+    if (!activeAccount) {
+        self.contentHandler(self.bestAttemptContent);
+        return;
+    }
+
+    // Fetch notifications from server
+    NSString *URLString = [NSString stringWithFormat:@"%@/ocs/v2.php/apps/notifications/api/v2/notifications", activeAccount.server];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedCookieStorageForGroupContainerIdentifier:activeAccount.accountId];
+    configuration.HTTPCookieStorage = cookieStorage;
+    NCAPISessionManager *apiSessionManager = [[NCAPISessionManager alloc] initWithConfiguration:configuration];
+
+    NSString *userTokenString = [NSString stringWithFormat:@"%@:%@", activeAccount.user, [[NCKeyChainController sharedInstance] tokenForAccountId:activeAccount.accountId]];
+    NSData *data = [userTokenString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64Encoded = [data base64EncodedStringWithOptions:0];
+    NSString *authorizationHeader = [[NSString alloc] initWithFormat:@"Basic %@", base64Encoded];
+    [apiSessionManager.requestSerializer setValue:authorizationHeader forHTTPHeaderField:@"Authorization"];
+    [apiSessionManager.requestSerializer setTimeoutInterval:25];
+
+    [apiSessionManager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray *notifications = [[responseObject objectForKey:@"ocs"] objectForKey:@"data"];
+
+        if (notifications.count > 0) {
+            // Get the first (most recent) notification
+            NSDictionary *latestNotification = notifications.firstObject;
+            NCNotification *serverNotification = [[NCNotification alloc] initWithDictionary:latestNotification];
+
+            if (serverNotification) {
+                if (serverNotification.notificationType == kNCNotificationTypeChat) {
+                    self.bestAttemptContent.title = serverNotification.chatMessageTitle;
+                    self.bestAttemptContent.body = serverNotification.message;
+                    self.bestAttemptContent.categoryIdentifier = @"CATEGORY_CHAT";
+                } else {
+                    self.bestAttemptContent.title = serverNotification.subject;
+                    self.bestAttemptContent.body = serverNotification.message;
+                }
+
+                self.bestAttemptContent.sound = [UNNotificationSound defaultSound];
+
+                // Store notification info
+                NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+                [userInfo setObject:activeAccount.accountId forKey:@"accountId"];
+                [userInfo setObject:@(serverNotification.notificationId) forKey:@"notificationId"];
+                [userInfo setObject:latestNotification forKey:@"serverNotification"];
+                self.bestAttemptContent.userInfo = userInfo;
+            }
+        }
+
+        self.contentHandler(self.bestAttemptContent);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // Still show the generic notification
+        self.contentHandler(self.bestAttemptContent);
+    }];
 }
 
 - (void)createConversationNotificationWithPushNotification:(NCPushNotification *)pushNotification withCompletionBlock:(CreateConversationNotificationCompletionBlock)block {

@@ -470,6 +470,24 @@
 
 - (void)onWillDisplayNotification:(OSNotificationWillDisplayEvent *)event {
     NSLog(@"📩 OneSignal: Will display notification: %@", event.notification.body);
+
+    // Check if user is currently in an active chat with the same conversation
+    NSDictionary *additionalData = event.notification.additionalData;
+    NSString *notificationConversationToken = additionalData[@"conversation_token"];
+
+    if (notificationConversationToken && notificationConversationToken.length > 0) {
+        // Get current active chat's room token
+        ChatViewController *currentChat = [NCRoomsManager shared].chatViewController;
+        NSString *currentRoomToken = currentChat.room.token;
+
+        if (currentRoomToken && [currentRoomToken isEqualToString:notificationConversationToken]) {
+            // User is currently viewing this conversation, suppress the notification
+            NSLog(@"📩 OneSignal: Suppressing notification - user is in active chat with token: %@", notificationConversationToken);
+            [event preventDefault];
+            return;
+        }
+    }
+
     // Display the notification
     [event.notification display];
 }
@@ -508,6 +526,24 @@
     // Show notification even when app is in foreground
     NSLog(@"📩 Foreground notification received: %@", notification.request.content.body);
     NSLog(@"📩 Notification userInfo: %@", notification.request.content.userInfo);
+
+    // Check if user is currently in an active chat with the same conversation
+    NSDictionary *userInfo = notification.request.content.userInfo;
+    NSString *notificationConversationToken = userInfo[@"conversation_token"];
+
+    if (notificationConversationToken && notificationConversationToken.length > 0) {
+        // Get current active chat's room token
+        ChatViewController *currentChat = [NCRoomsManager shared].chatViewController;
+        NSString *currentRoomToken = currentChat.room.token;
+
+        if (currentRoomToken && [currentRoomToken isEqualToString:notificationConversationToken]) {
+            // User is currently viewing this conversation, suppress the notification
+            NSLog(@"📩 Suppressing notification - user is in active chat with token: %@", notificationConversationToken);
+            completionHandler(UNNotificationPresentationOptionNone);
+            return;
+        }
+    }
+
     completionHandler(UNNotificationPresentationOptionBanner | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionBadge);
 }
 

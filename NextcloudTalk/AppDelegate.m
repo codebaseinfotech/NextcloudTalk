@@ -57,6 +57,7 @@
     [OneSignal initialize:@"0f4eb378-54a6-47f4-ad11-0b9288aba8fc" withLaunchOptions:launchOptions];
     [OneSignal.User.pushSubscription addObserver:self];
     [OneSignal.Notifications addForegroundLifecycleListener:self];
+    [OneSignal.Notifications addClickListener:self];
     NSLog(@"OneSignal initialized with App ID");
 
     // Log subscription info after a delay to ensure it's ready
@@ -471,6 +472,32 @@
     NSLog(@"📩 OneSignal: Will display notification: %@", event.notification.body);
     // Display the notification
     [event.notification display];
+}
+
+#pragma mark - OSNotificationClickListener (OneSignal Click)
+
+- (void)onClickNotification:(OSNotificationClickEvent *)event {
+    NSLog(@"📩 OneSignal: Notification clicked!");
+
+    OSNotification *notification = event.notification;
+    NSDictionary *additionalData = notification.additionalData;
+
+    NSLog(@"📩 OneSignal: Additional data: %@", additionalData);
+
+    // Handle conversation_token from OneSignal notification payload
+    NSString *conversationToken = additionalData[@"conversation_token"];
+    NSString *eventType = additionalData[@"event"];
+
+    if (conversationToken && conversationToken.length > 0) {
+        NSLog(@"📩 OneSignal: Opening chat with conversation token: %@, event: %@", conversationToken, eventType);
+
+        // Navigate to the chat page using the conversation token
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NCRoomsManager shared] startChatWithRoomToken:conversationToken];
+        });
+    } else {
+        NSLog(@"📩 OneSignal: No conversation_token found in notification data");
+    }
 }
 
 #pragma mark - UNUserNotificationCenterDelegate (Foreground Notifications)

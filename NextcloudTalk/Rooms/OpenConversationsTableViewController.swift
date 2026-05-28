@@ -32,7 +32,7 @@ class OpenConversationsTableViewController: UITableViewController, UISearchResul
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 64, bottom: 0, right: 0)
         self.tableView.register(UINib(nibName: kContactsTableCellNibName, bundle: nil), forCellReuseIdentifier: kContactCellIdentifier)
 
-        tableBackgroundView.setImage(UIImage(named: "conversations-placeholder"))
+        tableBackgroundView.setImage(UIImage(named: "1024-removebg-preview"))
         tableBackgroundView.placeholderTextView.text = NSLocalizedString("No results found", comment: "")
         tableBackgroundView.placeholderView.isHidden = true
         tableBackgroundView.loadingView.startAnimating()

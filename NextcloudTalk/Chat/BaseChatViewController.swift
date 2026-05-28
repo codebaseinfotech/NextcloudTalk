@@ -958,7 +958,7 @@ import Toast
             self.presentDocumentPicker()
         }
 
-        let ncFilesAction = UIAction(title: filesAppName, image: UIImage(named: "logo-action")?.withRenderingMode(.alwaysTemplate)) { [unowned self] _ in
+        let ncFilesAction = UIAction(title: filesAppName, image: UIImage(named: "1024-removebg-preview_Navi")?.withRenderingMode(.alwaysTemplate)) { [unowned self] _ in
             self.textView.resignFirstResponder()
             self.presentNextcloudFilesBrowser()
         }
@@ -998,7 +998,7 @@ import Toast
             items.append(UIMenu(options: .displayInline, children: objectItems))
         }
 
-        items.append(ncFilesAction)
+//        items.append(ncFilesAction)
         items.append(filesAction)
 
         items.append(photoLibraryAction)

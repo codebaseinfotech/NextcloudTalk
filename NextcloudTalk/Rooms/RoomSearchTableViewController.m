@@ -42,7 +42,7 @@ typedef enum RoomSearchSection {
     self.tableView.separatorInsetReference = UITableViewSeparatorInsetFromAutomaticInsets;
     // Contacts placeholder view
     _roomSearchBackgroundView = [[PlaceholderView alloc] initForTableViewStyle:UITableViewStyleInsetGrouped];
-    [_roomSearchBackgroundView setImage:[UIImage imageNamed:@"conversations-placeholder"]];
+    [_roomSearchBackgroundView setImage:[UIImage imageNamed:@"1024-removebg-preview"]];
     [_roomSearchBackgroundView.placeholderTextView setText:NSLocalizedString(@"No results found", nil)];
     [_roomSearchBackgroundView.placeholderView setHidden:YES];
     [_roomSearchBackgroundView.loadingView startAnimating];

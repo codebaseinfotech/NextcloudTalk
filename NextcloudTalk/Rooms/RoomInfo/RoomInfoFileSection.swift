@@ -43,7 +43,7 @@ struct RoomInfoFileSection: View {
             .disabled(isDownloadingPreview)
 
             Button(action: openFileInFilesApp) {
-                ImageSublabelView(image: Image("logo-action").renderingMode(.template)) {
+                ImageSublabelView(image: Image("1024-removebg-preview_Navi").renderingMode(.template)) {
                     HStack {
                         Text(verbatim: openInText)
 

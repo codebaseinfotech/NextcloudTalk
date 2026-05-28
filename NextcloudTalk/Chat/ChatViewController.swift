@@ -2487,9 +2487,9 @@ import SwiftUI
         })
 
         // Copy link option
-        copyMenuActions.append(UIAction(title: NSLocalizedString("Message link", comment: "Copy 'link' to a message"), image: .init(systemName: "link")) { _ in
-            self.didPressCopyLink(for: message)
-        })
+//        copyMenuActions.append(UIAction(title: NSLocalizedString("Message link", comment: "Copy 'link' to a message"), image: .init(systemName: "link")) { _ in
+//            self.didPressCopyLink(for: message)
+//        })
 
         actions.append(UIMenu(title: NSLocalizedString("Copy", comment: ""), image: .init(systemName: "doc.on.doc"), children: copyMenuActions))
 
@@ -2542,12 +2542,12 @@ import SwiftUI
         }
 
         // Open in nextcloud option
-        if !self.offlineMode, message.file() != nil {
-            let openInNextcloudTitle = String(format: NSLocalizedString("Open in %@", comment: ""), filesAppName)
-            actions.append(UIAction(title: openInNextcloudTitle, image: .init(named: "logo-action")?.withRenderingMode(.alwaysTemplate)) { _ in
-                self.didPressOpenInNextcloud(for: message)
-            })
-        }
+//        if !self.offlineMode, message.file() != nil {
+//            let openInNextcloudTitle = String(format: NSLocalizedString("Open in %@", comment: ""), filesAppName)
+//            actions.append(UIAction(title: openInNextcloudTitle, image: .init(named: "1024-removebg-preview_Navi")?.withRenderingMode(.alwaysTemplate)) { _ in
+//                self.didPressOpenInNextcloud(for: message)
+//            })
+//        }
 
         // Transcribe voice-message
         if message.messageType == kMessageTypeVoiceMessage {

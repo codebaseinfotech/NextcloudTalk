@@ -131,11 +131,11 @@ BOOL const useServerThemimg = YES;
 {
     if (@available(iOS 26.0, *)) {
         if (!customNavigationLogo) {
-            return [[UIImage imageNamed:@"navigationLogo"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            return [[UIImage imageNamed:@"1024-removebg-preview_Navi"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         }
     }
 
-    NSString *imageName = @"navigationLogo";
+    NSString *imageName = @"1024-removebg-preview_Navi";
     if (!customNavigationLogo) {
         if (useServerThemimg && [self textColorStyleForBackgroundColor:[self themeColor]] == NCTextColorStyleDark) {
             imageName = @"navigationLogoDark";

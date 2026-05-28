@@ -889,7 +889,7 @@ typedef enum RoomsSections {
 - (UIImage *)filterPlaceholderImage:(RoomsFilter)filter
 {
     if (filter == kRoomsFilterAll) {
-        return [UIImage imageNamed:@"conversations-placeholder"];
+        return [UIImage imageNamed:@"1024-removebg-preview"];
     }
 
     return [self filterImage:filter];

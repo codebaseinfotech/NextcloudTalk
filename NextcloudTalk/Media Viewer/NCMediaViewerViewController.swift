@@ -122,7 +122,8 @@ import UIKit
 
         let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         fixedSpace.width = 20
-        self.toolbarItems = [shareButton, fixedSpace, showMessageButton]
+//        self.toolbarItems = [shareButton, fixedSpace, showMessageButton]
+        self.toolbarItems = [showMessageButton]
     }
 
     func getCurrentPageViewController() -> NCMediaViewerPageViewController? {
@@ -237,7 +238,7 @@ import UIKit
 
     func mediaViewerPageMediaDidLoad(_ controller: NCMediaViewerPageViewController) {
         if let mediaPageViewController = self.getCurrentPageViewController(), mediaPageViewController.isEqual(controller) {
-            self.shareButton.isEnabled = true
+            self.shareButton.isEnabled = false
             self.showMessageButton.isEnabled = true
         }
     }

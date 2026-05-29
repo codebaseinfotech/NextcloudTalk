@@ -192,15 +192,22 @@ NSString * const NCNotificationActionFederationInvitationReject     = @"REJECT_F
 
 - (void)showIncomingCallForPushNotification:(NCPushNotification *)pushNotification
 {
+    NSLog(@"🔔 [DEBUG CALL] NCNotificationController - showIncomingCallForPushNotification");
+    NSLog(@"🔔 [DEBUG CALL] Room token: %@, Account: %@", pushNotification.roomToken, pushNotification.accountId);
+    NSLog(@"🔔 [DEBUG CALL] CallKit available: %@", [CallKitManager isCallKitAvailable] ? @"YES" : @"NO");
+
     if ([CallKitManager isCallKitAvailable]) {
+        NSLog(@"🔔 [DEBUG CALL] ✅ Using CallKit - calling reportIncomingCall");
         [[CallKitManager sharedInstance] reportIncomingCall:pushNotification.roomToken withDisplayName:@"Incoming call" forAccountId:pushNotification.accountId];
     } else {
+        NSLog(@"🔔 [DEBUG CALL] ⚠️ CallKit NOT available - using fallback notification");
         [[CallKitManager sharedInstance] reportIncomingCallForNonCallKitDevicesWithPushNotification:pushNotification];
     }
 }
 
 - (void)showIncomingCallForOldAccount
 {
+    NSLog(@"🔔 [DEBUG CALL] NCNotificationController - showIncomingCallForOldAccount (fallback for decryption failure)");
     [[CallKitManager sharedInstance] reportIncomingCallForOldAccount];
 }
 

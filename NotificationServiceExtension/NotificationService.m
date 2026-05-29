@@ -101,7 +101,24 @@ typedef void (^CreateConversationNotificationCompletionBlock)(void);
             }
         }
 
-        self.bestAttemptContent.sound = [UNNotificationSound defaultSound];
+        // Check if this is a call notification (from OneSignal)
+        NSDictionary *customData = [self.bestAttemptContent.userInfo objectForKey:@"custom"];
+        NSDictionary *additionalData = [customData objectForKey:@"a"];
+        NSString *eventType = [additionalData objectForKey:@"event"];
+        NSString *body = self.bestAttemptContent.body;
+
+        BOOL isCallNotification = [eventType isEqualToString:@"call"] ||
+                                  [eventType isEqualToString:@"incoming_call"] ||
+                                  (body && [body containsString:@"is calling you"]);
+
+        if (isCallNotification) {
+            // Use ringtone for call notifications
+            NSLog(@"📞 [NSE] Call notification detected - using ringtone sound");
+            self.bestAttemptContent.sound = [UNNotificationSound soundNamed:@"ringtone.mp3"];
+        } else {
+            self.bestAttemptContent.sound = [UNNotificationSound defaultSound];
+        }
+
         self.contentHandler(self.bestAttemptContent);
         return;
     }

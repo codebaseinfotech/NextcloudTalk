@@ -11,6 +11,7 @@
 #import "NCNotificationController.h"
 #import "NCSettingsController.h"
 #import "NCUserInterfaceController.h"
+#import "AppDelegate.h"
 
 #import "NextcloudTalk-Swift.h"
 
@@ -63,15 +64,26 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
 
 + (BOOL)isCallKitAvailable
 {
-    if ([NCUtils isiOSAppOnMac]) {
+    BOOL isOnMac = [NCUtils isiOSAppOnMac];
+    NSString *countryCode = NSLocale.currentLocale.countryCode;
+    BOOL isInChina = [countryCode isEqual:@"CN"];
+
+    NSLog(@"🔔 [DEBUG CALL] CallKitManager - isCallKitAvailable check");
+    NSLog(@"🔔 [DEBUG CALL] Running on Mac: %@", isOnMac ? @"YES" : @"NO");
+    NSLog(@"🔔 [DEBUG CALL] Country code: %@, Is China: %@", countryCode, isInChina ? @"YES" : @"NO");
+
+    if (isOnMac) {
         // There's currently no support for CallKit when running on MacOS.
         // If this is enabled on MacOS, there's no audio, because we fail to retrieve
         // the streams from CallKit. Tested with MacOS 12 & 13.
+        NSLog(@"🔔 [DEBUG CALL] ❌ CallKit NOT available - running on Mac");
         return NO;
     }
 
     // CallKit should be deactivated in China as requested by Apple
-    return ![NSLocale.currentLocale.countryCode isEqual: @"CN"];
+    BOOL available = !isInChina;
+    NSLog(@"🔔 [DEBUG CALL] CallKit available: %@", available ? @"YES" : @"NO");
+    return available;
 }
 
 #pragma mark - Getters
@@ -142,6 +154,9 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
 
 - (void)reportIncomingCall:(NSString *)token withDisplayName:(NSString *)displayName forAccountId:(NSString *)accountId
 {
+    NSLog(@"🔔 [DEBUG CALL] ========== CallKitManager - reportIncomingCall ==========");
+    NSLog(@"🔔 [DEBUG CALL] Token: %@, DisplayName: %@, AccountId: %@", token, displayName, accountId);
+
     NSString *protectedDataAvailable = @"available";
 
     if (!UIApplication.sharedApplication.isProtectedDataAvailable) {
@@ -149,19 +164,27 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
     }
 
     [NCLog log:[NSString stringWithFormat:@"Report incoming call for token %@ for account %@. Protected data is %@", token, accountId, protectedDataAvailable]];
+    NSLog(@"🔔 [DEBUG CALL] Protected data: %@", protectedDataAvailable);
 
     BOOL ongoingCalls = _calls.count > 0;
+    NSLog(@"🔔 [DEBUG CALL] Ongoing calls count: %lu", (unsigned long)_calls.count);
+
     TalkAccount *activeAccount = [[NCDatabaseManager sharedInstance] activeAccount];
+    NSLog(@"🔔 [DEBUG CALL] Active account: %@", activeAccount.accountId);
 
     if ([[NCSettingsController sharedInstance] isEndToEndEncryptedCallingEnabledForAccount:activeAccount.accountId]) {
+        NSLog(@"🔔 [DEBUG CALL] ❌ E2E encrypted calling enabled - cancelling call");
         [self reportAndCancelIncomingCall:token forAccountId:accountId withLocalNotificationType:kNCLocalNotificationTypeEndToEndEncryptionUnsupported];
         return;
     }
 
     // If the app is not active (e.g. in background) and there is an open chat
     BOOL isAppActive = [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
+    NSLog(@"🔔 [DEBUG CALL] App is active: %@", isAppActive ? @"YES" : @"NO");
+
     ChatViewController *chatViewController = [[NCRoomsManager shared] chatViewController];
     if (!isAppActive && chatViewController) {
+        NSLog(@"🔔 [DEBUG CALL] App in background with open chat - leaving chat");
         // Leave the chat so it doesn't try to join the chat conversation when the app becomes active.
         [chatViewController leaveChat];
         [[NCUserInterfaceController sharedInstance] presentConversationsList];
@@ -169,21 +192,27 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
 
     // If the incoming call is from a different account
     if (![activeAccount.accountId isEqualToString:accountId]) {
+        NSLog(@"🔔 [DEBUG CALL] Call is from different account");
         // If there is an ongoing call then show a local notification
         if (ongoingCalls) {
+            NSLog(@"🔔 [DEBUG CALL] ❌ Ongoing call exists - showing cancelled call notification");
             [self reportAndCancelIncomingCall:token forAccountId:accountId withLocalNotificationType:kNCLocalNotificationTypeCancelledCall];
             return;
         // Change accounts if there are no ongoing calls
         } else {
+            NSLog(@"🔔 [DEBUG CALL] Switching to account: %@", accountId);
             [[NCSettingsController sharedInstance] setActiveAccountWithAccountId:accountId];
         }
     }
-    
+
+    NSLog(@"🔔 [DEBUG CALL] Creating CXCallUpdate and CallKitCall objects");
     CXCallUpdate *update = [self defaultCallUpdate];
     update.remoteHandle = [[CXHandle alloc] initWithType:CXHandleTypeGeneric value:token];
     update.localizedCallerName = displayName;
-    
+
     NSUUID *callUUID = [NSUUID new];
+    NSLog(@"🔔 [DEBUG CALL] Generated call UUID: %@", callUUID.UUIDString);
+
     CallKitCall *call = [[CallKitCall alloc] init];
     call.uuid = callUUID;
     call.token = token;
@@ -192,25 +221,31 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
     call.update = update;
     call.reportedWhileInCall = ongoingCalls;
     call.isRinging = YES;
-    
+
+    NSLog(@"🔔 [DEBUG CALL] 📞 Calling provider reportNewIncomingCallWithUUID...");
     __weak CallKitManager *weakSelf = self;
     [self.provider reportNewIncomingCallWithUUID:callUUID update:update completion:^(NSError * _Nullable error) {
         if (!error) {
+            NSLog(@"🔔 [DEBUG CALL] ✅ SUCCESS - CallKit accepted incoming call!");
+            NSLog(@"🔔 [DEBUG CALL] Call should be RINGING now");
+
             // Add call to calls array
             [weakSelf.calls setObject:call forKey:callUUID];
-            
+
             // Add hangUpTimer to timers array
             NSTimer *hangUpTimer = [NSTimer scheduledTimerWithTimeInterval:kCallKitManagerMaxRingingTimeSeconds target:self selector:@selector(endCallWithMissedCallNotification:) userInfo:call repeats:NO];
             [weakSelf.hangUpTimers setObject:hangUpTimer forKey:callUUID];
-            
+
             // Add callStateTimer to timers array
             NSTimer *callStateTimer = [NSTimer scheduledTimerWithTimeInterval:kCallKitManagerCheckCallStateEverySeconds target:self selector:@selector(checkCallStateForTimer:) userInfo:call repeats:NO];
             [weakSelf.callStateTimers setObject:callStateTimer forKey:callUUID];
-   
+
             // Get call info from server
             [weakSelf getCallInfoForCall:call];
         } else {
-            NSLog(@"Provider could not present incoming call view.");
+            NSLog(@"🔔 [DEBUG CALL] ❌ ERROR - Provider could not present incoming call view!");
+            NSLog(@"🔔 [DEBUG CALL] Error: %@", error.localizedDescription);
+            NSLog(@"🔔 [DEBUG CALL] Error code: %ld", (long)error.code);
         }
     }];
 }
@@ -241,6 +276,10 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
 
 - (void)reportIncomingCallForNonCallKitDevicesWithPushNotification:(NCPushNotification *)pushNotification
 {
+    NSLog(@"🔔 [DEBUG CALL] ========== reportIncomingCallForNonCallKitDevices ==========");
+    NSLog(@"🔔 [DEBUG CALL] This is the FALLBACK path (CallKit not available)");
+    NSLog(@"🔔 [DEBUG CALL] Room token: %@, Account: %@", pushNotification.roomToken, pushNotification.accountId);
+
     CXCallUpdate *update = [self defaultCallUpdate];
     NSUUID *callUUID = [NSUUID new];
     CallKitCall *call = [[CallKitCall alloc] init];
@@ -251,17 +290,22 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
     __weak CallKitManager *weakSelf = self;
     [self.provider reportNewIncomingCallWithUUID:callUUID update:update completion:^(NSError * _Nullable error) {
         if (!error) {
+            NSLog(@"🔔 [DEBUG CALL] Non-CallKit: Showing local notification instead of ringing");
             [weakSelf.calls setObject:call forKey:callUUID];
             [[NCNotificationController sharedInstance] showLocalNotificationForIncomingCallWithPushNotificaion:pushNotification];
             [weakSelf endCallWithUUID:callUUID];
         } else {
-            NSLog(@"Provider could not present incoming call view.");
+            NSLog(@"🔔 [DEBUG CALL] ❌ Non-CallKit: Provider error: %@", error.localizedDescription);
         }
     }];
 }
 
 - (void)reportIncomingCallForOldAccount
 {
+    NSLog(@"🔔 [DEBUG CALL] ========== reportIncomingCallForOldAccount ==========");
+    NSLog(@"🔔 [DEBUG CALL] ⚠️ DECRYPTION FAILED for all accounts!");
+    NSLog(@"🔔 [DEBUG CALL] This usually means push notification keys need to be re-registered");
+
     CXCallUpdate *update = [self defaultCallUpdate];
     update.localizedCallerName = NSLocalizedString(@"Old account", @"Will be used as the caller name when a VoIP notification can't be decrypted");
 
@@ -272,12 +316,13 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
     __weak CallKitManager *weakSelf = self;
     [self.provider reportNewIncomingCallWithUUID:callUUID update:update completion:^(NSError * _Nullable error) {
         if (!error) {
+            NSLog(@"🔔 [DEBUG CALL] Old account: Showing notification for old account call");
             [weakSelf.calls setObject:call forKey:callUUID];
             NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:@(kNCLocalNotificationTypeCallFromOldAccount) forKey:@"localNotificationType"];
             [[NCNotificationController sharedInstance] showLocalNotification:kNCLocalNotificationTypeCallFromOldAccount withUserInfo:userInfo];
             [weakSelf endCallWithUUID:callUUID];
         } else {
-            NSLog(@"Provider could not present incoming call view.");
+            NSLog(@"🔔 [DEBUG CALL] ❌ Old account: Provider error: %@", error.localizedDescription);
         }
     }];
 }
@@ -344,6 +389,11 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
 - (void)endCallWithMissedCallNotification:(NSTimer*)timer
 {
     CallKitCall *call = [timer userInfo];
+
+    // Stop ringtone when call is missed/timed out
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate stopRingtone];
+
     [self presentMissedCallNotificationForCall:call];
     [self endCallWithUUID:call.uuid];
 }
@@ -633,9 +683,13 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
     if (call) {
         [NCLog log:[NSString stringWithFormat:@"CallKit provider answer call action for token %@", call.token]];
 
+        // Stop ringtone when call is answered
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate stopRingtone];
+
         call.isRinging = NO;
         [self stopCallStateTimerForCallUUID:call.uuid];
-        
+
         [self stopHangUpTimerForCallUUID:call.uuid];
         NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:call.token forKey:@"roomToken"];
         [userInfo setValue:@(call.update.hasVideo) forKey:@"hasVideo"];
@@ -645,7 +699,7 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
                                                             object:self
                                                           userInfo:userInfo];
     }
-    
+
     [action fulfill];
 }
 
@@ -655,9 +709,13 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
     if (call) {
         [NCLog log:[NSString stringWithFormat:@"CallKit provider end call action for token %@", call.token]];
 
+        // Stop ringtone when call is ended/declined
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate stopRingtone];
+
         call.isRinging = NO;
         [self stopCallStateTimerForCallUUID:call.uuid];
-        
+
         [self stopHangUpTimerForCallUUID:call.uuid];
         NSString *leaveCallToken = [call.token copy];
         [_calls removeObjectForKey:action.callUUID];

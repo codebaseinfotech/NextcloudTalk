@@ -10,6 +10,7 @@
 
 #import <Intents/Intents.h>
 #import <UserNotifications/UserNotifications.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 #import <BackgroundTasks/BGTaskScheduler.h>
 #import <BackgroundTasks/BGTaskRequest.h>
@@ -294,9 +295,16 @@
 
 - (void)checkForPushNotificationSubscription
 {
+    NSLog(@"🔔 [DEBUG CALL] checkForPushNotificationSubscription called");
+    NSLog(@"🔔 [DEBUG CALL] normalPushToken: %@", normalPushToken ? @"SET" : @"NOT SET");
+    NSLog(@"🔔 [DEBUG CALL] pushKitToken: %@", pushKitToken ? @"SET" : @"NOT SET");
+
     if (!normalPushToken || !pushKitToken) {
+        NSLog(@"🔔 [DEBUG CALL] ⚠️ Waiting for both tokens before subscribing");
         return;
     }
+
+    NSLog(@"🔔 [DEBUG CALL] ✅ Both tokens available - storing in keychain");
 
     // Store new Normal Push & PushKit tokens in Keychain
     UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:bundleIdentifier accessGroup:groupIdentifier];
@@ -304,13 +312,19 @@
     [keychain setString:pushKitToken forKey:kNCPushKitTokenKey];
 
     BOOL isAppInBackground = [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground;
+    NSLog(@"🔔 [DEBUG CALL] App in background: %@", isAppInBackground ? @"YES" : @"NO");
+
     // Subscribe only if both tokens have been generated and app is not running in the background (do not try to subscribe
     // when the app is running in background e.g. when the app is launched due to a VoIP push notification)
     if (!isAppInBackground) {
+        NSLog(@"🔔 [DEBUG CALL] 📤 Subscribing for push notifications for all accounts...");
         // Try to subscribe for push notifications in all accounts
         for (TalkAccount *account in [[NCDatabaseManager sharedInstance] allAccounts]) {
+            NSLog(@"🔔 [DEBUG CALL] Subscribing account: %@", account.accountId);
             [[NCSettingsController sharedInstance] subscribeForPushNotificationsForAccountId:account.accountId withCompletionBlock:nil];
         }
+    } else {
+        NSLog(@"🔔 [DEBUG CALL] ⚠️ App in background - skipping subscription");
     }
 }
 
@@ -318,12 +332,16 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    NSLog(@"🔔 [DEBUG CALL] ========== Normal Push Token Received ==========");
+
     if([deviceToken length] == 0) {
-        NSLog(@"Failed to create Normal Push token.");
+        NSLog(@"🔔 [DEBUG CALL] ❌ Failed to create Normal Push token - token is empty!");
         return;
     }
-    
+
     normalPushToken = [self stringWithDeviceToken:deviceToken];
+    NSLog(@"🔔 [DEBUG CALL] ✅ Normal push token: %@", normalPushToken);
+
     [self checkForPushNotificationSubscription];
     [self registerInteractivePushNotification];
 }
@@ -403,40 +421,71 @@
 
 - (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(NSString *)type
 {
+    NSLog(@"🔔 [DEBUG CALL] ========== PushKit Credentials Updated ==========");
+    NSLog(@"🔔 [DEBUG CALL] Push type: %@", type);
+
     if([credentials.token length] == 0) {
-        NSLog(@"Failed to create PushKit token.");
+        NSLog(@"🔔 [DEBUG CALL] ❌ Failed to create PushKit token - token is empty!");
         return;
     }
-    
+
     pushKitToken = [self stringWithDeviceToken:credentials.token];
+    NSLog(@"🔔 [DEBUG CALL] ✅ PushKit (VoIP) token received: %@", pushKitToken);
+    NSLog(@"🔔 [DEBUG CALL] Normal push token: %@", normalPushToken ? normalPushToken : @"NOT SET YET");
+
     [self checkForPushNotificationSubscription];
 }
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type withCompletionHandler:(void (^)(void))completion
 {
+    NSLog(@"🔔 [DEBUG CALL] ========== VoIP PUSH RECEIVED ==========");
     [NCLog log:@"Received PushKit notification"];
 
     NSString *message = [payload.dictionaryPayload objectForKey:@"subject"];
     NSString *signature = [payload.dictionaryPayload objectForKey:@"signature"];
 
+    NSLog(@"🔔 [DEBUG CALL] Payload keys: %@", [payload.dictionaryPayload allKeys]);
+    NSLog(@"🔔 [DEBUG CALL] Message present: %@, Signature present: %@", message ? @"YES" : @"NO", signature ? @"YES" : @"NO");
+
     if (message && signature) {
-        for (TalkAccount *account in [[NCDatabaseManager sharedInstance] allAccounts]) {
+        NSArray *allAccounts = [[NCDatabaseManager sharedInstance] allAccounts];
+        NSLog(@"🔔 [DEBUG CALL] Number of accounts to try: %lu", (unsigned long)allAccounts.count);
+
+        for (TalkAccount *account in allAccounts) {
+            NSLog(@"🔔 [DEBUG CALL] Trying to decrypt for account: %@", account.accountId);
             NSString *decryptedMessage = [NCPushNotificationsUtils decryptPushNotificationWithMessageBase64:message withSignatureBase64:signature forAccount:account];
 
             if (!decryptedMessage) {
+                NSLog(@"🔔 [DEBUG CALL] Decryption FAILED for account: %@", account.accountId);
                 continue;
             }
 
+            NSLog(@"🔔 [DEBUG CALL] Decryption SUCCESS for account: %@", account.accountId);
+            NSLog(@"🔔 [DEBUG CALL] Decrypted message: %@", decryptedMessage);
+
             NCPushNotification *pushNotification = [NCPushNotification pushNotificationFromDecryptedString:decryptedMessage withAccountId:account.accountId];
 
+            NSLog(@"🔔 [DEBUG CALL] Push notification created: %@", pushNotification ? @"YES" : @"NO");
+            if (pushNotification) {
+                NSLog(@"🔔 [DEBUG CALL] Push notification type: %ld (Call type = %d)", (long)pushNotification.type, NCPushNotificationTypeCall);
+                NSLog(@"🔔 [DEBUG CALL] Room token: %@", pushNotification.roomToken);
+                NSLog(@"🔔 [DEBUG CALL] Subject: %@", pushNotification.subject);
+            }
+
             if (pushNotification && pushNotification.type == NCPushNotificationTypeCall) {
+                NSLog(@"🔔 [DEBUG CALL] ✅ This IS a CALL notification - showing incoming call");
                 [[NCNotificationController sharedInstance] showIncomingCallForPushNotification:pushNotification];
                 completion();
                 return;
+            } else {
+                NSLog(@"🔔 [DEBUG CALL] ⚠️ This is NOT a call notification, type: %ld", (long)pushNotification.type);
             }
         }
+    } else {
+        NSLog(@"🔔 [DEBUG CALL] ❌ Message or signature is missing!");
     }
 
+    NSLog(@"🔔 [DEBUG CALL] ⚠️ Falling back to showIncomingCallForOldAccount");
     [[NCNotificationController sharedInstance] showIncomingCallForOldAccount];
     [[NCSettingsController sharedInstance] setDidReceiveCallsFromOldAccount:YES];
     completion();
@@ -471,10 +520,53 @@
 - (void)onWillDisplayNotification:(OSNotificationWillDisplayEvent *)event {
     NSLog(@"📩 OneSignal: Will display notification: %@", event.notification.body);
 
-    // Check if user is currently in an active chat with the same conversation
     NSDictionary *additionalData = event.notification.additionalData;
     NSString *notificationConversationToken = additionalData[@"conversation_token"];
+    NSString *eventType = additionalData[@"event"];
+    NSString *callerName = additionalData[@"caller_name"];
 
+    NSLog(@"📩 OneSignal: Event type: %@, Conversation token: %@", eventType, notificationConversationToken);
+
+    // Check if this is a CALL notification
+    BOOL isCallNotification = [eventType isEqualToString:@"call"] ||
+                              [eventType isEqualToString:@"incoming_call"] ||
+                              [event.notification.body containsString:@"is calling you"];
+
+    if (isCallNotification && notificationConversationToken && notificationConversationToken.length > 0) {
+        NSLog(@"📞 OneSignal: CALL notification detected! Triggering CallKit and ringtone...");
+
+        // Prevent the regular notification banner - we'll show CallKit instead
+        [event preventDefault];
+
+        // Get caller display name
+        NSString *displayName = callerName ?: event.notification.title ?: @"Incoming call";
+
+        // Get account ID (use active account)
+        TalkAccount *activeAccount = [[NCDatabaseManager sharedInstance] activeAccount];
+        NSString *accountId = activeAccount.accountId;
+
+        NSLog(@"📞 OneSignal: Showing CallKit for room: %@, caller: %@, account: %@", notificationConversationToken, displayName, accountId);
+
+        // Trigger CallKit and ringtone on main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Start playing ringtone
+            [self playRingtone];
+
+            if ([CallKitManager isCallKitAvailable]) {
+                [[CallKitManager sharedInstance] reportIncomingCall:notificationConversationToken
+                                                    withDisplayName:displayName
+                                                       forAccountId:accountId];
+            } else {
+                // Fallback: show local notification if CallKit is not available
+                NSLog(@"📞 OneSignal: CallKit not available, showing local notification");
+                [event.notification display];
+            }
+        });
+
+        return;
+    }
+
+    // Check if user is currently in an active chat with the same conversation (for non-call notifications)
     if (notificationConversationToken && notificationConversationToken.length > 0) {
         // Get current active chat's room token
         ChatViewController *currentChat = [NCRoomsManager shared].chatViewController;
@@ -505,13 +597,46 @@
     // Handle conversation_token from OneSignal notification payload
     NSString *conversationToken = additionalData[@"conversation_token"];
     NSString *eventType = additionalData[@"event"];
+    NSString *callerName = additionalData[@"caller_name"];
+
+    // Check if this is a CALL notification
+    BOOL isCallNotification = [eventType isEqualToString:@"call"] ||
+                              [eventType isEqualToString:@"incoming_call"] ||
+                              [notification.body containsString:@"is calling you"];
 
     if (conversationToken && conversationToken.length > 0) {
-        NSLog(@"📩 OneSignal: Opening chat with conversation token: %@, event: %@", conversationToken, eventType);
+        NSLog(@"📩 OneSignal: Processing notification for token: %@, event: %@", conversationToken, eventType);
 
-        // Navigate to the chat page using the conversation token
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NCRoomsManager shared] startChatWithRoomToken:conversationToken];
+            if (isCallNotification) {
+                // For call notifications, show CallKit or join the call
+                NSLog(@"📞 OneSignal: Call notification clicked - triggering CallKit");
+
+                NSString *displayName = callerName ?: notification.title ?: @"Incoming call";
+                TalkAccount *activeAccount = [[NCDatabaseManager sharedInstance] activeAccount];
+
+                // Play ringtone
+                [self playRingtone];
+
+                if ([CallKitManager isCallKitAvailable]) {
+                    [[CallKitManager sharedInstance] reportIncomingCall:conversationToken
+                                                        withDisplayName:displayName
+                                                           forAccountId:activeAccount.accountId];
+                } else {
+                    // If CallKit not available, join the call directly
+                    [[NCRoomsManager shared] startCallWithToken:conversationToken
+                                                  withAccountId:activeAccount.accountId
+                                                      withVideo:YES
+                                                 enabledAtStart:YES
+                                                    asInitiator:NO
+                                                       silently:NO
+                                               recordingConsent:NO
+                                              withVoiceChatMode:NO];
+                }
+            } else {
+                // For chat notifications, navigate to chat
+                [[NCRoomsManager shared] startChatWithRoomToken:conversationToken];
+            }
         });
     } else {
         NSLog(@"📩 OneSignal: No conversation_token found in notification data");
@@ -766,5 +891,72 @@
     [[NCSettingsController sharedInstance] connectDisconnectedExternalSignalingControllers];
 }
 
+#pragma mark - Ringtone Playback
+
+- (void)playRingtone
+{
+    NSLog(@"📞 [RINGTONE] Playing ringtone...");
+
+    // Stop any existing ringtone
+    [self stopRingtone];
+
+    // Configure audio session for playback
+    NSError *sessionError = nil;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback
+             withOptions:AVAudioSessionCategoryOptionDuckOthers
+                   error:&sessionError];
+    [session setActive:YES error:&sessionError];
+
+    if (sessionError) {
+        NSLog(@"📞 [RINGTONE] Audio session error: %@", sessionError.localizedDescription);
+    }
+
+    // Try to load ringtone file from bundle
+    NSURL *ringtoneURL = [[NSBundle mainBundle] URLForResource:@"ringtone" withExtension:@"mp3"];
+
+    // Fallback to connecting sound if ringtone not found
+    if (!ringtoneURL) {
+        ringtoneURL = [[NSBundle mainBundle] URLForResource:@"connecting" withExtension:@"mp3"];
+        NSLog(@"📞 [RINGTONE] Using connecting.mp3 as fallback ringtone");
+    }
+
+    if (ringtoneURL) {
+        NSError *playerError = nil;
+        self.ringtonePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:ringtoneURL error:&playerError];
+
+        if (playerError) {
+            NSLog(@"📞 [RINGTONE] Error creating audio player: %@", playerError.localizedDescription);
+            return;
+        }
+
+        self.ringtonePlayer.numberOfLoops = -1; // Loop indefinitely
+        self.ringtonePlayer.volume = 1.0;
+        [self.ringtonePlayer prepareToPlay];
+        [self.ringtonePlayer play];
+
+        NSLog(@"📞 [RINGTONE] Ringtone started playing");
+    } else {
+        NSLog(@"📞 [RINGTONE] No ringtone file found, using system sound");
+        // Fallback to system alert sound with vibration
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        AudioServicesPlaySystemSound(1007); // Default SMS tone as fallback
+    }
+}
+
+- (void)stopRingtone
+{
+    if (self.ringtonePlayer && self.ringtonePlayer.isPlaying) {
+        NSLog(@"📞 [RINGTONE] Stopping ringtone");
+        [self.ringtonePlayer stop];
+        self.ringtonePlayer = nil;
+
+        // Deactivate audio session
+        NSError *error = nil;
+        [[AVAudioSession sharedInstance] setActive:NO
+                                       withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation
+                                             error:&error];
+    }
+}
 
 @end

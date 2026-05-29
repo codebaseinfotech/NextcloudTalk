@@ -5,6 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import <PushKit/PushKit.h>
+#import <AVFoundation/AVFoundation.h>
 @import OneSignalFramework;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, PKPushRegistryDelegate, OSPushSubscriptionObserver, UNUserNotificationCenterDelegate, OSNotificationLifecycleListener>
@@ -16,8 +17,11 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (assign, nonatomic) BOOL shouldLockInterfaceOrientation;
 @property (assign, nonatomic) UIInterfaceOrientation lockedInterfaceOrientation;
+@property (strong, nonatomic) AVAudioPlayer *ringtonePlayer;
 
 - (void)keepExternalSignalingConnectionAliveTemporarily;
+- (void)playRingtone;
+- (void)stopRingtone;
 
 @end
 

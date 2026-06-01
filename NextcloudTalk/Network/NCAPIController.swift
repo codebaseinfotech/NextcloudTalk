@@ -22,6 +22,14 @@ class NCAPIController: NSObject, NKCommonDelegate {
     // MARK: - Public var
     public let kReceivedChatMessagesLimit = 100
 
+    /// Get notification server URL from UserDefaults (set by RemoteConfigManager) or fallback to default
+    private var dynamicNotificationServerURL: String {
+        if let url = UserDefaults.standard.string(forKey: "remote_config_noti_base_url"), !url.isEmpty {
+            return url
+        }
+        return pushNotificationServer
+    }
+
     // MARK: - Private var
     private let kDavEndpoint = "/remote.php/dav"
     private let kNCOCSAPIVersion = "/ocs/v2.php"
@@ -2395,7 +2403,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         let parameters = [
             "pushTokenHash": NCKeyChainController.sharedInstance().pushTokenSHA512(),
             "devicePublicKey": devicePublicKey,
-            "proxyServer": pushNotificationServer
+            "proxyServer": dynamicNotificationServerURL
         ]
 
         apiSessionManager.postOcs(urlString, account: account, parameters: parameters) { ocsResponse, ocsError in
@@ -2415,7 +2423,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
     }
 
     public func subscribeAccount(_ account: TalkAccount, toPushServerWithCompletionBlock completionBlock: @escaping (_ error: Error?) -> Void) {
-        let urlString = "\(pushNotificationServer)/devices"
+        let urlString = "\(dynamicNotificationServerURL)/devices"
         let parameters = [
             "pushToken": NCKeyChainController.sharedInstance().combinedPushToken(),
             "deviceIdentifier": account.deviceIdentifier,
@@ -2431,7 +2439,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
     }
 
     public func unsubscribeAccount(_ account: TalkAccount, fromPushServerWithCompletionBlock completionBlock: @escaping (_ error: Error?) -> Void) {
-        let urlString = "\(pushNotificationServer)/devices"
+        let urlString = "\(dynamicNotificationServerURL)/devices"
         let parameters = [
             "deviceIdentifier": account.deviceIdentifier,
             "deviceIdentifierSignature": account.deviceSignature,
@@ -3618,7 +3626,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         title: String,
         body: String
     ) {
-        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+        let urlString = "\(dynamicNotificationServerURL)/api/send-notification"
 
         guard let url = URL(string: urlString) else {
             NCLog.log("sendChatNotification: Invalid URL")
@@ -3698,7 +3706,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         title: String,
         body: String
     ) {
-        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+        let urlString = "\(dynamicNotificationServerURL)/api/send-notification"
 
         guard let url = URL(string: urlString) else {
             NCLog.log("sendEditMessageNotification: Invalid URL")
@@ -3771,7 +3779,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         title: String,
         body: String
     ) {
-        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+        let urlString = "\(dynamicNotificationServerURL)/api/send-notification"
 
         guard let url = URL(string: urlString) else {
             NCLog.log("sendReactionNotification: Invalid URL")
@@ -3848,7 +3856,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         body: String
     ) {
         NSLog("NCAPIController.sendShareFileNotification: Called with fileName: \(fileName), senderId: \(senderId)")
-        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+        let urlString = "\(dynamicNotificationServerURL)/api/send-notification"
 
         guard let url = URL(string: urlString) else {
             NCLog.log("sendShareFileNotification: Invalid URL")
@@ -3931,7 +3939,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         title: String,
         body: String
     ) {
-        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+        let urlString = "\(dynamicNotificationServerURL)/api/send-notification"
 
         guard let url = URL(string: urlString) else {
             NCLog.log("sendShareLocationNotification: Invalid URL")
@@ -4008,7 +4016,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         title: String,
         body: String
     ) {
-        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+        let urlString = "\(dynamicNotificationServerURL)/api/send-notification"
 
         guard let url = URL(string: urlString) else {
             NCLog.log("sendStartCallNotification: Invalid URL")
@@ -4082,7 +4090,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         title: String,
         body: String
     ) {
-        let urlString = "https://tacs4.tassosconsultancy.com:4443/api/send-notification"
+        let urlString = "\(dynamicNotificationServerURL)/api/send-notification"
 
         guard let url = URL(string: urlString) else {
             NCLog.log("sendDeleteMessageNotification: Invalid URL")

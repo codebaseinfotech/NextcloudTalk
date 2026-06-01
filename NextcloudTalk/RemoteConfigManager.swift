@@ -16,10 +16,12 @@ class RemoteConfigManager: NSObject {
     // Remote Config Keys
     private let kIsIOSInReview = "is_ios_in_review"
     private let kReviewWebLoginURL = "review_weblogin_url"
+    private let kNotiBaseURL = "noti_base_url"
 
     // Cached values
     private(set) var isIOSInReview: Bool = false
     private(set) var reviewWebLoginURL: String = ""
+    private(set) var notiBaseURL: String = ""
 
     private override init() {
         remoteConfig = RemoteConfig.remoteConfig()
@@ -31,7 +33,8 @@ class RemoteConfigManager: NSObject {
         // Set default values
         remoteConfig.setDefaults([
             kIsIOSInReview: false as NSObject,
-            kReviewWebLoginURL: "" as NSObject
+            kReviewWebLoginURL: "" as NSObject,
+            kNotiBaseURL: "" as NSObject
         ])
 
         super.init()
@@ -59,19 +62,29 @@ class RemoteConfigManager: NSObject {
             // Get raw values for debugging
             let rawIsInReview = self.remoteConfig.configValue(forKey: self.kIsIOSInReview)
             let rawURL = self.remoteConfig.configValue(forKey: self.kReviewWebLoginURL)
+            let rawNotiURL = self.remoteConfig.configValue(forKey: self.kNotiBaseURL)
 
             print("📱 [RemoteConfig] Raw is_ios_in_review: \(rawIsInReview.stringValue ?? "nil")")
             print("📱 [RemoteConfig] Raw review_weblogin_url: \(rawURL.stringValue ?? "nil")")
+            print("📱 [RemoteConfig] Raw noti_base_url: \(rawNotiURL.stringValue ?? "nil")")
             print("📱 [RemoteConfig] Source is_ios_in_review: \(rawIsInReview.source.rawValue)")
             print("📱 [RemoteConfig] Source review_weblogin_url: \(rawURL.source.rawValue)")
+            print("📱 [RemoteConfig] Source noti_base_url: \(rawNotiURL.source.rawValue)")
 
             // Update cached values
             self.isIOSInReview = rawIsInReview.boolValue
             self.reviewWebLoginURL = rawURL.stringValue ?? ""
+            self.notiBaseURL = rawNotiURL.stringValue ?? ""
+
+            // Store noti_base_url in UserDefaults for access from extensions
+            if !self.notiBaseURL.isEmpty {
+                UserDefaults.standard.set(self.notiBaseURL, forKey: "remote_config_noti_base_url")
+            }
 
             print("📱 [RemoteConfig] ========== RESULT ==========")
             print("📱 [RemoteConfig] is_ios_in_review: \(self.isIOSInReview)")
             print("📱 [RemoteConfig] review_weblogin_url: \(self.reviewWebLoginURL)")
+            print("📱 [RemoteConfig] noti_base_url: \(self.notiBaseURL)")
             print("📱 [RemoteConfig] ==============================")
 
             completion?(true)

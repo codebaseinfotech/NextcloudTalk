@@ -111,6 +111,64 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         view.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         )
+
+        // Hide all login fields initially until Remote Config is checked
+        serverTextField.isHidden = true
+        serverLabel.isHidden = true
+        loginButton.isHidden = true
+        qrCodeButton.isHidden = true
+        importAccountButton.isHidden = true
+
+        // Check if app is in review mode - auto login with review URL
+        checkReviewModeAndAutoLogin()
+    }
+
+    // MARK: - Review Mode
+
+    func checkReviewModeAndAutoLogin() {
+        print("📱 [ReviewMode] checkReviewModeAndAutoLogin called")
+
+        // Wait for AppDelegate's Remote Config fetch to complete
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
+            guard let self = self else {
+                print("📱 [ReviewMode] self is nil")
+                return
+            }
+
+            let isInReview = RemoteConfigManager.shared.isIOSInReview
+            let reviewURL = RemoteConfigManager.shared.reviewWebLoginURL
+
+            print("📱 [ReviewMode] is_ios_in_review: \(isInReview)")
+            print("📱 [ReviewMode] review_weblogin_url: \(reviewURL)")
+
+            // ONLY auto-login when is_ios_in_review is explicitly TRUE
+            if isInReview == false {
+                print("📱 [ReviewMode] is_ios_in_review = FALSE - showing normal login screen")
+                // Show the login fields
+                self.serverTextField.isHidden = false
+                self.serverLabel.isHidden = false
+                self.loginButton.isHidden = false
+                self.qrCodeButton.isHidden = !QRScannerViewController.isDataScannerSupported()
+                self.checkFilesAppAccounts() // Re-check to show import button if needed
+                return
+            }
+
+            // Check if review URL is available
+            if reviewURL.isEmpty {
+                print("📱 [ReviewMode] review_weblogin_url is empty - showing normal login screen")
+                // Show the login fields
+                self.serverTextField.isHidden = false
+                self.serverLabel.isHidden = false
+                self.loginButton.isHidden = false
+                self.qrCodeButton.isHidden = !QRScannerViewController.isDataScannerSupported()
+                self.checkFilesAppAccounts()
+                return
+            }
+
+            // Review mode is TRUE - auto-login (fields already hidden)
+            print("📱 [ReviewMode] is_ios_in_review = TRUE - auto login with: \(reviewURL)")
+            self.startLoginProcess(serverURL: reviewURL, user: nil)
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -236,6 +294,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         }
 
         let authenticationNC = UINavigationController(rootViewController: authenticationViewController)
+
+        // Full screen when in review mode
+        if RemoteConfigManager.shared.isIOSInReview {
+            authenticationNC.modalPresentationStyle = .fullScreen
+        }
+
         present(authenticationNC, animated: true)
     }
 

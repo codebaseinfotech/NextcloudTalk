@@ -30,6 +30,7 @@
 
 @import UICKeyChainStore;
 @import OneSignalFramework;
+@import FirebaseCore;
 
 @interface AppDelegate ()
 
@@ -53,6 +54,15 @@
 
     // Set notification delegate for foreground notifications
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+
+    // Firebase Setup
+    [FIRApp configure];
+    NSLog(@"Firebase initialized");
+
+    // Fetch Remote Config
+    [[RemoteConfigManager shared] fetchRemoteConfigWithCompletion:^(BOOL success) {
+        NSLog(@"📱 Remote Config fetch completed: %@", success ? @"YES" : @"NO");
+    }];
 
     // OneSignal Push Notification Setup
     [OneSignal initialize:@"0f4eb378-54a6-47f4-ad11-0b9288aba8fc" withLaunchOptions:launchOptions];

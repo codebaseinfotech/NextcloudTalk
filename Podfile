@@ -1,5 +1,6 @@
 source 'https://cdn.cocoapods.org/'
 platform :ios, '16.0'
+use_modular_headers!
 
 def common_dependencies
   pod 'AFNetworking', '3.2.0'
@@ -13,6 +14,8 @@ def main_dependencies
   common_dependencies_ext
   pod 'MaterialComponents/ActivityIndicator'
   pod 'MobileVLCKit', '~> 3.5.0'
+  pod 'FirebaseCore'
+  pod 'FirebaseRemoteConfig'
 end
 
 target "Tassos Talk" do

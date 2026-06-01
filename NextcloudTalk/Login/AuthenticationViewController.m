@@ -88,10 +88,13 @@ NSString * const kNCAuthTokenFlowEndpoint               = @"/index.php/login/flo
 
     [NCAppBranding styleViewController:self];
 
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                  target:self action:@selector(cancelButtonPressed)];
-    cancelButton.accessibilityHint = NSLocalizedString(@"Double tap to dismiss authentication dialog", nil);
-    self.navigationController.navigationBar.topItem.leftBarButtonItem = cancelButton;
+    // Hide cancel button when in review mode
+    if (![RemoteConfigManager shared].isIOSInReview) {
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                      target:self action:@selector(cancelButtonPressed)];
+        cancelButton.accessibilityHint = NSLocalizedString(@"Double tap to dismiss authentication dialog", nil);
+        self.navigationController.navigationBar.topItem.leftBarButtonItem = cancelButton;
+    }
 }
 
 - (void)cancelButtonPressed

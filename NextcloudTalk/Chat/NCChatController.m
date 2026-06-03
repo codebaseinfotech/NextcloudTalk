@@ -918,7 +918,7 @@ NSString * const NCChatControllerDidReceiveThreadNotFoundNotification           
     [_pullMessagesTask cancel];
 }
 
-- (void)sendChatMessage:(NSString *)message replyTo:(NSInteger)replyTo referenceId:(NSString *)referenceId silently:(BOOL)silently
+- (void)sendChatMessage:(NSString *)message replyTo:(NSInteger)replyTo replyToActorId:(NSString *)replyToActorId replyToActorType:(NSString *)replyToActorType referenceId:(NSString *)referenceId silently:(BOOL)silently
 {
     BGTaskHelper *bgTask = [BGTaskHelper startBackgroundTaskWithName:@"NCChatControllerSendMessage" expirationHandler:^(BGTaskHelper *task) {
         [NCLog log:@"ExpirationHandler called - sendChatMessage"];
@@ -975,6 +975,8 @@ NSString * const NCChatControllerDidReceiveThreadNotFoundNotification           
                                                       message:message
                                                   referenceId:referenceId
                                                       replyTo:replyTo
+                                              replyToActorId:replyToActorId
+                                            replyToActorType:replyToActorType
                                                      silently:silently];
         }
 
@@ -1068,7 +1070,9 @@ NSString * const NCChatControllerDidReceiveThreadNotFoundNotification           
             }];
         }
     } else {
-        [self sendChatMessage:message.sendingMessage replyTo:message.parentMessageId referenceId:message.referenceId silently:message.isSilent];
+        NSString *replyToActorId = message.parentActorId ?: @"";
+        NSString *replyToActorType = message.parentActorType ?: @"";
+        [self sendChatMessage:message.sendingMessage replyTo:message.parentMessageId replyToActorId:replyToActorId replyToActorType:replyToActorType referenceId:message.referenceId silently:message.isSilent];
     }
 }
 

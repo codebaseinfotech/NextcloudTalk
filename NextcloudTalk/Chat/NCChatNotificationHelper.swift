@@ -17,6 +17,8 @@ public class NCChatNotificationHelper: NSObject {
         message: String,
         referenceId: String?,
         replyTo: Int,
+        replyToActorId: String?,
+        replyToActorType: String?,
         silently: Bool
     ) {
         // Skip for NoteToSelf rooms
@@ -62,6 +64,24 @@ public class NCChatNotificationHelper: NSObject {
             }
         }
 
+        // Add reply-to author to mention_ids if this is a reply
+        var finalReplyToActorId = replyToActorId ?? ""
+        var finalReplyToActorType = replyToActorType ?? ""
+
+        // If replyToActorId is empty but we have a replyTo messageId, try to fetch from database
+        if replyTo > 0 && finalReplyToActorId.isEmpty {
+            let predicate = NSPredicate(format: "messageId == %d AND token == %@", replyTo, conversationToken)
+            if let parentMessage = NCChatMessage.objects(with: predicate).firstObject() {
+                finalReplyToActorId = parentMessage.actorId ?? ""
+                finalReplyToActorType = parentMessage.actorType ?? ""
+                print("DEBUG: Found parent message in DB - actorId: \(finalReplyToActorId), actorType: \(finalReplyToActorType)")
+            }
+        }
+
+        if replyTo > 0, !finalReplyToActorId.isEmpty, !mentionIds.contains(finalReplyToActorId) {
+            mentionIds.append(finalReplyToActorId)
+        }
+
         let isMentions = !mentionIds.isEmpty
 
         // Clean message by removing quotes from mentions: @"username" -> @username
@@ -76,7 +96,12 @@ public class NCChatNotificationHelper: NSObject {
         }
 
         if isMentions && !isOneToOne {
-            mentionTitle = "You were mentioned in \(conversationName)"
+            // Check if this is a reply or a direct mention
+            if replyTo > 0, !finalReplyToActorId.isEmpty {
+                mentionTitle = "\(senderName) replied to your message"
+            } else {
+                mentionTitle = "You were mentioned in \(conversationName)"
+            }
             mentionBody = "\(senderName): \(cleanedMessage)"
         }
 
@@ -137,6 +162,8 @@ public class NCChatNotificationHelper: NSObject {
                 message: message,
                 referenceId: referenceId ?? "",
                 replyToMessageId: replyTo,
+                replyToMessageActorId: finalReplyToActorId,
+                replyToMessageActorType: finalReplyToActorType,
                 silent: silently,
                 isMentions: isMentions,
                 mentionIds: mentionIds,

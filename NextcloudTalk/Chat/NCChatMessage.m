@@ -47,6 +47,10 @@ NSString * const kSharedItemTypePinned      = @"pinned";
 
 @implementation NCChatMessage
 
++ (NSArray<NSString *> *)ignoredProperties {
+    return @[@"parentActorId", @"parentActorType"];
+}
+
 + (NSDataDetector *)urlDataDetector
 {
     static dispatch_once_t once;

@@ -547,6 +547,11 @@ import Toast
         temporaryMessage.internalId = referenceId
         temporaryMessage.isTemporary = true
         temporaryMessage.parentId = parentMessage?.internalId
+        temporaryMessage.parentActorId = parentMessage?.actorId
+        temporaryMessage.parentActorType = parentMessage?.actorType
+
+        // Debug: Log parent message info
+        print("DEBUG Reply: parentId=\(parentMessage?.internalId ?? "nil"), parentActorId=\(parentMessage?.actorId ?? "nil"), parentActorType=\(parentMessage?.actorType ?? "nil")")
 
         if isVoiceMessage {
             var messageParametersDict = [String: Any]()

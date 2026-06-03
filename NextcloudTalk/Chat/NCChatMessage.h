@@ -54,6 +54,8 @@ typedef void (^GetReferenceDataCompletionBlock)(NCChatMessage *message, NSDictio
 @property (nonatomic, strong) NSString *systemMessage;
 @property (nonatomic, assign) BOOL isReplyable;
 @property (nonatomic, strong) NSString *parentId;
+@property (nonatomic, strong) NSString *parentActorId;
+@property (nonatomic, strong) NSString *parentActorType;
 @property (nonatomic, strong) NSString *referenceId;
 @property (nonatomic, strong) NSString *messageType;
 @property (nonatomic, strong) NSString *reactionsJSONString;

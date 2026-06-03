@@ -48,7 +48,8 @@ public class NCChatNotificationHelper: NSObject {
         var mentionBody = ""
 
         // Check for direct @mentions pattern
-        if let atMentionRegex = try? NSRegularExpression(pattern: "@(\\w+)", options: []) {
+        // Matches both @username and @"username" (with optional quotes)
+        if let atMentionRegex = try? NSRegularExpression(pattern: "@\\\"?([\\w]+)\\\"?", options: []) {
             let matches = atMentionRegex.matches(in: message, options: [], range: NSRange(location: 0, length: message.utf16.count))
             for match in matches {
                 if match.numberOfRanges > 1,
@@ -63,9 +64,20 @@ public class NCChatNotificationHelper: NSObject {
 
         let isMentions = !mentionIds.isEmpty
 
+        // Clean message by removing quotes from mentions: @"username" -> @username
+        var cleanedMessage = message
+        if let cleanRegex = try? NSRegularExpression(pattern: "@\\\"([\\w]+)\\\"", options: []) {
+            cleanedMessage = cleanRegex.stringByReplacingMatches(
+                in: message,
+                options: [],
+                range: NSRange(location: 0, length: message.utf16.count),
+                withTemplate: "@$1"
+            )
+        }
+
         if isMentions && !isOneToOne {
             mentionTitle = "You were mentioned in \(conversationName)"
-            mentionBody = "\(senderName): \(message)"
+            mentionBody = "\(senderName): \(cleanedMessage)"
         }
 
         // Build title and body based on room type
@@ -75,11 +87,11 @@ public class NCChatNotificationHelper: NSObject {
         if isOneToOne {
             // 1:1 chat: title = sender's name, body = just the message
             title = senderName
-            body = message
+            body = cleanedMessage
         } else {
             // Group/Public chat: title = room name, body = "senderName: message"
             title = conversationName
-            body = "\(senderName): \(message)"
+            body = "\(senderName): \(cleanedMessage)"
         }
 
         // Fetch participants asynchronously and then send notification
@@ -90,11 +102,12 @@ public class NCChatNotificationHelper: NSObject {
             do {
                 let participants = try await NCAPIController.sharedInstance().getParticipants(forRoom: conversationToken, forAccount: account)
 
-                // Filter to only users (not guests) and exclude the sender
+                // Filter to only users (not guests), exclude the sender, and exclude mentioned users
                 for participant in participants {
                     if participant.actorType == .user,
                        let actorId = participant.actorId,
-                       actorId != senderId {
+                       actorId != senderId,
+                       !mentionIds.contains(actorId) {
                         participantUserIds.append(actorId)
                         // OneSignal external ID is the same as user ID
                         participantExternalIds.append(actorId)

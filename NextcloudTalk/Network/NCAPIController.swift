@@ -3641,7 +3641,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
             "senderActorType": senderActorType,
             "senderId": senderId,
             "senderName": senderName,
-            "senderExternalId": senderExternalId,
+//            "senderExternalId": senderExternalId,
             "conversation_token": conversationToken,
             "conversationType": conversationType,
             "conversationName": conversationName,
@@ -3650,7 +3650,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
             "isPublic": isPublic,
             "isNoteToSelf": isNoteToSelf,
             "participant_user_ids": participantUserIds,
-            "participant_external_ids": participantExternalIds,
+         //   "participant_external_ids": participantExternalIds,
             "message": message,
             "referenceId": referenceId,
             "replyToMessageId": replyToMessageId,
@@ -3663,6 +3663,8 @@ class NCAPIController: NSObject, NKCommonDelegate {
             "body": body
         ]
 
+        print(payload)
+        
         guard let jsonData = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
             NCLog.log("sendChatNotification: Failed to serialize JSON payload")
             return

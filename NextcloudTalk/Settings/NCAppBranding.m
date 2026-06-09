@@ -21,9 +21,9 @@ typedef enum NCTextColorStyle {
 NSString * const talkAppName = @"Tassos Talk";
 NSString * const filesAppName = @"Tassos";
 NSString * const copyright = @"© 2026 Tassos Talk";
-NSString * const bundleIdentifier = @"com.si.Alajery";
-NSString * const groupIdentifier = @"group.com.si.Alajery";
-NSString * const appsGroupIdentifier = @"group.com.si.Alajery";
+NSString * const bundleIdentifier = @"com.tassostalk";
+NSString * const groupIdentifier = @"group.com.tassostalk";
+NSString * const appsGroupIdentifier = @"group.com.tassostalk";
 NSString * const pushNotificationServer = @"https://push-notifications.nextcloud.com";
 NSString * const privacyURL = @"⁠https://tassosconsultancy.com/tassos-talk-privacy-policy";
 BOOL const isBrandedApp = NO;

@@ -188,12 +188,12 @@ NSString * const kDidReceiveCallsFromOldAccount = @"receivedCallsFromOldAccount"
 
 - (void)upgradeRequiredResponseReceived:(NSNotification *)notification
 {
-    NSString *accountId = [notification.userInfo objectForKey:@"accountId"];
-    if (!_updateAlertController || ![_updateAlertControllerAccountId isEqualToString:accountId]) {
-        [self createUpdateAlertContollerForAccountId:accountId];
-    }
-
-    [[NCUserInterfaceController sharedInstance] presentAlertIfNotPresentedAlready:_updateAlertController];
+//    NSString *accountId = [notification.userInfo objectForKey:@"accountId"];
+//    if (!_updateAlertController || ![_updateAlertControllerAccountId isEqualToString:accountId]) {
+//        [self createUpdateAlertContollerForAccountId:accountId];
+//    }
+//
+//    [[NCUserInterfaceController sharedInstance] presentAlertIfNotPresentedAlready:_updateAlertController];
 
 }
 

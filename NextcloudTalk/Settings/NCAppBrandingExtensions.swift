@@ -24,9 +24,13 @@ extension NCAppBranding {
         return NCAppBranding.getDynamicColor(lightColor, withDarkMode: darkColor)
     }
 
+    // Use a fixed Nextcloud Talk compatible version for server API compatibility
+    // This is separate from the app's marketing version (CFBundleShortVersionString)
+    static let nextcloudTalkVersion = "20.0.0"
+
     @objc
     static func userAgent() -> String {
-        return "Mozilla/5.0 (iOS) Nextcloud-Talk v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "Unknown")"
+        return "Mozilla/5.0 (iOS) Nextcloud-Talk v\(nextcloudTalkVersion)"
     }
 
     @objc

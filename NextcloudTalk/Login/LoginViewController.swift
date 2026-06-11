@@ -155,6 +155,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
     func checkReviewModeAndAutoLogin() {
         print("📱 [ReviewMode] checkReviewModeAndAutoLogin called")
         remoteConfigRetryCount = 0
+
+        // Show loader while fetching Remote Config
+        activityIndicatorView.startAnimating()
+        activityIndicatorView.isHidden = false
+
         fetchRemoteConfigWithRetry()
     }
 
@@ -198,6 +203,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
     }
 
     private func processRemoteConfigValues(isInReview: Bool, reviewURL: String, notiBaseURL: String) {
+        // Hide loader
+        self.activityIndicatorView.stopAnimating()
+        self.activityIndicatorView.isHidden = true
+
         // ONLY auto-login when is_ios_in_review is explicitly TRUE
         if isInReview == false {
             print("📱 [ReviewMode] is_ios_in_review = FALSE - showing normal login screen")

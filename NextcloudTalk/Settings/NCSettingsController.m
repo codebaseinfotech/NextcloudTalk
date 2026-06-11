@@ -116,12 +116,33 @@ NSString * const kDidReceiveCallsFromOldAccount = @"receivedCallsFromOldAccount"
         [[NCDatabaseManager sharedInstance] createAccountForUser:user inServer:server];
         [[NCDatabaseManager sharedInstance] setActiveAccountWithAccountId:accountId];
         [[NCKeyChainController sharedInstance] setToken:token forAccountId:accountId];
-        [self subscribeForPushNotificationsForAccountId:accountId withCompletionBlock:nil];
+        [self subscribeForPushNotificationsWithRetryForAccountId:accountId retryCount:0];
         [self createAccountsFile];
     } else {
         [self setActiveAccountWithAccountId:accountId];
         [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:NSLocalizedString(@"Account already added", nil) dismissAfterDelay:4.0f includedStyle:JDStatusBarNotificationIncludedStyleSuccess];
     }
+}
+
+- (void)subscribeForPushNotificationsWithRetryForAccountId:(NSString *)accountId retryCount:(NSInteger)retryCount
+{
+    NSInteger maxRetries = 5;
+    NSTimeInterval retryDelay = 2.0; // 2 seconds between retries
+
+    [self subscribeForPushNotificationsForAccountId:accountId withCompletionBlock:^(BOOL success) {
+        if (!success && retryCount < maxRetries) {
+            NSLog(@"🔔 [Push] Subscription failed for account %@, retrying in %.0f seconds (attempt %ld/%ld)",
+                  accountId, retryDelay, (long)(retryCount + 1), (long)maxRetries);
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(retryDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self subscribeForPushNotificationsWithRetryForAccountId:accountId retryCount:retryCount + 1];
+            });
+        } else if (success) {
+            NSLog(@"🔔 [Push] Successfully subscribed for push notifications for account %@", accountId);
+        } else {
+            NSLog(@"🔔 [Push] Failed to subscribe for push notifications after %ld retries for account %@", (long)maxRetries, accountId);
+        }
+    }];
 }
 
 - (void)setActiveAccountWithAccountId:(NSString *)accountId

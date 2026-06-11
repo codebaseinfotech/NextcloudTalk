@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,6 +18,8 @@
                 <outlet property="cancelButton" destination="3DN-vn-ssn" id="035-G7-FAF"/>
                 <outlet property="importAccountButton" destination="Djk-FQ-pNA" id="7Pj-uZ-N5Q"/>
                 <outlet property="loginButton" destination="WaC-p3-cE0" id="oVh-id-eMo"/>
+                <outlet property="notificationServerLabel" destination="nSv-zQ-ucj" id="nSv-cs-NYr"/>
+                <outlet property="notificationServerTextField" destination="nSv-RR-Z2O" id="nSv-lU-sCQ"/>
                 <outlet property="qrCodeButton" destination="AEd-IT-8im" id="f4R-fK-B08"/>
                 <outlet property="serverLabel" destination="oSe-zQ-ucj" id="e3A-cs-NYr"/>
                 <outlet property="serverTextField" destination="Xub-RR-Z2O" id="Bsr-lU-sCQ"/>
@@ -53,13 +55,13 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
                 </textField>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Dkt-lG-hBg">
-                    <rect key="frame" x="335.5" y="274.5" width="20" height="20"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Dkt-lG-hBg">
+                    <rect key="frame" x="177.5" y="324.5" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="a3k-Z9-ufY"/>
                         <constraint firstAttribute="height" constant="20" id="gOP-Sl-Pyr"/>
                     </constraints>
-                    <color key="color" systemColor="secondaryLabelColor"/>
+                    <color key="color" systemColor="secondarySystemBackgroundColor"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the web address you use to access your server in your web browser." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSe-zQ-ucj" userLabel="Note">
                     <rect key="frame" x="47.5" y="306" width="280" height="31.5"/>
@@ -70,8 +72,26 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Notification server address https://…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nSv-RR-Z2O" userLabel="Notification Server address">
+                    <rect key="frame" x="47.5" y="353.5" width="280" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="nSv-Af-ONt"/>
+                        <constraint firstAttribute="height" constant="35" id="nSv-Ic-ZUg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The address of the notification server used to deliver push notifications." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSv-zQ-ucj" userLabel="Notification Note">
+                    <rect key="frame" x="47.5" y="392.5" width="280" height="31.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="nSv-GR-84j"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Drk-al-ltc">
-                    <rect key="frame" x="100.5" y="369.5" width="174.5" height="167.5"/>
+                    <rect key="frame" x="100.5" y="456" width="174.5" height="167.5"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaC-p3-cE0">
                             <rect key="frame" x="0.0" y="0.0" width="174.5" height="45"/>
@@ -127,21 +147,25 @@
             <viewLayoutGuide key="safeArea" id="f6v-tp-8eE"/>
             <color key="backgroundColor" name="primary"/>
             <constraints>
-                <constraint firstItem="Drk-al-ltc" firstAttribute="top" secondItem="oSe-zQ-ucj" secondAttribute="bottom" constant="32" id="5Qu-nJ-A09"/>
+                <constraint firstItem="Dkt-lG-hBg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1Vc-tr-giz"/>
+                <constraint firstItem="Drk-al-ltc" firstAttribute="top" secondItem="nSv-zQ-ucj" secondAttribute="bottom" constant="32" id="5Qu-nJ-A09"/>
                 <constraint firstItem="Drk-al-ltc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="f6v-tp-8eE" secondAttribute="leading" constant="16" id="AqG-88-lCc"/>
                 <constraint firstItem="oSe-zQ-ucj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FnE-DB-H9n"/>
                 <constraint firstItem="iwf-In-Fgx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="M7m-ln-rs0"/>
                 <constraint firstItem="Xub-RR-Z2O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Mfz-1u-MNF"/>
                 <constraint firstItem="Drk-al-ltc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NPC-34-NvZ"/>
                 <constraint firstItem="3DN-vn-ssn" firstAttribute="leading" secondItem="f6v-tp-8eE" secondAttribute="leading" constant="16" id="WhM-h9-y2X"/>
-                <constraint firstItem="Dkt-lG-hBg" firstAttribute="leading" secondItem="Xub-RR-Z2O" secondAttribute="trailing" constant="8" id="bcA-h7-CD0"/>
                 <constraint firstItem="iwf-In-Fgx" firstAttribute="top" secondItem="f6v-tp-8eE" secondAttribute="top" constant="62" id="d21-wF-2ah"/>
                 <constraint firstItem="oSe-zQ-ucj" firstAttribute="top" secondItem="Xub-RR-Z2O" secondAttribute="bottom" constant="4" id="fzM-nZ-6bU"/>
                 <constraint firstItem="3DN-vn-ssn" firstAttribute="top" secondItem="f6v-tp-8eE" secondAttribute="top" constant="16" id="imh-ZV-tca"/>
                 <constraint firstItem="Xub-RR-Z2O" firstAttribute="top" secondItem="iwf-In-Fgx" secondAttribute="bottom" constant="60" id="n7F-EE-KLT"/>
                 <constraint firstItem="f6v-tp-8eE" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Drk-al-ltc" secondAttribute="bottom" id="nKv-He-yKf"/>
+                <constraint firstItem="nSv-RR-Z2O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nSv-1u-MNF"/>
+                <constraint firstItem="nSv-zQ-ucj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nSv-DB-H9n"/>
+                <constraint firstItem="nSv-RR-Z2O" firstAttribute="top" secondItem="oSe-zQ-ucj" secondAttribute="bottom" constant="16" id="nSv-EE-KLT"/>
+                <constraint firstItem="nSv-zQ-ucj" firstAttribute="top" secondItem="nSv-RR-Z2O" secondAttribute="bottom" constant="4" id="nSv-nZ-6bU"/>
                 <constraint firstItem="f6v-tp-8eE" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Drk-al-ltc" secondAttribute="trailing" constant="16" id="o5f-fy-3By"/>
-                <constraint firstItem="Dkt-lG-hBg" firstAttribute="centerY" secondItem="Xub-RR-Z2O" secondAttribute="centerY" id="tt4-iC-4x6"/>
+                <constraint firstItem="Dkt-lG-hBg" firstAttribute="centerY" secondItem="Xub-RR-Z2O" secondAttribute="centerY" constant="50" id="tt4-iC-4x6"/>
             </constraints>
             <point key="canvasLocation" x="32.799999999999997" y="52.623688155922046"/>
         </view>
@@ -154,8 +178,8 @@
         <namedColor name="primary">
             <color red="0.0" green="0.53333333333333333" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

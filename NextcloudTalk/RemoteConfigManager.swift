@@ -76,7 +76,7 @@ class RemoteConfigManager: NSObject {
             self.reviewWebLoginURL = rawURL.stringValue ?? ""
             self.notiBaseURL = rawNotiURL.stringValue ?? ""
 
-            // Store noti_base_url in UserDefaults for access from extensions
+            // Store noti_base_url in UserDefau                                                                                                                                                                                                                                                            -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   lts for access from extensions
             if !self.notiBaseURL.isEmpty {
                 UserDefaults.standard.set(self.notiBaseURL, forKey: "remote_config_noti_base_url")
             }

@@ -22,6 +22,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
     @IBOutlet weak var serverTextField: UITextField!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var serverLabel: UILabel!
+    @IBOutlet weak var notificationServerTextField: UITextField!
+    @IBOutlet weak var notificationServerLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var importAccountButton: UIButton!
     @IBOutlet weak var qrCodeButton: UIButton!
@@ -70,6 +72,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         serverLabel.textColor = NCAppBranding.brandTextColor()
         serverLabel.text = NSLocalizedString("This is the web address you use to access your server in your web browser.", comment: "")
 
+        // Notification Server TextField
+        notificationServerTextField.delegate = self
+        notificationServerTextField.textColor = NCAppBranding.brandTextColor()
+        notificationServerTextField.tintColor = NCAppBranding.brandTextColor()
+        notificationServerTextField.layer.borderColor = NCAppBranding.brandTextColor().cgColor
+        notificationServerTextField.layer.borderWidth = 1
+        notificationServerTextField.layer.cornerRadius = 8
+        notificationServerTextField.layer.masksToBounds = true
+        let notificationPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        notificationServerTextField.leftView = notificationPaddingView
+        notificationServerTextField.leftViewMode = .always
+        let notificationRightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        notificationServerTextField.rightView = notificationRightPaddingView
+        notificationServerTextField.rightViewMode = .always
+        notificationServerTextField.attributedPlaceholder = NSAttributedString(
+            string: NSLocalizedString("Notification server address https://…", comment: ""),
+            attributes: [.foregroundColor: NCAppBranding.brandTextColor().withAlphaComponent(0.5)])
+        notificationServerLabel.textColor = NCAppBranding.brandTextColor()
+        notificationServerLabel.text = NSLocalizedString("The address of the notification server used to deliver push notifications.", comment: "")
+
         // Login button
         loginButton.setTitle(NSLocalizedString("Log in", comment: ""), for: .normal)
 
@@ -115,6 +137,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
         // Hide all login fields initially until Remote Config is checked
         serverTextField.isHidden = true
         serverLabel.isHidden = true
+        notificationServerTextField.isHidden = true
+        notificationServerLabel.isHidden = true
         loginButton.isHidden = true
         qrCodeButton.isHidden = true
         importAccountButton.isHidden = true
@@ -125,50 +149,88 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
 
     // MARK: - Review Mode
 
+    private var remoteConfigRetryCount = 0
+    private let maxRemoteConfigRetries = 3
+
     func checkReviewModeAndAutoLogin() {
         print("📱 [ReviewMode] checkReviewModeAndAutoLogin called")
+        remoteConfigRetryCount = 0
+        fetchRemoteConfigWithRetry()
+    }
 
-        // Wait for AppDelegate's Remote Config fetch to complete
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
-            guard let self = self else {
-                print("📱 [ReviewMode] self is nil")
-                return
+    private func fetchRemoteConfigWithRetry() {
+        print("📱 [ReviewMode] Fetching Remote Config (attempt \(remoteConfigRetryCount + 1)/\(maxRemoteConfigRetries + 1))")
+
+        RemoteConfigManager.shared.fetchRemoteConfig { [weak self] success in
+            DispatchQueue.main.async {
+                guard let self = self else {
+                    print("📱 [ReviewMode] self is nil")
+                    return
+                }
+
+                print("📱 [ReviewMode] Remote Config fetch completed: \(success)")
+
+                let isInReview = RemoteConfigManager.shared.isIOSInReview
+                let reviewURL = RemoteConfigManager.shared.reviewWebLoginURL
+                let notiBaseURL = RemoteConfigManager.shared.notiBaseURL
+
+                print("📱 [ReviewMode] is_ios_in_review: \(isInReview)")
+                print("📱 [ReviewMode] review_weblogin_url: \(reviewURL)")
+                print("📱 [ReviewMode] noti_base_url: \(notiBaseURL)")
+
+                // Check if we got default values (likely fetch not complete yet on first install)
+                // If all values are defaults/empty and we haven't exhausted retries, wait and retry
+                let seemsLikeDefaults = !isInReview && reviewURL.isEmpty && notiBaseURL.isEmpty
+
+                if seemsLikeDefaults && self.remoteConfigRetryCount < self.maxRemoteConfigRetries {
+                    self.remoteConfigRetryCount += 1
+                    print("📱 [ReviewMode] Got default values, retrying in 2 seconds...")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.fetchRemoteConfigWithRetry()
+                    }
+                    return
+                }
+
+                // Proceed with the values we have
+                self.processRemoteConfigValues(isInReview: isInReview, reviewURL: reviewURL, notiBaseURL: notiBaseURL)
             }
-
-            let isInReview = RemoteConfigManager.shared.isIOSInReview
-            let reviewURL = RemoteConfigManager.shared.reviewWebLoginURL
-
-            print("📱 [ReviewMode] is_ios_in_review: \(isInReview)")
-            print("📱 [ReviewMode] review_weblogin_url: \(reviewURL)")
-
-            // ONLY auto-login when is_ios_in_review is explicitly TRUE
-            if isInReview == false {
-                print("📱 [ReviewMode] is_ios_in_review = FALSE - showing normal login screen")
-                // Show the login fields
-                self.serverTextField.isHidden = false
-                self.serverLabel.isHidden = false
-                self.loginButton.isHidden = false
-                self.qrCodeButton.isHidden = !QRScannerViewController.isDataScannerSupported()
-                self.checkFilesAppAccounts() // Re-check to show import button if needed
-                return
-            }
-
-            // Check if review URL is available
-            if reviewURL.isEmpty {
-                print("📱 [ReviewMode] review_weblogin_url is empty - showing normal login screen")
-                // Show the login fields
-                self.serverTextField.isHidden = false
-                self.serverLabel.isHidden = false
-                self.loginButton.isHidden = false
-                self.qrCodeButton.isHidden = !QRScannerViewController.isDataScannerSupported()
-                self.checkFilesAppAccounts()
-                return
-            }
-
-            // Review mode is TRUE - auto-login (fields already hidden)
-            print("📱 [ReviewMode] is_ios_in_review = TRUE - auto login with: \(reviewURL)")
-            self.startLoginProcess(serverURL: reviewURL, user: nil)
         }
+    }
+
+    private func processRemoteConfigValues(isInReview: Bool, reviewURL: String, notiBaseURL: String) {
+        // ONLY auto-login when is_ios_in_review is explicitly TRUE
+        if isInReview == false {
+            print("📱 [ReviewMode] is_ios_in_review = FALSE - showing normal login screen")
+            // Show the login fields
+            self.serverTextField.isHidden = false
+            self.serverLabel.isHidden = false
+            self.notificationServerTextField.isHidden = false
+            self.notificationServerLabel.isHidden = false
+            self.loginButton.isHidden = false
+            self.qrCodeButton.isHidden = !QRScannerViewController.isDataScannerSupported()
+            self.checkFilesAppAccounts() // Re-check to show import button if needed
+            return
+        }
+
+        // Check if review URL is available
+        if reviewURL.isEmpty {
+            print("📱 [ReviewMode] review_weblogin_url is empty - showing normal login screen")
+            // Show the login fields
+            self.serverTextField.isHidden = false
+            self.serverLabel.isHidden = false
+            self.notificationServerTextField.isHidden = false
+            self.notificationServerLabel.isHidden = false
+            self.loginButton.isHidden = false
+            self.qrCodeButton.isHidden = !QRScannerViewController.isDataScannerSupported()
+            self.checkFilesAppAccounts()
+            return
+        }
+
+        // Review mode is TRUE - auto-login (fields already hidden)
+        print("📱 [ReviewMode] is_ios_in_review = TRUE - auto login with: \(reviewURL)")
+        print("📱 [ReviewMode] Setting noti_base_url to UserDefaults: \(notiBaseURL)")
+        UserDefaults.standard.set(notiBaseURL, forKey: "remote_config_noti_base_url")
+        self.startLoginProcess(serverURL: reviewURL, user: nil)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -188,8 +250,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
     // MARK: - UITextField delegate
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        startLoginProcess()
+        if textField == serverTextField {
+            // Move focus to notification server field
+            notificationServerTextField.becomeFirstResponder()
+        } else if textField == notificationServerTextField {
+            // Start login when return pressed on notification server field
+            textField.resignFirstResponder()
+            startLoginProcess()
+        } else {
+            textField.resignFirstResponder()
+            startLoginProcess()
+        }
         return true
     }
 
@@ -205,6 +276,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
             serverTextField.becomeFirstResponder()
             return
         }
+
+        guard let notificationServerText = notificationServerTextField.text?.trimmingCharacters(in: .whitespaces),
+              !notificationServerText.isEmpty else {
+            notificationServerTextField.becomeFirstResponder()
+            return
+        }
+
+        // Normalize notification server URL
+        var normalizedNotiURL = notificationServerText.lowercased()
+        if !normalizedNotiURL.hasPrefix("https://"), !normalizedNotiURL.hasPrefix("http://") {
+            normalizedNotiURL = "https://" + notificationServerText
+        }
+        if normalizedNotiURL.hasSuffix("/") {
+            normalizedNotiURL.removeLast()
+        }
+
+        // Validate notification server URL
+        guard URL(string: normalizedNotiURL) != nil else {
+            showAlert(
+                title: NSLocalizedString("Invalid notification server address", comment: ""),
+                message: NSLocalizedString("Please check that you entered a valid notification server address.", comment: ""))
+            return
+        }
+
+        UserDefaults.standard.set(normalizedNotiURL, forKey: "remote_config_noti_base_url")
 
         startLoginProcess(serverURL: serverTextFieldText, user: nil)
     }

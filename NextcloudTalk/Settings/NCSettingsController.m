@@ -126,8 +126,16 @@ NSString * const kDidReceiveCallsFromOldAccount = @"receivedCallsFromOldAccount"
 
 - (void)subscribeForPushNotificationsWithRetryForAccountId:(NSString *)accountId retryCount:(NSInteger)retryCount
 {
-    NSInteger maxRetries = 5;
+    NSInteger maxRetries = 10; // Increased retries for first install
     NSTimeInterval retryDelay = 2.0; // 2 seconds between retries
+
+    NSLog(@"🔔 [Push] Attempting subscription for account %@ (attempt %ld/%ld)", accountId, (long)(retryCount + 1), (long)(maxRetries + 1));
+
+    // Log current state for debugging
+    NSString *notiURL = [[NSUserDefaults standardUserDefaults] stringForKey:@"remote_config_noti_base_url"];
+    NSString *pushToken = [[NCKeyChainController sharedInstance] combinedPushToken];
+    NSLog(@"🔔 [Push] noti_base_url: %@", notiURL ?: @"NOT SET");
+    NSLog(@"🔔 [Push] pushToken: %@", pushToken ? @"SET" : @"NOT SET");
 
     [self subscribeForPushNotificationsForAccountId:accountId withCompletionBlock:^(BOOL success) {
         if (!success && retryCount < maxRetries) {
@@ -138,9 +146,9 @@ NSString * const kDidReceiveCallsFromOldAccount = @"receivedCallsFromOldAccount"
                 [self subscribeForPushNotificationsWithRetryForAccountId:accountId retryCount:retryCount + 1];
             });
         } else if (success) {
-            NSLog(@"🔔 [Push] Successfully subscribed for push notifications for account %@", accountId);
+            NSLog(@"🔔 [Push] ✅ Successfully subscribed for push notifications for account %@", accountId);
         } else {
-            NSLog(@"🔔 [Push] Failed to subscribe for push notifications after %ld retries for account %@", (long)maxRetries, accountId);
+            NSLog(@"🔔 [Push] ❌ Failed to subscribe for push notifications after %ld retries for account %@", (long)maxRetries, accountId);
         }
     }];
 }
@@ -763,10 +771,22 @@ NSString * const kDidReceiveCallsFromOldAccount = @"receivedCallsFromOldAccount"
 - (void)subscribeForPushNotificationsForAccountId:(NSString *)accountId withCompletionBlock:(SubscribeForPushNotificationsCompletionBlock)block;
 {
 #if !TARGET_IPHONE_SIMULATOR
+    // Check if notification server URL is available
+    NSString *notiBaseURL = [[NSUserDefaults standardUserDefaults] stringForKey:@"remote_config_noti_base_url"];
+    if (!notiBaseURL || notiBaseURL.length == 0) {
+        [NCLog log:@"Error while subscribing: Notification server URL is not available yet."];
+
+        if (block) {
+            block(NO);
+        }
+
+        return;
+    }
+
     NCPushNotificationKeyPair *keyPair = nil;
     NSData *pushNotificationPublicKey = [[NCKeyChainController sharedInstance] pushNotificationPublicKeyForAccountId:accountId];
     NSData *pushNotificationPrivateKey = [[NCKeyChainController sharedInstance] pushNotificationPrivateKeyForAccountId:accountId];
-    
+
     if (pushNotificationPublicKey && pushNotificationPrivateKey) {
         keyPair = [[NCPushNotificationKeyPair alloc] initWithPrivateKey:pushNotificationPrivateKey publicKey:pushNotificationPublicKey];
     } else {

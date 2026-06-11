@@ -2406,6 +2406,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
             "proxyServer": dynamicNotificationServerURL
         ]
 
+        print(parameters)
         apiSessionManager.postOcs(urlString, account: account, parameters: parameters) { ocsResponse, ocsError in
             completionBlock(ocsResponse?.dataDict, ocsError)
         }
@@ -2430,7 +2431,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
             "deviceIdentifierSignature": account.deviceSignature,
             "userPublicKey": account.userPublicKey
         ]
-
+        print(parameters)
         NCPushProxySessionManager.shared.post(urlString, parameters: parameters, progress: nil) { _, _ in
             completionBlock(nil)
         } failure: { _, error in
@@ -2445,7 +2446,7 @@ class NCAPIController: NSObject, NKCommonDelegate {
             "deviceIdentifierSignature": account.deviceSignature,
             "userPublicKey": account.userPublicKey
         ]
-
+        print(parameters)
         NCPushProxySessionManager.shared.delete(urlString, parameters: parameters) { _, _ in
             completionBlock(nil)
         } failure: { _, error in

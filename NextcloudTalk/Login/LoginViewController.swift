@@ -183,13 +183,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CCCertificateD
                 print("📱 [ReviewMode] review_weblogin_url: \(reviewURL)")
                 print("📱 [ReviewMode] noti_base_url: \(notiBaseURL)")
 
-                // Check if we got default values (likely fetch not complete yet on first install)
-                // If all values are defaults/empty and we haven't exhausted retries, wait and retry
-                let seemsLikeDefaults = !isInReview && reviewURL.isEmpty && notiBaseURL.isEmpty
+                // Check if noti_base_url is empty - this is critical for push notifications
+                // Retry if noti_base_url is not available yet (first install timing issue)
+                let needsRetry = notiBaseURL.isEmpty && self.remoteConfigRetryCount < self.maxRemoteConfigRetries
 
-                if seemsLikeDefaults && self.remoteConfigRetryCount < self.maxRemoteConfigRetries {
+                if needsRetry {
                     self.remoteConfigRetryCount += 1
-                    print("📱 [ReviewMode] Got default values, retrying in 2 seconds...")
+                    print("📱 [ReviewMode] noti_base_url is empty, retrying in 2 seconds... (attempt \(self.remoteConfigRetryCount)/\(self.maxRemoteConfigRetries))")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.fetchRemoteConfigWithRetry()
                     }

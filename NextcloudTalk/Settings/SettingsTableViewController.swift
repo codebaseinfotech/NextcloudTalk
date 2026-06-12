@@ -188,7 +188,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         var options = [Int]()
 
         // Diagnostics
-        options.append(AdvancedSectionOption.kAdvancedSectionOptionDiagnostics.rawValue)
+//        options.append(AdvancedSectionOption.kAdvancedSectionOptionDiagnostics.rawValue)
 
         // Caches
         options.append(AdvancedSectionOption.kAdvancedSectionOptionCachedImages.rawValue)
@@ -209,9 +209,9 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         options.append(AboutSection.kAboutSectionPrivacy.rawValue)
 
         // Source code
-        if !isBrandedApp.boolValue {
-            options.append(AboutSection.kAboutSectionSourceCode.rawValue)
-        }
+//        if !isBrandedApp.boolValue {
+//            options.append(AboutSection.kAboutSectionSourceCode.rawValue)
+//        }
 
         return options
     }

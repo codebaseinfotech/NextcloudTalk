@@ -62,6 +62,15 @@
     // Fetch Remote Config
     [[RemoteConfigManager shared] fetchRemoteConfigWithCompletion:^(BOOL success) {
         NSLog(@"📱 Remote Config fetch completed: %@", success ? @"YES" : @"NO");
+        if (success) {
+            // Try to subscribe for push notifications now that noti_base_url is available
+            // This fixes the race condition on first install where tokens arrive before Remote Config completes
+            // Add a delay to ensure all initialization is complete
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSLog(@"🔔 [DEBUG CALL] Remote Config completed - checking for push notification subscription (after delay)");
+                [self checkForPushNotificationSubscriptionIgnoringBackground];
+            });
+        }
     }];
 
     // OneSignal Push Notification Setup
@@ -230,6 +239,15 @@
     [self checkForDisconnectedExternalSignalingConnection];
 
     [[NCNotificationController sharedInstance] removeAllNotificationsForAccountId:[[NCDatabaseManager sharedInstance] activeAccount].accountId];
+
+    // Retry push notification subscription for accounts that haven't been subscribed yet
+    // This helps with first install where subscription might fail due to timing issues
+    for (TalkAccount *account in [[NCDatabaseManager sharedInstance] allAccounts]) {
+        if (account.lastPushSubscription == 0) {
+            NSLog(@"🔔 [DEBUG CALL] applicationDidBecomeActive - Retrying push subscription for account: %@", account.accountId);
+            [[NCSettingsController sharedInstance] subscribeForPushNotificationsForAccountId:account.accountId withCompletionBlock:nil];
+        }
+    }
 }
 
 - (void)applicationProtectedDataDidBecomeAvailable:(UIApplication *)application
@@ -335,6 +353,32 @@
         }
     } else {
         NSLog(@"🔔 [DEBUG CALL] ⚠️ App in background - skipping subscription");
+    }
+}
+
+- (void)checkForPushNotificationSubscriptionIgnoringBackground
+{
+    NSLog(@"🔔 [DEBUG CALL] checkForPushNotificationSubscriptionIgnoringBackground called");
+    NSLog(@"🔔 [DEBUG CALL] normalPushToken: %@", normalPushToken ? @"SET" : @"NOT SET");
+    NSLog(@"🔔 [DEBUG CALL] pushKitToken: %@", pushKitToken ? @"SET" : @"NOT SET");
+
+    if (!normalPushToken || !pushKitToken) {
+        NSLog(@"🔔 [DEBUG CALL] ⚠️ Waiting for both tokens before subscribing");
+        return;
+    }
+
+    NSLog(@"🔔 [DEBUG CALL] ✅ Both tokens available - storing in keychain");
+
+    // Store new Normal Push & PushKit tokens in Keychain
+    UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:bundleIdentifier accessGroup:groupIdentifier];
+    [keychain setString:normalPushToken forKey:kNCNormalPushTokenKey];
+    [keychain setString:pushKitToken forKey:kNCPushKitTokenKey];
+
+    // Force subscription regardless of background state (for first install after Remote Config loads)
+    NSLog(@"🔔 [DEBUG CALL] 📤 Force subscribing for push notifications for all accounts (ignoring background state)...");
+    for (TalkAccount *account in [[NCDatabaseManager sharedInstance] allAccounts]) {
+        NSLog(@"🔔 [DEBUG CALL] Subscribing account: %@", account.accountId);
+        [[NCSettingsController sharedInstance] subscribeForPushNotificationsForAccountId:account.accountId withCompletionBlock:nil];
     }
 }
 

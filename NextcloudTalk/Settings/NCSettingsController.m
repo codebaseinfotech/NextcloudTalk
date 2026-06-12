@@ -6,6 +6,7 @@
 #import "NCSettingsController.h"
 
 @import NextcloudKit;
+@import OneSignalFramework;
 
 #import "JDStatusBarNotification.h"
 
@@ -116,7 +117,18 @@ NSString * const kDidReceiveCallsFromOldAccount = @"receivedCallsFromOldAccount"
         [[NCDatabaseManager sharedInstance] createAccountForUser:user inServer:server];
         [[NCDatabaseManager sharedInstance] setActiveAccountWithAccountId:accountId];
         [[NCKeyChainController sharedInstance] setToken:token forAccountId:accountId];
-        [self subscribeForPushNotificationsWithRetryForAccountId:accountId retryCount:0];
+
+        // Login to OneSignal with user ID for push notifications
+        NSLog(@"🔔 [OneSignal] Logging in with user ID: %@", user);
+        [OneSignal.User addTagWithKey:@"user_id" value:user];
+        [OneSignal login:user];
+
+        // Add delay before push notification subscription to ensure server is ready
+        NSLog(@"🔔 [Push] Waiting 5 seconds before push notification subscription...");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self subscribeForPushNotificationsWithRetryForAccountId:accountId retryCount:0];
+        });
+
         [self createAccountsFile];
     } else {
         [self setActiveAccountWithAccountId:accountId];

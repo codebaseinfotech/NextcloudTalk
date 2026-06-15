@@ -748,8 +748,8 @@ class NCRoomsManager: NSObject, CallViewControllerDelegate {
         let activeCalls = self.areThereActiveCalls
 
         if !waitForcallEnd || (!activeCalls && leaveRoomTask == nil) {
-            // For answered calls, camera is OFF by default (user can enable manually). Speaker ON for video calls, earpiece for audio calls.
-            self.startCall(withToken: roomToken, withAccountId: accountId, withVideo: hasVideo, enabledAtStart: false, asInitiator: false, silently: true, recordingConsent: false, withVoiceChatMode: !hasVideo)
+            // For answered video calls, camera is ON by default. Speaker ON for video calls, earpiece for audio calls.
+            self.startCall(withToken: roomToken, withAccountId: accountId, withVideo: hasVideo, enabledAtStart: hasVideo, asInitiator: false, silently: true, recordingConsent: false, withVoiceChatMode: !hasVideo)
         } else {
             self.pendingToStartCallToken = roomToken
             self.pendingToStartCallHasVideo = hasVideo

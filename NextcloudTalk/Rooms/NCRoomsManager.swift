@@ -614,9 +614,9 @@ class NCRoomsManager: NSObject, CallViewControllerDelegate {
 
     public func checkForPendingToStartCalls() {
         if let pendingToStartCallToken = self.pendingToStartCallToken, let pendingToStartCallAccountId = self.pendingToStartCallAccountId {
-            // Pending calls can only happen when answering a new call. That's why we start with video disabled at start and in voice chat mode.
-            // We also can start call silently because we are joining an already started call so no need to notify.
-            self.startCall(withToken: pendingToStartCallToken, withAccountId: pendingToStartCallAccountId, withVideo: pendingToStartCallHasVideo, enabledAtStart: false, asInitiator: false, silently: true, recordingConsent: false, withVoiceChatMode: true)
+            // For answered calls, camera is OFF by default (user can enable manually). Speaker ON for video calls, earpiece for audio calls.
+            // We start call silently because we are joining an already started call so no need to notify.
+            self.startCall(withToken: pendingToStartCallToken, withAccountId: pendingToStartCallAccountId, withVideo: pendingToStartCallHasVideo, enabledAtStart: false, asInitiator: false, silently: true, recordingConsent: false, withVoiceChatMode: !pendingToStartCallHasVideo)
             self.pendingToStartCallToken = nil
         }
     }
@@ -748,8 +748,8 @@ class NCRoomsManager: NSObject, CallViewControllerDelegate {
         let activeCalls = self.areThereActiveCalls
 
         if !waitForcallEnd || (!activeCalls && leaveRoomTask == nil) {
-            // Calls that have been answered start with video disabled by default, in voice chat mode and silently (without notification).
-            self.startCall(withToken: roomToken, withAccountId: accountId, withVideo: hasVideo, enabledAtStart: false, asInitiator: false, silently: true, recordingConsent: false, withVoiceChatMode: true)
+            // For answered calls, camera is OFF by default (user can enable manually). Speaker ON for video calls, earpiece for audio calls.
+            self.startCall(withToken: roomToken, withAccountId: accountId, withVideo: hasVideo, enabledAtStart: false, asInitiator: false, silently: true, recordingConsent: false, withVoiceChatMode: !hasVideo)
         } else {
             self.pendingToStartCallToken = roomToken
             self.pendingToStartCallHasVideo = hasVideo

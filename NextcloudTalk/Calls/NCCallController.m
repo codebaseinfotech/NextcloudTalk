@@ -99,7 +99,9 @@ static NSString * const kNCScreenTrackKind  = @"screen";
         _externalSignalingController.delegate = self;
 
         [[WebRTCCommon shared] dispatch:^{
-            if (audioOnly || voiceChatMode) {
+            // Use speaker (videoChatMode) for all initiated calls
+            // Only use earpiece (voiceChatMode) for answered calls where voiceChatMode is true
+            if (voiceChatMode) {
                 [[NCAudioController shared] setAudioSessionToVoiceChatMode];
             } else {
                 [[NCAudioController shared] setAudioSessionToVideoChatMode];
@@ -469,10 +471,9 @@ static NSString * const kNCScreenTrackKind  = @"screen";
 - (void)enableVideo:(BOOL)enable
 {
     [[WebRTCCommon shared] dispatch:^{
-        if (enable) {
-            [self->_localVideoCaptureController startCapture];
-        } else {
-            [self->_localVideoCaptureController stopCapture];
+        // Create video track on demand if it doesn't exist (e.g., upgrading audio call to video)
+        if (enable && !self->_localVideoTrack && [self->_room canPublishVideo] && [self isCameraAccessAvailable]) {
+            [self createLocalVideoTrack];
         }
 
         [self->_localVideoTrack setIsEnabled:enable];

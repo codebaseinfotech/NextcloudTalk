@@ -581,10 +581,14 @@
 
     NSLog(@"📩 OneSignal: Event type: %@, Conversation token: %@", eventType, notificationConversationToken);
 
-    // Check if this is a CALL notification
+    // Check if this is a CALL notification (one-to-one or group call)
     BOOL isCallNotification = [eventType isEqualToString:@"call"] ||
                               [eventType isEqualToString:@"incoming_call"] ||
-                              [event.notification.body containsString:@"is calling you"];
+                              [eventType isEqualToString:@"start_call"] ||
+                              [event.notification.body containsString:@"is calling you"] ||
+                              [event.notification.body containsString:@"started a call"];
+    
+    
 
     if (isCallNotification && notificationConversationToken && notificationConversationToken.length > 0) {
         NSLog(@"📞 OneSignal: CALL notification detected! Triggering CallKit and ringtone...");
@@ -653,10 +657,12 @@
     NSString *eventType = additionalData[@"event"];
     NSString *callerName = additionalData[@"caller_name"];
 
-    // Check if this is a CALL notification
+    // Check if this is a CALL notification (one-to-one or group call)
     BOOL isCallNotification = [eventType isEqualToString:@"call"] ||
                               [eventType isEqualToString:@"incoming_call"] ||
-                              [notification.body containsString:@"is calling you"];
+                              [eventType isEqualToString:@"start_call"] ||
+                              [notification.body containsString:@"is calling you"] ||
+                              [notification.body containsString:@"started a call"];
 
     if (conversationToken && conversationToken.length > 0) {
         NSLog(@"📩 OneSignal: Processing notification for token: %@, event: %@", conversationToken, eventType);

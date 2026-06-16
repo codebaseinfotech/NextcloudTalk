@@ -109,7 +109,9 @@ typedef void (^CreateConversationNotificationCompletionBlock)(void);
 
         BOOL isCallNotification = [eventType isEqualToString:@"call"] ||
                                   [eventType isEqualToString:@"incoming_call"] ||
-                                  (body && [body containsString:@"is calling you"]);
+                                  [eventType isEqualToString:@"start_call"] ||
+                                  (body && [body containsString:@"is calling you"]) ||
+                                  (body && [body containsString:@"started a call"]);
 
         if (isCallNotification) {
             // Use ringtone for call notifications

@@ -957,6 +957,13 @@
 {
     NSLog(@"📞 [RINGTONE] Playing ringtone...");
 
+    // Check if there's an active call - don't disrupt audio session
+    if ([CallKitManager sharedInstance].calls.count > 0) {
+        NSLog(@"📞 [RINGTONE] Active call detected - using vibration only to avoid disrupting call audio");
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        return;
+    }
+
     // Stop any existing ringtone
     [self stopRingtone];
 

@@ -668,35 +668,16 @@
         NSLog(@"📩 OneSignal: Processing notification for token: %@, event: %@", conversationToken, eventType);
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (isCallNotification) {
-                // For call notifications, show CallKit or join the call
-                NSLog(@"📞 OneSignal: Call notification clicked - triggering CallKit");
+            // ALWAYS stop ringtone when notification is clicked
+            [self stopRingtone];
+            NSLog(@"📞 OneSignal: Ringtone stopped on notification click");
 
-                NSString *displayName = callerName ?: notification.title ?: @"Incoming call";
-                TalkAccount *activeAccount = [[NCDatabaseManager sharedInstance] activeAccount];
+            // End the ringing call in CallKitManager
+            [[CallKitManager sharedInstance] endCall:conversationToken withStatusCode:0];
 
-                // Play ringtone
-                [self playRingtone];
-
-                if ([CallKitManager isCallKitAvailable]) {
-                    [[CallKitManager sharedInstance] reportIncomingCall:conversationToken
-                                                        withDisplayName:displayName
-                                                           forAccountId:activeAccount.accountId];
-                } else {
-                    // If CallKit not available, join the call directly
-                    [[NCRoomsManager shared] startCallWithToken:conversationToken
-                                                  withAccountId:activeAccount.accountId
-                                                      withVideo:YES
-                                                 enabledAtStart:YES
-                                                    asInitiator:NO
-                                                       silently:NO
-                                               recordingConsent:NO
-                                              withVoiceChatMode:NO];
-                }
-            } else {
-                // For chat notifications, navigate to chat
-                [[NCRoomsManager shared] startChatWithRoomToken:conversationToken];
-            }
+            // Navigate to chat (for both call and chat notifications)
+            [[NCRoomsManager shared] startChatWithRoomToken:conversationToken];
+            NSLog(@"📞 OneSignal: Navigated to chat for token: %@", conversationToken);
         });
     } else {
         NSLog(@"📩 OneSignal: No conversation_token found in notification data");

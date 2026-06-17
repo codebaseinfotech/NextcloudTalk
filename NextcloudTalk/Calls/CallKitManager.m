@@ -64,26 +64,8 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
 
 + (BOOL)isCallKitAvailable
 {
-    BOOL isOnMac = [NCUtils isiOSAppOnMac];
-    NSString *countryCode = NSLocale.currentLocale.countryCode;
-    BOOL isInChina = [countryCode isEqual:@"CN"];
-
-    NSLog(@"🔔 [DEBUG CALL] CallKitManager - isCallKitAvailable check");
-    NSLog(@"🔔 [DEBUG CALL] Running on Mac: %@", isOnMac ? @"YES" : @"NO");
-    NSLog(@"🔔 [DEBUG CALL] Country code: %@, Is China: %@", countryCode, isInChina ? @"YES" : @"NO");
-
-    if (isOnMac) {
-        // There's currently no support for CallKit when running on MacOS.
-        // If this is enabled on MacOS, there's no audio, because we fail to retrieve
-        // the streams from CallKit. Tested with MacOS 12 & 13.
-        NSLog(@"🔔 [DEBUG CALL] ❌ CallKit NOT available - running on Mac");
-        return NO;
-    }
-
-    // CallKit should be deactivated in China as requested by Apple
-    BOOL available = !isInChina;
-    NSLog(@"🔔 [DEBUG CALL] CallKit available: %@", available ? @"YES" : @"NO");
-    return available;
+    // CallKit disabled - use simple notification instead of full-screen Accept/Decline UI
+    return NO;
 }
 
 #pragma mark - Getters
@@ -280,24 +262,35 @@ NSTimeInterval const kCallKitManagerCheckCallStateEverySeconds  = 5.0;
     NSLog(@"🔔 [DEBUG CALL] This is the FALLBACK path (CallKit not available)");
     NSLog(@"🔔 [DEBUG CALL] Room token: %@, Account: %@", pushNotification.roomToken, pushNotification.accountId);
 
-    CXCallUpdate *update = [self defaultCallUpdate];
+    // Start playing ringtone
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate playRingtone];
+
     NSUUID *callUUID = [NSUUID new];
     CallKitCall *call = [[CallKitCall alloc] init];
     call.uuid = callUUID;
     call.token = pushNotification.roomToken;
     call.accountId = pushNotification.accountId;
-    call.update = update;
-    __weak CallKitManager *weakSelf = self;
-    [self.provider reportNewIncomingCallWithUUID:callUUID update:update completion:^(NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"🔔 [DEBUG CALL] Non-CallKit: Showing local notification instead of ringing");
-            [weakSelf.calls setObject:call forKey:callUUID];
-            [[NCNotificationController sharedInstance] showLocalNotificationForIncomingCallWithPushNotificaion:pushNotification];
-            [weakSelf endCallWithUUID:callUUID];
-        } else {
-            NSLog(@"🔔 [DEBUG CALL] ❌ Non-CallKit: Provider error: %@", error.localizedDescription);
-        }
-    }];
+    call.isRinging = YES;
+
+    // Add call to calls array
+    [_calls setObject:call forKey:callUUID];
+
+    // Show local notification for the incoming call
+    [[NCNotificationController sharedInstance] showLocalNotificationForIncomingCallWithPushNotificaion:pushNotification];
+
+    // Add hangUpTimer - auto end call after max ringing time
+    NSTimer *hangUpTimer = [NSTimer scheduledTimerWithTimeInterval:kCallKitManagerMaxRingingTimeSeconds target:self selector:@selector(endCallWithMissedCallNotification:) userInfo:call repeats:NO];
+    [_hangUpTimers setObject:hangUpTimer forKey:callUUID];
+
+    // Add callStateTimer to check if call is still active
+    NSTimer *callStateTimer = [NSTimer scheduledTimerWithTimeInterval:kCallKitManagerCheckCallStateEverySeconds target:self selector:@selector(checkCallStateForTimer:) userInfo:call repeats:NO];
+    [_callStateTimers setObject:callStateTimer forKey:callUUID];
+
+    // Get call info from server
+    [self getCallInfoForCall:call];
+
+    NSLog(@"🔔 [DEBUG CALL] Non-CallKit: Started ringing with notification");
 }
 
 - (void)reportIncomingCallForOldAccount

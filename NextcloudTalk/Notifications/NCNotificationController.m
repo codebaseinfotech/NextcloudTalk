@@ -7,6 +7,7 @@
 
 #import <UserNotifications/UserNotifications.h>
 
+#import "AppDelegate.h"
 #import "CallKitManager.h"
 #import "NCDatabaseManager.h"
 #import "NCIntentController.h"
@@ -426,7 +427,14 @@ NSString * const NCNotificationActionFederationInvitationReject     = @"REJECT_F
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler
-{    
+{
+    NSLog(@"📞 [NOTIFICATION TAP] didReceiveNotificationResponse called!");
+
+    // ALWAYS stop ringtone when ANY notification is tapped
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate stopRingtone];
+    NSLog(@"📞 [NOTIFICATION TAP] Ringtone stopped at entry point");
+
     UNNotificationRequest *notificationRequest = response.notification.request;
     NSDictionary *userInfo = notificationRequest.content.userInfo;
 
@@ -681,15 +689,29 @@ NSString * const NCNotificationActionFederationInvitationReject     = @"REJECT_F
 
 - (void)handlePushNotificationResponse:(NCPushNotification *)pushNotification
 {
+    NSLog(@"📞 [NOTIFICATION TAP] handlePushNotificationResponse called");
+    NSLog(@"📞 [NOTIFICATION TAP] pushNotification type: %ld", (long)pushNotification.type);
+
     if ([NCRoomsManager shared].callViewController) {
+        NSLog(@"📞 [NOTIFICATION TAP] Call view controller active, returning");
         return;
     }
+
+    // Always stop ringtone when any notification is tapped
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate stopRingtone];
+    NSLog(@"📞 [NOTIFICATION TAP] Ringtone stopped");
 
     if (pushNotification) {
         switch (pushNotification.type) {
             case NCPushNotificationTypeCall:
             {
-                [[NCUserInterfaceController sharedInstance] presentAlertForPushNotification:pushNotification];
+                NSLog(@"📞 [NOTIFICATION TAP] Call notification - navigating to chat");
+                // End the ringing call in CallKitManager
+                [[CallKitManager sharedInstance] endCall:pushNotification.roomToken withStatusCode:0];
+
+                // Navigate directly to chat page (like chat notifications)
+                [[NCUserInterfaceController sharedInstance] presentChatForPushNotification:pushNotification];
             }
                 break;
             case NCPushNotificationTypeRoom:

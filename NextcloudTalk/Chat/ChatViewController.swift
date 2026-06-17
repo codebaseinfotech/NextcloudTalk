@@ -661,6 +661,50 @@ import SwiftUI
             self.presentThreadView(for: presentThreadOnAppear)
             self.presentThreadOnAppear = 0
         }
+
+        // Show call options popup if opened from call notification
+        if NCRoomsManager.shared.shouldShowCallOptions {
+            NSLog("📞 [CALL OPTIONS] Flag is true, showing call options popup")
+            NCRoomsManager.shared.shouldShowCallOptions = false
+            // Delay to ensure view is fully loaded
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                self.showCallOptionsActionSheet()
+            }
+        } else {
+            NSLog("📞 [CALL OPTIONS] Flag is false, not showing popup")
+        }
+    }
+
+    private func showCallOptionsActionSheet() {
+        NSLog("📞 [CALL OPTIONS] showCallOptionsActionSheet called")
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let joinCallTitle = self.room.hasCall ? NSLocalizedString("Join call", comment: "") : NSLocalizedString("Start call", comment: "")
+        let joinCallAction = UIAlertAction(title: joinCallTitle, style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.startCall(withVideo: false, silently: false, button: self.callOptionsButton)
+        }
+
+        let joinVideoCallTitle = self.room.hasCall ? NSLocalizedString("Join video call", comment: "") : NSLocalizedString("Start video call", comment: "")
+        let joinVideoCallAction = UIAlertAction(title: joinVideoCallTitle, style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.startCall(withVideo: true, silently: false, button: self.callOptionsButton)
+        }
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+
+        alertController.addAction(joinCallAction)
+        alertController.addAction(joinVideoCallAction)
+        alertController.addAction(cancelAction)
+
+        // For iPad
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+
+        self.present(alertController, animated: true)
     }
 
     public override func viewWillDisappear(_ animated: Bool) {

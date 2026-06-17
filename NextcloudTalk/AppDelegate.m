@@ -675,9 +675,16 @@
             // End the ringing call in CallKitManager
             [[CallKitManager sharedInstance] endCall:conversationToken withStatusCode:0];
 
-            // Navigate to chat (for both call and chat notifications)
-            [[NCRoomsManager shared] startChatWithRoomToken:conversationToken];
-            NSLog(@"📞 OneSignal: Navigated to chat for token: %@", conversationToken);
+            // Navigate to chat - show call options popup if it's a call notification
+            NSLog(@"📞 OneSignal: isCallNotification = %@", isCallNotification ? @"YES" : @"NO");
+            if (isCallNotification) {
+                NSLog(@"📞 OneSignal: Setting shouldShowCallOptions = YES");
+                [[NCRoomsManager shared] startChatWithRoomToken:conversationToken showCallOptions:YES];
+                NSLog(@"📞 OneSignal: Navigated to chat with call options for token: %@", conversationToken);
+            } else {
+                [[NCRoomsManager shared] startChatWithRoomToken:conversationToken];
+                NSLog(@"📞 OneSignal: Navigated to chat for token: %@", conversationToken);
+            }
         });
     } else {
         NSLog(@"📩 OneSignal: No conversation_token found in notification data");

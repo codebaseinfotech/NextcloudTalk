@@ -54,6 +54,7 @@ class NCRoomsManager: NSObject, CallViewControllerDelegate {
     private var pendingToStartCallHasVideo: Bool = false
     private var highlightMessageDict: [AnyHashable: Any]?
     private var showThreadPushNotification: NCPushNotification?
+    public var shouldShowCallOptions: Bool = false
 
     override init() {
         super.init()
@@ -493,6 +494,13 @@ class NCRoomsManager: NSObject, CallViewControllerDelegate {
     }
 
     public func startChat(withRoomToken token: String) {
+        self.startChat(withRoomToken: token, showCallOptions: false)
+    }
+
+    public func startChat(withRoomToken token: String, showCallOptions: Bool) {
+        NSLog("📞 [CALL OPTIONS] startChat called with showCallOptions: \(showCallOptions)")
+        self.shouldShowCallOptions = showCallOptions
+        NSLog("📞 [CALL OPTIONS] shouldShowCallOptions set to: \(self.shouldShowCallOptions)")
         let activeAccount = NCDatabaseManager.sharedInstance().activeAccount()
 
         if let room = NCDatabaseManager.sharedInstance().room(withToken: token, forAccountId: activeAccount.accountId) {
